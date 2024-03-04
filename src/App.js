@@ -2,6 +2,7 @@ import Header from './models/Header/Header.js';
 import StartScreen from './models/StartScreen/StartScreen.js';
 import Posts from './pages/Posts';
 import Article from './pages/Article';
+import Profile from "./pages/Profile";
 
 import Footer from "./models/Footer/Footer.js";
 import "./styles/common.css";
@@ -32,6 +33,7 @@ function App() {
             
             <Route path="/posts/" Component={Posts}/>
             <Route path="/posts/:id" Component={Article}/>
+            <Route path="/users/:id" Component={Profile}/>
           </Routes>
           
         </StartScreen>
