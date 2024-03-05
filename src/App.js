@@ -7,7 +7,7 @@ import Profile from "./pages/Profile";
 import PageNotFound from './pages/PageNotFound/index.jsx';
 
 import Footer from "./components/Footer/Footer.js";
-import "./styles/common.css";
+import "./styles/common.scss";
 import 'react-quill/dist/quill.snow.css';
 import {
   BrowserRouter as Router,
@@ -29,7 +29,8 @@ function App() {
     '--footer-background': isDarkTheme ? 'rgba(0,0,0, .8)' : 'rgba(255, 255, 255, .8)',
     '--post-card-background': isDarkTheme ? '#3b3b3b' : 'white',
     '--post-card-description-color': isDarkTheme ? '#bbbbbb' : "#6b6b6b",
-    '--article-date-color': isDarkTheme ? '#979797' : "#696969"
+    '--article-date-color': isDarkTheme ? '#979797' : "#696969",
+    '--banner-haze': isDarkTheme ? 'rgba(0,0,0, 1)' : "rgba(255, 255, 255, 1)"
   }
 
   useEffect(() => {
