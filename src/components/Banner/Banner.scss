@@ -4,10 +4,11 @@
     width: 100%;
     border-radius: 8px;
     overflow: hidden;
-    // height: max(300px, auto);
     position: relative;
-
-    &::after {
+    display: flex;
+    
+    &::before, &::after {
+        @include use-transition();
         content: "";
         position: absolute;
         left: 0;
@@ -15,9 +16,13 @@
         width: 100%;
         height: 100%;
         display: block;
-        background: linear-gradient(to top, var(--banner-haze), rgba(0,0,0,0) 50%);
+        background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0) 50%);
+    }
     
-        @include use-transition();
+    &::after {
+        opacity: var(--banner-haze);
+        background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(0,0,0,0) 50%);
+
     }
 
     img {
@@ -36,7 +41,7 @@
         a{
             text-decoration: underline;
         }
-
+        
         h1{
             font-size: 36px;
             margin-bottom: 10px;

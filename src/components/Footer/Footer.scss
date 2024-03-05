@@ -1,0 +1,15 @@
+footer {
+    z-index: 2;
+    bottom: 0;
+    width: 100%; 
+    background-color: var(--footer-background);
+    position: relative;
+    
+    .footer-content {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        height: 60px; 
+      }
+}
+

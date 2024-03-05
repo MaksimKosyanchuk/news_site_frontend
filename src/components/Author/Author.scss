@@ -1,6 +1,7 @@
 .author {
     display: flex;
     align-items: center;
+    box-sizing: content-box;
 
     &_avatar {
         width: 45px;

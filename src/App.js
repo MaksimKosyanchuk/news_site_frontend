@@ -8,7 +8,7 @@ import PageNotFound from './pages/PageNotFound/index.jsx';
 
 import Footer from "./components/Footer/Footer.js";
 import "./styles/common.scss";
-import 'react-quill/dist/quill.snow.css';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -30,7 +30,8 @@ function App() {
     '--post-card-background': isDarkTheme ? '#3b3b3b' : 'white',
     '--post-card-description-color': isDarkTheme ? '#bbbbbb' : "#6b6b6b",
     '--article-date-color': isDarkTheme ? '#979797' : "#696969",
-    '--banner-haze': isDarkTheme ? 'rgba(0,0,0, 1)' : "rgba(255, 255, 255, 1)"
+    '--banner-haze': isDarkTheme ? 0 : 1,
+    '--svg-logo-color': isDarkTheme ? 'white' : '#2f2f2f' 
   }
 
   useEffect(() => {

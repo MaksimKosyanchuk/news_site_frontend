@@ -1,13 +1,30 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import TextEditor, { Content } from "../../components/TextEditor";
 import Loading from "../../components/Loading";
 import "./Article.scss";
-import Author from "../../components/Author";
+import ArticleTopic from "../../components/ArticleTopic";
+
+// Initial Data
+const INITIAL_EDITOR_DATA = {
+    time: new Date().getTime(),
+    blocks: [
+      {
+        type: "header",
+        data: {
+          text: "This is my awesome editor!",
+          level: 1,
+        },
+      },
+    ],
+  };
+
 
 const Article = () => {
     const {id} = useParams();
     const navigate = useNavigate()
-
+    const [editorData, setEditorData] = useState(INITIAL_EDITOR_DATA);
+    
     // const [article, setArticle] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
@@ -33,16 +50,18 @@ const Article = () => {
 
     // useEffect(() => {
     //     getArticle()
-    // }, [])
+    // }, [])    
 
     const [article, setArticle] = useState(
         {
             _id: 0,
-            title: "Облысение после тридцати dsndjasnd djsnadj asndjn dsjan jsan jdasn das sd asd asd as das dsa",
-            content_text: "Люди <b>начали</b> лысеть после тридцатиdsadkmaslkdmalsdmla smdlaskmdlaskmdlaskmdlaskmdlaskmd aksmdlaks mdlaskmdlkasmkldasdkmaslkmdlaskmdlkasmdlsakmdlkasmdlamsldmaslk\nnigga party\nuhsdaudhas\nshuhaduash",
+            title: "Облысение после тридцати",
+            content_text: "Люди <a href='google.com'>начали</a> лысеть после тридцатиdsadkmaslkdmalsdmla smdlaskmdlaskmdlaskmdlaskmdlaskmd aksmdlaks mdlaskmdlkasmkldasdkmaslkmdlaskmdlkasmdlsakmdlkasmdlamsldmaslk\nnigga party\nuhsdaudhas\nshuhaduash",
             author_name: "Maksonchik",
+            author_avatar: "https://masterpiecer-images.s3.yandex.net/5facb7c9220a5a8:upscaled",
             author_id: 0,
             date: "21.01.2012 20:48",
+            is_saved: false,
             featured_image: "https://i1.sndcdn.com/artworks-000104557119-038f1g-t500x500.jpg"
         },
     )
@@ -57,17 +76,23 @@ const Article = () => {
                 article ?
                     <div className="article">
                         <h1 className="article-title">{article.title}</h1>
-                        <Author
-                            author_id={345}
-                            author_name={"Kokos"}
-                            author_avatar={"https://masterpiecer-images.s3.yandex.net/5facb7c9220a5a8:upscaled"}
-                            />
+                        
+                        <div className="article-topic">
+                            <ArticleTopic article={article} setArticle={setArticle} />
+                        </div>
+
                         <span className="article-date">{article.date}</span>
+
                         <div className="article-featured-image">
                             <img src={article.featured_image} />
                         </div>
-                        <div className="article-content" dangerouslySetInnerHTML={ { __html: article.content_text}}>
+
+                        {/* <ReactQuill quill={quill} onChange={handleChange} /> */}
+                        <div className="article-content">
+                            <Content data={editorData}/>
+                            <TextEditor data={editorData} onChange={setEditorData} editorblock="editorjs-container" />
                         </div>
+
                     </div>
                 : <></>     
             }

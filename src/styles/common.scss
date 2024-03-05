@@ -18,7 +18,6 @@ p, h1, h2, h3, h4 ,h5, h6{
     margin: 0;
     padding: 0;
     color: var(--text-color);
-    transition: .3s;
 }
 
 p, h1, h2, h3, h4 ,h5, h6, .app-transition {
@@ -28,6 +27,12 @@ p, h1, h2, h3, h4 ,h5, h6, .app-transition {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+button {
+    outline: none;
+    border: none;
+    background-color: transparent;
 }
 
 .blurred {

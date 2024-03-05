@@ -14,126 +14,102 @@
             width: calc(50% - 10px);
             flex-basis: calc(50% - 10px);
             padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            background-color: var(--post-card-background);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 24px;
+
 
             @media screen and (max-width: 768px) {
                 width: 100%;
                 flex-basis: 100%;
+                flex-direction: column;
             }
 
             &_img {
-                width: 60%;
-                height: 240px;
-
+                width: 30%;
+                height: 145px;
+                border-radius: 6px;
+                overflow: hidden;
+            
                 @media screen and (max-width: 768px) {
+                    order: -1;
                     width: 100%;
+                    margin-bottom: 20px;
+                }
+            
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    user-select: none;
                 }
             }
 
             &_info {
-                .author {
-                  &_avatar {
-                    width: 32px;
-                    height: 32px;
-                  }  
+                width: 90%;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                
+                @media screen and (max-width: 768px) {
+                    display: contents;                
+                }
 
-                  &_name {
-                    font-size: 18px;
-                  }
+                .author {
+                    &_avatar {
+                        width: 32px;
+                        height: 32px;
+                    }  
+
+                    &_name {
+                        font-size: 18px;
+                    }
                 }
 
                 &_title {
-                    margin-top: 20px;
+                    margin-top: 10px;
                     margin-bottom: 12px;
-                    font-size: 28px;
+                    font-size: 24px;
+                    display: -webkit-box; 
+                    -webkit-line-clamp: 2; 
+                    -webkit-box-orient: vertical; 
+                    overflow: hidden;
+
+                    @media screen and (max-width: 768px) {
+                        font-size: 24px;  
+                        margin-top: 12px;              
+                    }
+                }
+
+                &_date{
+                    color: #bbbbbb;
+                    display: block;
+                    margin-top: auto;
+        
+                    @media screen and (max-width: 768px) {
+                        margin-top: 32px;            
+                    }
                 }
 
                 &_description {
                     font-size: 16px;
+                    display: -webkit-box; 
+                    -webkit-line-clamp: 2; 
+                    -webkit-box-orient: vertical; 
+                    overflow: hidden;
+
+                    p {
+                        color: var(--post-card-description-color);
+                    }
+        
+                    @media screen and (max-width: 768px) {
+                        font-size: 18px;                
+                    }
                 }
             }
-        }
-    }
-}
-
-.posts_item {
-    display: flex;
-    justify-content: space-between;
-    background-color: var(--post-card-background);
-    padding: 24px;
-    border-radius: 8px;
-    margin-top: 24px;
-
-    @media screen and (max-width: 768px) {
-        flex-direction: column;
-    }
-
-    &_info {
-        width: 90%;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        padding-right: 20px;
-
-        @media screen and (max-width: 768px) {
-            display: contents;                
-        }
-
-        
-        
-        &_title {
-            margin-top: 20px;
-            margin-bottom: 5px;
-            font-size: 48px;
-            
-            @media screen and (max-width: 768px) {
-                font-size: 24px;  
-                margin-top: 12px;              
-            }
-        }
-        
-        &_description {
-            display: -webkit-box; 
-            -webkit-line-clamp: 2; 
-            -webkit-box-orient: vertical; 
-            overflow: hidden;
-            font-size: 24px;
-            
-            p {
-                color: var(--post-card-description-color);
-            }
-
-            @media screen and (max-width: 768px) {
-                font-size: 18px;                
-            }
-        }
-        
-        &_date{
-            color: #bbbbbb;
-            display: block;
-            margin-top: auto;
-
-            @media screen and (max-width: 768px) {
-                margin-top: 32px;            
-            }
-        }
-    }
-    
-    &_img {
-        width: 30%;
-        height: 300px;
-        border-radius: 6px;
-        overflow: hidden;
-    
-        @media screen and (max-width: 768px) {
-            order: -1;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-    
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
     }
 }

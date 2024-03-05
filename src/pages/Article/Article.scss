@@ -1,10 +1,12 @@
+@import '../../styles/common.scss';
+
 .article {
     &-title{
         font-size: 64px;
         line-height: 1;
     }
 
-    .author {
+    .article-topic {
         margin-top: 50px;
     }
 
@@ -32,6 +34,11 @@
 
         img{
             width: 100%;
+        }
+
+        a{
+            
+            color: purple;
         }
     }
 }

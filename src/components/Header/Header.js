@@ -4,7 +4,7 @@ import HomeIcon from "../../assets/images/home-icon.svg";
 
 import SunIcon from "../../assets/images/sun-icon.png";
 import MoonIcon from "../../assets/images/moon-icon.png";
-import './Header.css';
+import './Header.scss';
 
 function Header({ isDarkTheme, setIsDarkTheme }) {
 
@@ -16,7 +16,7 @@ function Header({ isDarkTheme, setIsDarkTheme }) {
               <img src={HomeIcon} className='app-transition'/>
               <span>Home</span>
             </Link>
-            <h1 className="header_title">News Site</h1>
+            <h1 className="header_title">Current news</h1>
 
             <button type='button' className='header_theme_toggler' onClick={() => setIsDarkTheme(!isDarkTheme)}>
               <img src={isDarkTheme ? SunIcon : MoonIcon } className='app-transition'/>

@@ -1,0 +1,36 @@
+@import '../../styles/common.scss';
+
+.article-topic{        
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    &-button {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        color: var(--svg-logo-color);
+
+        svg {
+            flex-basis: 100%;
+            @include use-transition();
+            
+            *[fill] {
+                fill: currentColor;
+            }
+
+            *[stroke] {
+                stroke: currentColor;
+            }
+        }
+
+        &.article-topic-button_share {
+            margin-left: auto;
+            margin-right: 16px;
+        }
+    }
+}
