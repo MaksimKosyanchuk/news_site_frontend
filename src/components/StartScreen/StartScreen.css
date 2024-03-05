@@ -1,14 +1,12 @@
 .start-screen {
     flex: 1;
     overflow-y: auto;
+    background-color: var(--main-background);
 }
 
 .main-div {
-    padding-top: 80px;
+    padding-top: 180px;
     padding-bottom: 60px;
     z-index: 1;
     height: 100%;
-}
-h1{
-    color: white;
 }

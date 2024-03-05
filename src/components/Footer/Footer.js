@@ -2,7 +2,7 @@ import "./Footer.css"
 
 function Footer(){
     return(
-        <footer className="blurred">
+        <footer className="blurred app-transition">
             <div className="footer-content">
                 <p>Footer</p>
             </div>
