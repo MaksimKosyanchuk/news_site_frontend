@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Author from "../Author";
 import { ReactComponent as BookMarkBorder} from "../../assets/svg/bookmark-outline.svg"
 import { ReactComponent as BookMarkFilled} from "../../assets/svg/bookmark-filled.svg"
@@ -13,16 +14,23 @@ async function copy_article_url(id) {
 }
 
 const ArticleTopic = ({ article, setArticle }) => {
+    const [isSaved, setIsSaved] = useState(false);
+
+    const fetchSaving = () => {
+        // fetch 
+        setIsSaved(!isSaved)
+    }
+
     return (
         <div className="article-topic">
             <Author {...article}/>
-
-            <button type="button" className="article-topic-button article-topic-button_share" onClick={() => copy_article_url(article._id)}>
+            <p className="article-topic-date">21.01.2023</p>
+            <button type="button" className="article-topic-button" onClick={() => copy_article_url(article._id)}>
                 <ShareIcon />
             </button>
 
-            <button type="button" className="article-topic-button article-topic-button_save" onClick={() => setArticle({...article, is_saved: !article.is_saved})}>
-                {article.is_saved ? <BookMarkBorder />  : <BookMarkFilled />}
+            <button type="button" className="article-topic-button" onClick={fetchSaving}>
+                {isSaved ? <BookMarkBorder />  : <BookMarkFilled />}
             </button>
         </div>
     )

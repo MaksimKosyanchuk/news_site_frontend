@@ -14,10 +14,8 @@ function Header({ isDarkTheme, setIsDarkTheme }) {
           <div className="header_content">
             <Link className='header_go_home' to={'/posts'}>
               <img src={HomeIcon} className='app-transition'/>
-              <span>Home</span>
             </Link>
             <h1 className="header_title">Current news</h1>
-
             <button type='button' className='header_theme_toggler' onClick={() => setIsDarkTheme(!isDarkTheme)}>
               <img src={isDarkTheme ? SunIcon : MoonIcon } className='app-transition'/>
             </button> 

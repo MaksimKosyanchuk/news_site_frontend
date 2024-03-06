@@ -2,9 +2,14 @@
 
 .article-topic{        
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     width: 100%;
+    gap: 0px 12px;
+
+    .author {
+        margin-right: auto;
+    }
 
     &-button {
         width: 32px;
@@ -14,6 +19,11 @@
         align-items: center;
         cursor: pointer;
         color: var(--svg-logo-color);
+
+        @include screen(){
+            width: 18px;
+            height: 18px;
+        }
 
         svg {
             flex-basis: 100%;
@@ -27,10 +37,14 @@
                 stroke: currentColor;
             }
         }
+    }
+    
+    &-date{
+        color: var(--article-date-color);
+        display: block;
 
-        &.article-topic-button_share {
-            margin-left: auto;
-            margin-right: 16px;
+        @include screen(){
+            font-size: 12px;
         }
     }
 }

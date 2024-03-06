@@ -24,15 +24,11 @@
       align-items: center;
       
       & img {
-        width: 20px;
+        width: 32px;
         height: auto;
-        margin-right: 12px;
       }
-
-      & span {
-         margin-top: 1px;
-       }
     }
+    
     &_title {
       font-size: 24px;
       margin: 0;
@@ -50,6 +46,7 @@
       background-color: transparent;
       width: 32px;
       height: 32px;
+      padding: 0;
       cursor: pointer;
       
       &:active img {

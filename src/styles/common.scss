@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-@mixin use-transition() {
-    transition: .3s;
-}
+@import "./helpers.scss";
 
 * {
     box-sizing: border-box;
+}
+
+:root {
+    --container-padding: 60px;
+    
+    @include screen() {
+        --container-padding: 16px;
+    }
 }
 
 html, body {
@@ -33,6 +38,8 @@ button {
     outline: none;
     border: none;
     background-color: transparent;
+    padding: 0;
+    margin: 0;
 }
 
 .blurred {
@@ -44,15 +51,8 @@ button {
     max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 60px;
-    padding-right: 60px;
-}
-
-@media screen and (max-width: 768px) {
-    .container {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
 }
 
 .App {

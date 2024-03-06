@@ -26,12 +26,13 @@ function App() {
     '--main-background': isDarkTheme ? 'rgb(37, 37, 37)' : 'rgb(215 215 215)',
     '--header-background': isDarkTheme ? 'rgba(0,0,0, .8)' : 'rgba(255,255,255, .8)',
     '--text-color': isDarkTheme ? 'white' : 'black',
+    '--link-text-color': isDarkTheme? '#c583ff' : '#80f',
     '--footer-background': isDarkTheme ? 'rgba(0,0,0, .8)' : 'rgba(255, 255, 255, .8)',
     '--post-card-background': isDarkTheme ? '#3b3b3b' : 'white',
     '--post-card-description-color': isDarkTheme ? '#bbbbbb' : "#6b6b6b",
-    '--article-date-color': isDarkTheme ? '#979797' : "#696969",
+    '--article-date-color': isDarkTheme ? 'white' : "black",
     '--banner-haze': isDarkTheme ? 0 : 1,
-    '--svg-logo-color': isDarkTheme ? 'white' : '#2f2f2f' 
+    '--svg-logo-color': isDarkTheme ? 'white' : '#2f2f2f'
   }
 
   useEffect(() => {

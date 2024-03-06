@@ -1,0 +1,10 @@
+@mixin use-transition() {
+    transition: .3s;
+}
+
+
+@mixin screen($size : 'sm') {
+    @media screen and (max-width: 768px) {
+        @content;
+    }
+}

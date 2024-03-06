@@ -1,4 +1,4 @@
-import "./StartScreen.css"
+import "./StartScreen.scss"
 
 function StartScreen({ children }) {
     return (
