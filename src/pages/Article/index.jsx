@@ -5,24 +5,10 @@ import Loading from "../../components/Loading";
 import "./Article.scss";
 import ArticleTopic from "../../components/ArticleTopic";
 
-const INITIAL_EDITOR_DATA = {
-    time: new Date().getTime(),
-    blocks: [
-      {
-        type: "header",
-        data: {
-          text: "This is my awesome editor!",
-          level: 1,
-        },
-      },
-    ],
-  };
-
 
 const Article = () => {
     const {id} = useParams();
     const navigate = useNavigate()
-    const [editorData, setEditorData] = useState(INITIAL_EDITOR_DATA);
     
     const [isLoading, setIsLoading] = useState(false);
 
@@ -32,9 +18,12 @@ const Article = () => {
             let findNeededArticle = await fetch(`http://localhost:3001/api/posts/${id}`)
             .then(res => res.json())
             .then(res => {
-                if (res.post) {
-                    setArticle(res.post)
-
+                if (res.status === "success") {
+                    setArticle(res.data)
+                    console.log(res)
+                }
+                else {
+                    navigate('/404')
                 }
             })
             .finally(() => {
@@ -62,7 +51,7 @@ const Article = () => {
                 article ?
                     <div className="article">
                         <h1 className="article-title">{article.title}</h1>
-                        <ArticleTopic article={article}/>
+                        <ArticleTopic article={article} />
                         {article.featured_image ? 
                             <div className="article-featured-image">
                             <img src={article.featured_image}/> 
@@ -71,7 +60,6 @@ const Article = () => {
                             <></>
                         }
 
-                        {/* <ReactQuill quill={quill} onChange={handleChange} /> */}
                         <div className="article-content" dangerouslySetInnerHTML={{__html: article.content_text}}>
                         </div>
 

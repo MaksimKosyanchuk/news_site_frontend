@@ -4,6 +4,7 @@ import "./Posts.scss";
 import Loading from "../../components/Loading";
 import Banner from "../../components/Banner";
 import ArticleTopic from "../../components/ArticleTopic";
+import { API_URL } from "../../config";
 
 const Posts = () => {
     const [posts, setPosts] = useState([ ])
@@ -15,13 +16,11 @@ const Posts = () => {
 
     const getPosts = async () => {
         setIsLoading(true);
-        await fetch(`http://localhost:3001/api/posts`)
+        await fetch(`${API_URL}/api/posts`)
         .then(res => res.json())
         .then(res => {
-            console.log(res.posts)
-            if (res.posts) {
-                setPosts(res.posts);
-
+            if (res.status == "success") {
+                setPosts(res.data);
             }
         })
         .catch((err) => {
@@ -42,7 +41,7 @@ const Posts = () => {
 
             <div className="posts posts_columns">
                 {
-                    (posts?.length && !isLoading) ?
+                    (!isLoading) ?
                         posts.map(post => {
                             return (
                                 <div key={post._id}  className="posts_item app-transition">
@@ -53,9 +52,14 @@ const Posts = () => {
                                         </Link>
                                         <span className="posts_item_info_date">{post.date}</span>
                                     </div>
+                                    {post.featured_image ? 
+                                        
                                     <Link to={`/posts/${post._id}`} className="posts_item_img">
                                         <img src={post.featured_image} alt="" />
                                     </Link>
+                                    : 
+                                        <></>
+                                    }
                                 </div>
                             )
                         })
