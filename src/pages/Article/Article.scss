@@ -1,6 +1,11 @@
 @import '../../styles/helpers.scss';
 
 .article {
+    
+    @include screen() {
+        margin-top: 12px;
+    }
+
     &-title{
         font-size: 48px;
         line-height: 1.2;

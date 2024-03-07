@@ -7,7 +7,12 @@
     overflow: hidden;
     position: relative;
     display: flex;
-    
+    margin-top: 24px;
+
+    @include screen() {
+        margin-top: 12px;
+    }
+
     &::before, &::after {
         @include use-transition();
         content: "";

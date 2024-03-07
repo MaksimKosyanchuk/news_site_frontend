@@ -25,6 +25,7 @@ function App() {
     '--loader-color': isDarkTheme ? 'white' : 'black',
     '--main-background': isDarkTheme ? 'rgb(37, 37, 37)' : 'rgb(215 215 215)',
     '--header-background': isDarkTheme ? 'rgba(0,0,0, .8)' : 'rgba(255,255,255, .8)',
+    '--header-menu-background': isDarkTheme ? 'rgba(0,0,0,1)' : 'rgba(255,255,255, 1)',
     '--text-color': isDarkTheme ? 'white' : 'black',
     '--link-text-color': isDarkTheme? '#c583ff' : '#80f',
     '--footer-background': isDarkTheme ? 'rgba(0,0,0, .8)' : 'rgba(255, 255, 255, .8)',
