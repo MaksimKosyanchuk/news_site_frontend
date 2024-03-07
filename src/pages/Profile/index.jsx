@@ -1,8 +1,15 @@
 const Profile = () => {
     return (
-    <div>
-        Hi
-    </div>)
+        <div className="profile">
+            {/* <div className="profile_info">
+                
+            </div>
+            <div className="">
+
+            </div> */}
+        </div>
+        
+    )
 }
 
 
