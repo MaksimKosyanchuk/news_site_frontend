@@ -45,13 +45,11 @@ const Posts = () => {
                         posts.map(post => {
                             return (
                                 <div key={post._id}  className="posts_item app-transition">
-                                    <div className="posts_item_info">
-                                        <ArticleTopic article={post}/>
-                                        <Link to={`/posts/${post._id}`}>
-                                            <h2 className="posts_item_info_title">{post.title}</h2>
-                                        </Link>
-                                        <span className="posts_item_info_date">{post.date}</span>
-                                    </div>
+                                    <ArticleTopic article={post}/>
+                                    
+                                    <Link to={`/posts/${post._id}`}>
+                                        <h2 className="posts_item_title">{post.title}</h2>
+                                    </Link>
                                     {post.featured_image ? 
                                         
                                     <Link to={`/posts/${post._id}`} className="posts_item_img">
@@ -60,6 +58,9 @@ const Posts = () => {
                                     : 
                                         <></>
                                     }
+                                    
+                                    {/* <div className="posts_item_content">
+                                    </div> */}
                                 </div>
                             )
                         })
