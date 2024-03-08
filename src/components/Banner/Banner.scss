@@ -47,7 +47,8 @@
         padding-top: clamp(100px, 20.83vw, 300px);
         z-index: 2;
         
-        a{
+        a {
+            display: block;
             text-decoration: underline;
         }
         
