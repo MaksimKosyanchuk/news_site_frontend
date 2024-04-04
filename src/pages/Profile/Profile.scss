@@ -1,0 +1,86 @@
+@import "../../styles/helpers.scss";
+
+.profile{
+    &_info {
+        display: flex;
+        align-items: center;
+        box-sizing: content-box;
+        
+        &_avatar {
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 50%;
+            
+            @include screen() {
+                width: 30px;
+                height: 30px;
+            }
+            
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        
+        
+        &_data {
+            margin-left: 50px;
+            margin-bottom: auto;
+            
+            @include screen(){
+                margin-left: 12px;
+            }
+            
+            &_registration_date {
+                color: var(--small-text-color);
+
+                @include screen(){
+                    font-size: 10px;
+                }
+            }
+
+            &_name  {
+                font-size: 34px;
+                
+                @include screen(){
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    &_tab_list {
+        display: flex;
+        justify-content: center;
+        border-top: 1px solid var(--line-color);
+        margin: 50px 0 0;
+        padding: 10px 0;
+
+        div {
+            cursor: pointer;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none
+        }
+
+        p {
+            color: var(--small-text-color);
+        }
+
+        &_active{
+            p {
+                font-weight: bold;
+                color: var(--text-color)
+            }
+        }
+    }
+    
+    .profile_tab_list > div {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+}

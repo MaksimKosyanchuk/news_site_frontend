@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header/Header.js';
 import StartScreen from './components/StartScreen/StartScreen.js';
-import Posts from './pages/Posts';
+import Posts from './pages/Posts/index.jsx';
 import Article from './pages/Article';
 import Profile from "./pages/Profile";
 import PageNotFound from './pages/PageNotFound/index.jsx';
@@ -32,7 +32,9 @@ function App() {
     '--post-card-description-color': isDarkTheme ? '#bbbbbb' : "#6b6b6b",
     '--article-date-color': isDarkTheme ? 'white' : "black",
     '--banner-haze': isDarkTheme ? 0 : 1,
-    '--svg-logo-color': isDarkTheme ? 'white' : '#2f2f2f'
+    '--svg-logo-color': isDarkTheme ? 'white' : '#2f2f2f',
+    '--line-color': isDarkTheme ? '#4f4f4f' : "#6b6b6b",
+    '--small-text-color': isDarkTheme ? '#bbbbbb' : 'black'
   }
 
   useEffect(() => {
@@ -59,8 +61,8 @@ function App() {
             
             <Route path="/404" Component={PageNotFound}/>
             <Route path="/posts/" Component={Posts}/>
-            <Route path="/posts/:id" Component={Article}/>
             <Route path="/users/:id" Component={Profile}/>
+            <Route path="/posts/:id" Component={Article}/>
           </Routes>
           
         </StartScreen>

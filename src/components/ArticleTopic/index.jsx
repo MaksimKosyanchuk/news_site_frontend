@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
 import Author from "../Author";
-import { ReactComponent as BookMarkBorder} from "../../assets/svg/bookmark-outline.svg"
-import { ReactComponent as BookMarkFilled} from "../../assets/svg/bookmark-filled.svg"
-import { ReactComponent as ShareIcon} from "../../assets/svg/share.svg"
-import "./ArticleTopic.scss"
+import { ReactComponent as BookMarkBorder} from "../../assets/svg/bookmark-outline.svg";
+import { ReactComponent as BookMarkFilled} from "../../assets/svg/bookmark-filled.svg";
+import { ReactComponent as ShareIcon} from "../../assets/svg/share.svg";
+import "./ArticleTopic.scss";
 
 async function copy_article_url(id) {
     try {
-        await navigator.clipboard.writeText(`/posts/${id}`);
-      } catch (err) {
-        console.error(`Failed to copy: /posts/${id}`, err);
-      }
+        await navigator.clipboard.writeText(`/posts/${id}`)
+    } catch (err) {
+        console.error(`Failed to copy: /posts/${id}`, err)
+    }
 }
 
 function format_date(date) {
-    const isoDatetimeStr = "2024-03-07T15:47:19.130Z";
-    const isoDatetime = new Date(isoDatetimeStr);
+    const isoDatetimeStr = "2024-03-07T15:47:19.130Z"
+    const isoDatetime = new Date(isoDatetimeStr)
 
-    // Форматирование объекта Date в нужный вид
     const formattedDatetimeStr = isoDatetime.toLocaleString("ru-RU", {
         year: "numeric",
         month: "2-digit",
@@ -25,17 +24,15 @@ function format_date(date) {
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
-    });
+    })
 
-    return formattedDatetimeStr.replace(",", "");
+    return formattedDatetimeStr.replace(",", "")
 }
 
 const ArticleTopic = ({ article }) => {
-    const [isSaved, setIsSaved] = useState(false);
+    const [isSaved, setIsSaved] = useState(false)
 
     useEffect(() => {
-        console.log(article)
-
     }, [])
 
     const fetchSaving = () => {
@@ -57,4 +54,4 @@ const ArticleTopic = ({ article }) => {
     )
 }
 
-export default ArticleTopic;
+export  { ArticleTopic, format_date }
