@@ -39,6 +39,7 @@ const ArticleTopic = ({ article }) => {
         // fetch запрос на проверку сохранен ли пост у пользователя, на сервере при posts запросе принимать token, и сразу сделать прверку и вернуть если сохранен, если token отсутствует то по дефолту все статьи не сохранены 
         setIsSaved(!isSaved)
     }
+    
     return (
         <div className="article-topic">
             <Author {...article.author}/>

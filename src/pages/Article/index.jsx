@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import TextEditor, { Content } from "../../components/TextEditor";
 import Loading from "../../components/Loading";
 import "./Article.scss";
 import { ArticleTopic } from "../../components/ArticleTopic";

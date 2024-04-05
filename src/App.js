@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import Header from './components/Header/Header.js';
-import StartScreen from './components/StartScreen/StartScreen.js';
+import Header from './components/Header/index.jsx';
+import StartScreen from './components/StartScreen/index.jsx';
 import Posts from './pages/Posts/index.jsx';
 import Article from './pages/Article';
 import Profile from "./pages/Profile";
 import PageNotFound from './pages/PageNotFound/index.jsx';
+import Footer from "./components/Footer/index.jsx";
 
-import Footer from "./components/Footer/Footer.js";
 import "./styles/common.scss";
 
 import {
