@@ -30,32 +30,11 @@ function format_date(date) {
     return formattedDatetimeStr.replace(",", "")
 }
 
-const ArticleTopic = ({ article }) => {
-    const [isSaved, setIsSaved] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
-
+const ArticleTopic = ({ article, profile }) => {
+    const [isSaved, setIsSaved] = useState(profile && profile.saved_posts && article && article._id && profile.saved_posts.includes(article._id))
+    
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const requestOptions = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ token: localStorage.getItem('token') })
-                }
-
-                let findNeededProfile = await fetch(`${API_URL}/api/profile`, requestOptions)
-                findNeededProfile = await findNeededProfile.json()
-
-                setIsSaved(findNeededProfile.data.saved_posts.indexOf(article._id) !== -1)
-                setIsLoading(false)
-            } catch (error) {
-                console.log(error)
-                setIsLoading(false)
-            }
-        };
-
-        fetchData();
-    }, [article._id])
+    }, [])
 
     const save_post = async () => {
         const requestOptions = {
@@ -75,20 +54,18 @@ const ArticleTopic = ({ article }) => {
         }
     };
 
-
-    if(!isLoading){
-        return (
-            <div className="article-topic">
-            <Author {...article.author} />
-            <p className="article-topic-date">{format_date(article.created_date)}</p>
-            <button type="button" className="article-topic-button" onClick={() => copy_article_url(article._id)}>
-                <ShareIcon />
-            </button>
-            <button type="button" className="article-topic-button" onClick={save_post}>
-                {isSaved ? <BookMarkFilled /> : <BookMarkBorder />}
-            </button>
-        </div>
-    )}
+    return (
+        <div className="article-topic">
+        <Author {...article.author} />
+        <p className="article-topic-date">{format_date(article.created_date)}</p>
+        <button type="button" className="article-topic-button" onClick={() => copy_article_url(article._id)}>
+            <ShareIcon />
+        </button>
+        <button type="button" className="article-topic-button" onClick={save_post}>
+            {isSaved ? <BookMarkFilled /> : <BookMarkBorder />}
+        </button>
+    </div>
+    )
 }
 
 export  { ArticleTopic, format_date }
