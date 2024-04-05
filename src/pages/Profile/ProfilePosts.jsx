@@ -13,7 +13,7 @@ const ProfilePosts = ( { query } ) => {
     useEffect(() => {
         getPosts()
     }, [query])
-    console.log("query: ", query)
+
     const queryString = Object.entries(query).map(([key, value]) => {
         if (Array.isArray(value)) {
             return value.map(id => `${key}=${id}`).join('&')

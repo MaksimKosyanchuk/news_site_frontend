@@ -31,8 +31,6 @@ const Profile = ( ) => {
                 await setUser(findNeededUser.data)
                 let findNeededProfile = await fetch(`${API_URL}/api/profile`, requestOptions)
                 findNeededProfile = await findNeededProfile.json()
-                console.log("needed profile: ", findNeededProfile.data)
-                console.log("needed user: ", findNeededUser.data)
                 if(findNeededProfile.status == "success" && findNeededProfile.data._id == findNeededUser.data._id) {
                     await setProfile(findNeededProfile.data)
                 }
@@ -57,8 +55,6 @@ const Profile = ( ) => {
             <Loading></Loading>
         )
     }
-
-    console.log("profile: ", profile)
 
     return (
         <div className="profile"> 
