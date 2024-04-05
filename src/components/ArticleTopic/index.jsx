@@ -32,59 +32,64 @@ function format_date(date) {
 
 const ArticleTopic = ({ article }) => {
     const [isSaved, setIsSaved] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-    }, [])
+        const fetchData = async () => {
+            try {
+                const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: localStorage.getItem('token') })
+                };
 
-    
-    const get_saved_posts = async () => {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token: localStorage.getItem('token') })
-        }
-        try{
-            let findNeededProfile = await fetch(`${API_URL}/api/profile`, requestOptions)
-            findNeededProfile = await findNeededProfile.json()
+                let findNeededProfile = await fetch(`${API_URL}/api/profile`, requestOptions);
+                findNeededProfile = await findNeededProfile.json();
 
-            setIsSaved(findNeededProfile.data.saved_posts.indexOf(article._id) !== -1)
-        } catch(e) {
-            console.log(e)
-        }
-    }
+                setIsSaved(findNeededProfile.data.saved_posts.indexOf(article._id) !== -1);
+                setIsLoading(false); 
+            } catch (error) {
+                console.log(error);
+                setIsLoading(false);
+            }
+        };
 
-    const save_post = async ( ) => {
+        fetchData();
+    }, [article._id])
+
+    const save_post = async () => {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ token: localStorage.getItem('token'), post_id: article._id })
-        }
-        try{
-            let result = await fetch(`${API_URL}/api/profile/save-post`, requestOptions)
-            result = await result.json()
-            if(result.status == "success") {
-                setIsSaved(!isSaved)
-            }
-        } catch(e) {
-            console.log(e)
-        }
-    }
+        };
 
-    get_saved_posts()
+        try {
+            let result = await fetch(`${API_URL}/api/profile/save-post`, requestOptions)
+            result = await result.json();
+            if (result.status === "success") {
+                setIsSaved(!isSaved);
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
 
     return (
         <div className="article-topic">
-            <Author {...article.author}/>
+            <Author {...article.author} />
             <p className="article-topic-date">{format_date(article.created_date)}</p>
             <button type="button" className="article-topic-button" onClick={() => copy_article_url(article._id)}>
                 <ShareIcon />
             </button>
 
-            <button type="button" className="article-topic-button" onClick={save_post}>
-                {isSaved ? <BookMarkFilled />  : <BookMarkBorder />}
-            </button>
+            {!isLoading && (
+                <button type="button" className="article-topic-button" onClick={save_post}>
+                    {isSaved ? <BookMarkFilled /> : <BookMarkBorder />}
+                </button>
+            )}
         </div>
-    )
-}
+    );
+};
 
 export  { ArticleTopic, format_date }
