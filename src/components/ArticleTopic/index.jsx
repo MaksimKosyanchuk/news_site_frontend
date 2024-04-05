@@ -41,16 +41,16 @@ const ArticleTopic = ({ article }) => {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ token: localStorage.getItem('token') })
-                };
+                }
 
-                let findNeededProfile = await fetch(`${API_URL}/api/profile`, requestOptions);
-                findNeededProfile = await findNeededProfile.json();
+                let findNeededProfile = await fetch(`${API_URL}/api/profile`, requestOptions)
+                findNeededProfile = await findNeededProfile.json()
 
-                setIsSaved(findNeededProfile.data.saved_posts.indexOf(article._id) !== -1);
-                setIsLoading(false); 
+                setIsSaved(findNeededProfile.data.saved_posts.indexOf(article._id) !== -1)
+                setIsLoading(false)
             } catch (error) {
-                console.log(error);
-                setIsLoading(false);
+                console.log(error)
+                setIsLoading(false)
             }
         };
 
@@ -75,21 +75,20 @@ const ArticleTopic = ({ article }) => {
         }
     };
 
-    return (
-        <div className="article-topic">
+
+    if(!isLoading){
+        return (
+            <div className="article-topic">
             <Author {...article.author} />
             <p className="article-topic-date">{format_date(article.created_date)}</p>
             <button type="button" className="article-topic-button" onClick={() => copy_article_url(article._id)}>
                 <ShareIcon />
             </button>
-
-            {!isLoading && (
-                <button type="button" className="article-topic-button" onClick={save_post}>
-                    {isSaved ? <BookMarkFilled /> : <BookMarkBorder />}
-                </button>
-            )}
+            <button type="button" className="article-topic-button" onClick={save_post}>
+                {isSaved ? <BookMarkFilled /> : <BookMarkBorder />}
+            </button>
         </div>
-    );
-};
+    )}
+}
 
 export  { ArticleTopic, format_date }
