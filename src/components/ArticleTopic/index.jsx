@@ -3,6 +3,7 @@ import Author from "../Author";
 import { ReactComponent as BookMarkBorder} from "../../assets/svg/bookmark-outline.svg";
 import { ReactComponent as BookMarkFilled} from "../../assets/svg/bookmark-filled.svg";
 import { ReactComponent as ShareIcon} from "../../assets/svg/share.svg";
+import { API_URL } from "../../config";
 import "./ArticleTopic.scss";
 
 async function copy_article_url(id) {
@@ -35,11 +36,42 @@ const ArticleTopic = ({ article }) => {
     useEffect(() => {
     }, [])
 
-    const fetchSaving = () => {
-        // fetch запрос на проверку сохранен ли пост у пользователя, на сервере при posts запросе принимать token, и сразу сделать прверку и вернуть если сохранен, если token отсутствует то по дефолту все статьи не сохранены 
-        setIsSaved(!isSaved)
-    }
     
+    const get_saved_posts = async () => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: localStorage.getItem('token') })
+        }
+        try{
+            let findNeededProfile = await fetch(`${API_URL}/api/profile`, requestOptions)
+            findNeededProfile = await findNeededProfile.json()
+
+            setIsSaved(findNeededProfile.data.saved_posts.indexOf(article._id) !== -1)
+        } catch(e) {
+            console.log(e)
+        }
+    }
+
+    const save_post = async ( ) => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: localStorage.getItem('token'), post_id: article._id })
+        }
+        try{
+            let result = await fetch(`${API_URL}/api/profile/save-post`, requestOptions)
+            result = await result.json()
+            if(result.status == "success") {
+                setIsSaved(!isSaved)
+            }
+        } catch(e) {
+            console.log(e)
+        }
+    }
+
+    get_saved_posts()
+
     return (
         <div className="article-topic">
             <Author {...article.author}/>
@@ -48,8 +80,8 @@ const ArticleTopic = ({ article }) => {
                 <ShareIcon />
             </button>
 
-            <button type="button" className="article-topic-button" onClick={fetchSaving}>
-                {isSaved ? <BookMarkBorder />  : <BookMarkFilled />}
+            <button type="button" className="article-topic-button" onClick={save_post}>
+                {isSaved ? <BookMarkFilled />  : <BookMarkBorder />}
             </button>
         </div>
     )

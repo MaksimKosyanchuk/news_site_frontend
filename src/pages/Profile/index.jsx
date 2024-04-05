@@ -13,29 +13,28 @@ const Profile = ( ) => {
     let [ activeTab, setActiveTab ] = useState(tabs[0])
     
     const getProfile = async () => {
-        const token = localStorage.getItem('token')
-
         try {
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ token: localStorage.getItem('token') })
-            };
+            }
             
-            let findNeededProfile = await fetch(`${API_URL}/api/users/${id}`)
-            let res = await findNeededProfile.json()
-
-            if(res.status == "error") {
+            let findNeededUser = await fetch(`${API_URL}/api/users/${id}`)
+            findNeededUser = await findNeededUser.json()
+            
+            if(findNeededUser.status == "error") {
                 navigate('/404')
             }
-
+            
             else {
-                setProfile(res.data)
-                findNeededProfile = await fetch(`${API_URL}/api/profile`, requestOptions)
+                await setUser(findNeededUser.data)
+                let findNeededProfile = await fetch(`${API_URL}/api/profile`, requestOptions)
                 findNeededProfile = await findNeededProfile.json()
-
-                if(findNeededProfile.status == "success" && res.data._id == findNeededProfile.data._id) {
-                    setProfile(findNeededProfile.data)
+                console.log("needed profile: ", findNeededProfile.data)
+                console.log("needed user: ", findNeededUser.data)
+                if(findNeededProfile.status == "success" && findNeededProfile.data._id == findNeededUser.data._id) {
+                    await setProfile(findNeededProfile.data)
                 }
             }
             
@@ -45,18 +44,22 @@ const Profile = ( ) => {
         }
     };
     
+    const [user, setUser] = useState(null)
+    const [profile, setProfile] = useState(null)
+    
     useEffect(() => {
         getProfile()
     }, []);
     
-    const [profile, setProfile] = useState([])
     
-    if(!profile) {
+    if(!user) {
         return (
             <Loading></Loading>
-            )
-        }
-        
+        )
+    }
+
+    console.log("profile: ", profile)
+
     return (
         <div className="profile"> 
             <div className="profile_info">
@@ -64,8 +67,8 @@ const Profile = ( ) => {
                     <img src = "https://avatars.githubusercontent.com/u/113336097?v=4" alt="img"/>
                 </div>
                 <div className="profile_info_data">
-                    <p className="profile_info_data_name">{profile.nick_name}</p>
-                    <p className="profile_info_data_registration_date">Дата регистрации: {format_date(profile.created_date)}.</p>
+                    <p className="profile_info_data_name">{ user.nick_name }</p>
+                    <p className="profile_info_data_registration_date">Дата регистрации: {format_date(user.created_date)}.</p>
                 </div>
             </div>
             <div className="profile_tab_list"> 
@@ -79,12 +82,13 @@ const Profile = ( ) => {
                 {
                     (activeTab === "Посты") ? 
                     (
-                        profile._id ? <ProfilePosts query = {{ author: profile._id }} /> 
-                        : <></>
+                        user._id ? <ProfilePosts query = {{ author: user._id }} /> :
+                        <></>
                     )   
                     :
                     (
-                        profile.saved_posts ? <ProfilePosts query = {{ _id: profile.saved_posts }} /> : <></>
+                        profile && profile.saved_posts.length > 0 ? <ProfilePosts query = {{ _id: profile.saved_posts }} /> :
+                        <></>
                     )
                 }
             </div>
