@@ -9,9 +9,11 @@ import "../Posts/Posts.scss";
 const ProfilePosts = ( { query } ) => {
     const [posts, setPosts] = useState([ ])
     const [isLoading, setIsLoading] = useState(false)
+    const [profile, setProfile] = useState(null)
 
     useEffect(() => {
         getPosts()
+        getProfile()
     }, [query])
 
     const queryString = Object.entries(query).map(([key, value]) => {
@@ -22,6 +24,28 @@ const ProfilePosts = ( { query } ) => {
         return `${key}=${value}`
     }).join('&')
 
+    const getProfile = async () => {
+        setIsLoading(true);
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: localStorage.getItem('token') })
+        };
+
+        try {
+            const response = await fetch(`${API_URL}/api/profile/`, requestOptions)
+            const data = await response.json();
+
+            if (data.status === "success") {
+                setProfile(data.data)
+            }
+        } catch (error) {
+            console.error('Error fetching profile:', error)
+        } finally {
+            setIsLoading(false)
+        }
+        
+    }
     const getPosts = async () => {
         setIsLoading(true)
         
@@ -48,7 +72,7 @@ const ProfilePosts = ( { query } ) => {
                         posts.map(post => {
                             return (
                                 <div key={post._id}  className="posts_item app-transition">
-                                    <ArticleTopic article={post}/>
+                                    <ArticleTopic article={post} profile={profile}/>
                                     
                                     <Link to={`/posts/${post._id}`}>
                                         <h2 className="posts_item_title">{post.title}</h2>

@@ -10,7 +10,14 @@ const Article = () => {
     const {id} = useParams()
     const navigate = useNavigate()
     
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
+    const [profile, setProfile] = useState(null)
+    const [article, setArticle] = useState([ ])
+    
+    useEffect(() => {
+        getArticle()
+        getProfile()
+    }, [])    
 
     const getArticle = async () => {
         try {
@@ -35,23 +42,33 @@ const Article = () => {
         }
     }
 
-    useEffect(() => {
-        getArticle()
-    }, [])    
+    const getProfile = async () => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: localStorage.getItem('token') })
+        };
 
-    const [article, setArticle] = useState([ ])
+        try {
+            const response = await fetch(`${API_URL}/api/profile/`, requestOptions)
+            const data = await response.json();
 
-    if (isLoading) {
-        return <Loading/>
+            if (data.status === "success") {
+                setProfile(data.data)
+            }
+        } catch (error) {
+            console.error('Error fetching profile:', error)
+        }
     }
 
     return (
+        !isLoading ?
         <div>
             {
                 article ?
                     <div className="article">
                         <h1 className="article-title">{article.title}</h1>
-                        <ArticleTopic article={article} />
+                        <ArticleTopic article={article} profile={profile}/>
                         {article.featured_image ? 
                             <div className="article-featured-image">
                             <img src={article.featured_image}/> 
@@ -66,7 +83,8 @@ const Article = () => {
                     </div>
                 : <></>     
             }
-        </div>
+        </div>:
+        <Loading />
     )
 }
 
