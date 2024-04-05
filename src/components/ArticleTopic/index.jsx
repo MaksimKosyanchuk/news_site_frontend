@@ -36,26 +36,38 @@ const ArticleTopic = ({ article }) => {
     useEffect(() => {
     }, [])
 
+    
     const get_saved_posts = async () => {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ token: localStorage.getItem('token') })
         }
-
         try{
             let findNeededProfile = await fetch(`${API_URL}/api/profile`, requestOptions)
             findNeededProfile = await findNeededProfile.json()
-            console.log("test", findNeededProfile.data.saved_posts, article._id)
+
             setIsSaved(findNeededProfile.data.saved_posts.indexOf(article._id) !== -1)
         } catch(e) {
             console.log(e)
         }
-        
     }
 
-    const save_post = ( {article} ) => {
-
+    const save_post = async ( ) => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: localStorage.getItem('token'), post_id: article._id })
+        }
+        try{
+            let result = await fetch(`${API_URL}/api/profile/save-post`, requestOptions)
+            result = await result.json()
+            if(result.status == "success") {
+                setIsSaved(!isSaved)
+            }
+        } catch(e) {
+            console.log(e)
+        }
     }
 
     get_saved_posts()

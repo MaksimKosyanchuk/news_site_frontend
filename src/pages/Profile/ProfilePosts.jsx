@@ -13,17 +13,17 @@ const ProfilePosts = ( { query } ) => {
     useEffect(() => {
         getPosts()
     }, [query])
-    
+    console.log("query: ", query)
+    const queryString = Object.entries(query).map(([key, value]) => {
+        if (Array.isArray(value)) {
+            return value.map(id => `${key}=${id}`).join('&')
+        }
+
+        return `${key}=${value}`
+    }).join('&')
+
     const getPosts = async () => {
         setIsLoading(true)
-        
-        const queryString = Object.entries(query).map(([key, value]) => {
-            if (Array.isArray(value)) {
-                return value.map(id => `${key}=${id}`).join('&')
-            }
-
-            return `${key}=${value}`
-        }).join('&')
         
         await fetch(`${API_URL}/api/posts?${queryString}`)
         .then(res => res.json())
@@ -34,6 +34,10 @@ const ProfilePosts = ( { query } ) => {
         })
         .catch((err) => { })
         setIsLoading(false)
+    }
+
+    if(!posts) {
+        return <></>
     }
 
     return (
