@@ -4,6 +4,7 @@ import TextEditor, { Content } from "../../components/TextEditor";
 import Loading from "../../components/Loading";
 import "./Article.scss";
 import { ArticleTopic } from "../../components/ArticleTopic";
+import { API_URL } from "../../config";
 
 
 const Article = () => {
@@ -16,7 +17,7 @@ const Article = () => {
         try {
             setIsLoading(true)
             
-            let findNeededArticle = await fetch(`http://localhost:3001/api/posts/${id}`)
+            let findNeededArticle = await fetch(`${API_URL}/api/posts/${id}`)
             .then(res => res.json())
             .then(res => {
                 if (res.status === "success") {
