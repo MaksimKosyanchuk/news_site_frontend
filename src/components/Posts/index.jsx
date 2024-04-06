@@ -56,38 +56,30 @@ const Posts = () => {
 
     return (
         <>
-            <Banner 
-                image={'https://img.tsn.ua/cached/552/tsn-dc382829a98d0f40b34d312a72bcb9b7/thumbs/1116x628/dc/7d/3769751a1240ebcc80e4c7322c177ddc.jpeg'}>
-
-                <h1>My News Site</h1>
-                <p>Please, share this work with your friends das das d sa das d sad sa dsa dasdasd asd as das d as d asd as dsa d as dsa friends das das d sa das d sad sa dsa dasdasd asd as das d as d asd as dsa d as dsa  </p>
-                <a href="/mccoklsa">MacKos</a>
-            </Banner>
-
             <div className="posts posts_columns">
-                {
-                    (!isLoading) ?
-                        posts.map(post => {
-                            return (
-                                <div key={post._id}  className="posts_item app-transition">
-                                    <ArticleTopic article={post} profile={profile}/>
+            {
+                (!isLoading) ?
+                    posts.map(post => {
+                        return (
+                            <div key={post._id}  className="posts_item app-transition">
+                                <ArticleTopic article={post} profile={profile}/>
+                                
+                                <Link to={`/posts/${post._id}`}>
+                                    <h2 className="posts_item_title">{post.title}</h2>
+                                </Link>
+                                {post.featured_image ? 
                                     
-                                    <Link to={`/posts/${post._id}`}>
-                                        <h2 className="posts_item_title">{post.title}</h2>
-                                    </Link>
-                                    {post.featured_image ? 
-                                        
-                                    <Link to={`/posts/${post._id}`} className="posts_item_img">
-                                        <img src={post.featured_image} alt="" />
-                                    </Link>
-                                    : 
-                                        <></>
-                                    }
-                                </div>
-                            )
-                        })
-                    : <Loading/>
-                }
+                                <Link to={`/posts/${post._id}`} className="posts_item_img">
+                                    <img src={post.featured_image} alt="" />
+                                </Link>
+                                : 
+                                    <></>
+                                }
+                            </div>
+                        )
+                    })
+                : <Loading/>
+            }
             </div>
         </>
     )
