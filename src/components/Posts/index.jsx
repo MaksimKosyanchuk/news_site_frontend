@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Posts.scss";
 import Loading from "../../components/Loading";
-import Banner from "../../components/Banner";
 import { ArticleTopic } from "../../components/ArticleTopic";
 import { API_URL } from "../../config";
 
@@ -16,16 +15,9 @@ const Posts =  ( { query } ) => {
         getProfile()
     }, [query])
 
-    const queryString = Object.entries(query).map(([key, value]) => {
-        if (Array.isArray(value)) {
-            return value.map(id => `${key}=${id}`).join('&')
-        }
-
-        return `${key}=${value}`
-    }).join('&')
-
     const getProfile = async () => {
-        setIsLoading(true);
+        setIsLoading(true)
+
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -48,11 +40,21 @@ const Posts =  ( { query } ) => {
     }
     const getPosts = async () => {
         setIsLoading(true)
+        let queryString = ""
+
+        if(query) {
+            queryString = Object.entries(query).map(([key, value]) => {
+                if (Array.isArray(value)) {
+                    return value.map(id => `${key}=${id}`).join('&')
+                }
+                return `${key}=${value}`
+            }).join('&')
+        }
         
         await fetch(`${API_URL}/api/posts?${queryString}`)
         .then(res => res.json())
         .then(res => {
-            if (res.status == "success") {
+            if (res.status === "success") {
                 setPosts(res.data)
             }
         })
@@ -63,7 +65,7 @@ const Posts =  ( { query } ) => {
     if(!posts) {
         return <></>
     }
-    
+
     return (
         <>
             <div className="posts posts_columns">
