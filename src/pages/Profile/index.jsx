@@ -6,12 +6,20 @@ import { format_date } from "../../components/ArticleTopic";
 import Loading from "../../components/Loading";
 import { API_URL } from "../../config";
 
+
 const Profile = ( ) => {
     const {id} = useParams();
     const navigate = useNavigate()
     let tabs = ["Посты", "Сохранённые"]
     let [ activeTab, setActiveTab ] = useState(tabs[0])
     
+    const handleTabClick = (item) => {
+        if (item === "Сохранённые" && profile === null) {
+            return
+        }
+        setActiveTab(item)
+    };
+
     const getProfile = async () => {
         try {
             const requestOptions = {
@@ -69,7 +77,11 @@ const Profile = ( ) => {
             </div>
             <div className="profile_tab_list"> 
                 {tabs.map((item, index) => (
-                    <div key={index} onClick={() => setActiveTab(item)} className={activeTab === item ? "profile_tab_list_active" : ''}>
+                    <div
+                        key={index}
+                        onClick={() => handleTabClick(item)}
+                        className={`${activeTab === item ? "profile_tab_list_active" : ""} ${item === "Сохранённые" && profile === null ? "not_allowed" : ""}`}
+                    >
                         <p>{item}</p>
                     </div>
                 ))}
