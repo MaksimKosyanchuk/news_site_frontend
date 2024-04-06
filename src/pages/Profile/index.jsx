@@ -1,5 +1,5 @@
 import "./Profile.scss"
-import ProfilePosts from "./ProfilePosts"
+import Posts from "../../components/Posts/index.jsx"
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { format_date } from "../../components/ArticleTopic";
@@ -23,7 +23,7 @@ const Profile = ( ) => {
             let findNeededUser = await fetch(`${API_URL}/api/users/${id}`)
             findNeededUser = await findNeededUser.json()
             
-            if(findNeededUser.status == "error") {
+            if(findNeededUser.status === "error") {
                 navigate('/404')
             }
             
@@ -31,7 +31,7 @@ const Profile = ( ) => {
                 await setUser(findNeededUser.data)
                 let findNeededProfile = await fetch(`${API_URL}/api/profile`, requestOptions)
                 findNeededProfile = await findNeededProfile.json()
-                if(findNeededProfile.status == "success" && findNeededProfile.data._id == findNeededUser.data._id) {
+                if(findNeededProfile.status === "success" && findNeededProfile.data._id === findNeededUser.data._id) {
                     await setProfile(findNeededProfile.data)
                 }
             }
@@ -78,12 +78,12 @@ const Profile = ( ) => {
                 {
                     (activeTab === "Посты") ? 
                     (
-                        user._id ? <ProfilePosts query = {{ author: user._id }} /> :
+                        user._id ? <Posts query = {{ author: user._id }} /> :
                         <></>
                     )   
                     :
                     (
-                        profile && profile.saved_posts.length > 0 ? <ProfilePosts query = {{ _id: profile.saved_posts }} /> :
+                        profile && profile.saved_posts.length > 0 ? <Posts query = {{ _id: profile.saved_posts }} /> :
                         <></>
                     )
                 }

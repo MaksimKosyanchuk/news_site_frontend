@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header/index.jsx';
 import StartScreen from './components/StartScreen/index.jsx';
-import Posts from './pages/Posts/index.jsx';
+import HomePage from './pages/HomePage/index.jsx';
 import Article from './pages/Article';
 import Profile from "./pages/Profile";
 import PageNotFound from './pages/PageNotFound/index.jsx';
@@ -60,7 +60,7 @@ function App() {
               element={<Navigate to="/posts" replace />} />
             
             <Route path="/404" Component={PageNotFound}/>
-            <Route path="/posts/" Component={Posts}/>
+            <Route path="/posts/" Component={HomePage}/>
             <Route path="/users/:id" Component={Profile}/>
             <Route path="/posts/:id" Component={Article}/>
           </Routes>
