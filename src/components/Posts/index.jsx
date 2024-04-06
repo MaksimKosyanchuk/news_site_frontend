@@ -6,15 +6,23 @@ import Banner from "../../components/Banner";
 import { ArticleTopic } from "../../components/ArticleTopic";
 import { API_URL } from "../../config";
 
-const Posts = () => {
+const Posts =  ( { query } ) => {
     const [posts, setPosts] = useState([ ])
-    const [isLoading, setIsLoading] = useState(false); 
+    const [isLoading, setIsLoading] = useState(false)
     const [profile, setProfile] = useState(null)
 
     useEffect(() => {
         getPosts()
         getProfile()
-    }, [])
+    }, [query])
+
+    const queryString = Object.entries(query).map(([key, value]) => {
+        if (Array.isArray(value)) {
+            return value.map(id => `${key}=${id}`).join('&')
+        }
+
+        return `${key}=${value}`
+    }).join('&')
 
     const getProfile = async () => {
         setIsLoading(true);
@@ -36,24 +44,26 @@ const Posts = () => {
         } finally {
             setIsLoading(false)
         }
+        
     }
-
     const getPosts = async () => {
-        setIsLoading(true);
-
-        await fetch(`${API_URL}/api/posts`)
+        setIsLoading(true)
+        
+        await fetch(`${API_URL}/api/posts?${queryString}`)
         .then(res => res.json())
         .then(res => {
             if (res.status == "success") {
-                setPosts(res.data);
+                setPosts(res.data)
             }
         })
-        .catch((err) => {
-
-        })
+        .catch((err) => { })
         setIsLoading(false)
     }
 
+    if(!posts) {
+        return <></>
+    }
+    
     return (
         <>
             <div className="posts posts_columns">

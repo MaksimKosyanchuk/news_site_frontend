@@ -6,6 +6,7 @@ import { format_date } from "../../components/ArticleTopic";
 import Loading from "../../components/Loading";
 import { API_URL } from "../../config";
 
+
 const Profile = ( ) => {
     const {id} = useParams();
     const navigate = useNavigate()
