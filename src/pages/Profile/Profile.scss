@@ -29,6 +29,15 @@
             margin-left: 50px;
             margin-bottom: auto;
             
+            &_administrator {
+                display: none;
+            }
+    
+            &_administrator_true{
+                display: block;
+                text-shadow: 0 0 10px #ffd600;
+            }
+            
             @include screen(){
                 margin-left: 12px;
             }

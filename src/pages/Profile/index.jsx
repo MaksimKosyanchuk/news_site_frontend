@@ -71,7 +71,8 @@ const Profile = ( ) => {
                     <img src = "https://avatars.githubusercontent.com/u/113336097?v=4" alt="img"/>
                 </div>
                 <div className="profile_info_data">
-                    <p className="profile_info_data_name">{ user.nick_name }</p>
+                    <p className={ "profile_info_data_name" + ( user && user.is_admin ? " profile_info_data_administrator_true" : "") } >{ user.nick_name }</p>
+                    <p className={ "profile_info_data_administrator" + ( user && user.is_admin ? " profile_info_data_administrator_true": "") } >Administrator</p>
                     <p className="profile_info_data_registration_date">Дата регистрации: {format_date(user.created_date)}.</p>
                 </div>
             </div>
