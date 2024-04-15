@@ -10,6 +10,7 @@
         height: 36px;
         overflow: hidden;
         border-radius: 50%;
+        user-select: none;
 
         @include screen() {
             width: 30px;
