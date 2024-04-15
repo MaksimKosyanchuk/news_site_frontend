@@ -1,10 +1,9 @@
 import "./Posts.scss";
 import Banner from "../../components/Banner";
 import Posts from "../../components/Posts/index.jsx";
-import { API_URL } from "../../config/index.js";
+import { Link } from "react-router-dom";
 
-const HomePage = () => {
-    
+const HomePage = () => {   
     return (
         <>
             <Banner 
@@ -12,9 +11,8 @@ const HomePage = () => {
 
                 <h1>My News Site</h1>
                 <p>Please, share this work with your friends</p>
-                <a href={`${API_URL}/api/users/Maks`}>Maks</a>
+                <Link to={`/users/Maks`}>Maks</Link>
             </Banner>
-
             <Posts/>
         </>
     )
