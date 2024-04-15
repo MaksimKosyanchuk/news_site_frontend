@@ -35,7 +35,8 @@
     
             &_administrator_true{
                 display: block;
-                text-shadow: 0 0 10px #ffd600;
+                text-shadow: 0 0 8px #9f0000;
+                color: red
             }
             
             @include screen(){
