@@ -1,0 +1,50 @@
+input:focus {
+    outline: none;
+}
+
+.form_input{
+    display: flex;
+    flex-direction: column;
+
+    .user_name {
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 300px;
+        margin: 0 auto;
+        padding: 12px 14px;
+        background-color: var(--input-background-color);
+        border: 1px solid transparent;
+        border-radius: 5px;
+        color: var(--text-color);
+        font-size: 18px;
+        font-family: "Google Sans", roboto, "Noto Sans Myanmar UI", arial, sans-serif;
+    }
+
+    .incorrect_login {
+        border: 1px solid red;
+    }
+
+    button {
+        border: 1px solid var(--line-color);
+        border-radius: 5px;
+        padding: 12px 14px;
+        width: 300px;
+        margin: 100px auto;
+        color: var(--text-color);
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .result_message {
+        display: none;
+    }
+
+    .error_message {
+        display: flex;
+        color: red;
+        margin: 10px auto;
+        font-size: 12px;
+    }
+}
