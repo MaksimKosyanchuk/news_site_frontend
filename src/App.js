@@ -6,6 +6,8 @@ import Article from './pages/Article';
 import Profile from "./pages/Profile";
 import PageNotFound from './pages/PageNotFound/index.jsx';
 import Footer from "./components/Footer/index.jsx";
+import Login from './pages/Login/index.jsx';
+import Register from './pages/Register/index.jsx';
 
 import "./styles/common.scss";
 
@@ -34,7 +36,8 @@ function App() {
     '--banner-haze': isDarkTheme ? 0 : 1,
     '--svg-logo-color': isDarkTheme ? 'white' : '#2f2f2f',
     '--line-color': isDarkTheme ? '#4f4f4f' : "#6b6b6b",
-    '--small-text-color': isDarkTheme ? '#bbbbbb' : 'black'
+    '--small-text-color': isDarkTheme ? '#bbbbbb' : 'black',
+    '--input-background-color': isDarkTheme ? 'rgb(51, 51, 51)' : 'white'
   }
 
   useEffect(() => {
@@ -58,7 +61,9 @@ function App() {
             <Route
               path="/"
               element={<Navigate to="/posts" replace />} />
-            
+
+            <Route path="/auth/login" Component={Login}/>
+            <Route path="/auth/register" Component={Register}/>
             <Route path="/404" Component={PageNotFound}/>
             <Route path="/posts/" Component={HomePage}/>
             <Route path="/users/:id" Component={Profile}/>
