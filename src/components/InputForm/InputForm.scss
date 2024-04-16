@@ -9,8 +9,8 @@ input:focus {
     flex-direction: column;
 
     @include screen() {
-        height: 50vh;
-        padding-top: 250px;
+        height: 40vh;
+        padding-top: 100px;
     }
 
     .user_name {
