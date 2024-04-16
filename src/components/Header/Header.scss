@@ -22,21 +22,25 @@
     }
     
     &_title {
-      font-size: 24px;
-      margin: 0;
+      p {
+        font-size: 24px;
+        margin: 0;
+      }
     }
 
-    &-button {
+    &_item {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 36px;
       height: 36px;
-      cursor: pointer;
       
+      button {
+        cursor: pointer;
+      }
+
       img, svg {
         width: 32px;
         height: auto;
@@ -59,7 +63,7 @@
         }
       }
 
-      &.header-button_go_home {
+      &.header_left_item {
         left: -4px;
 
         @include screen() {
@@ -67,7 +71,7 @@
         }
       }
 
-      &.header-button_header_theme_toggler {
+      &.header_right_item {
         right: -6px;
 
         @include screen() {
