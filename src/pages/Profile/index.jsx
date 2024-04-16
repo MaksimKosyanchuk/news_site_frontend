@@ -89,9 +89,9 @@ const Profile = ( ) => {
             </div>
             <div className="profile_posts">
                 {
-                    (activeTab === "Посты") ? 
+                    activeTab === "Посты" ? 
                     (
-                        user._id ? <Posts query = {{ author: user._id }} /> :
+                        user && user._id ? <Posts query = {{ author: user._id }} /> :
                         <></>
                     )   
                     :

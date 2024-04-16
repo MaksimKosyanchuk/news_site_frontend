@@ -13,7 +13,7 @@ const HomePage = () => {
                 <p>Please, share this work with your friends</p>
                 <Link to={`/users/Maks`}>Maks</Link>
             </Banner>
-            <Posts/>
+            <Posts />
         </>
     )
 }
