@@ -13,7 +13,7 @@ const Posts =  ( { query } ) => {
     useEffect(() => {
         getPosts()
         getProfile()
-    }, [query])
+    }, [])
 
     const getProfile = async () => {
         setIsLoading(true)

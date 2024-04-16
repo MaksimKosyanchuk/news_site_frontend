@@ -9,7 +9,6 @@ const InputForm = ({ buttonText, onSubmit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoginResult(await onSubmit(username, password))
-    console.log(login_result)
   }
 
   return (

@@ -3,9 +3,11 @@ import { ReactComponent as HeaderProfileIcon} from "../../assets/svg/profile.svg
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { API_URL } from "../../config";
+import { useLocation } from 'react-router-dom';
 
 const HeaderProfile = () => {
     const [link, setLink] = useState('/auth/register');
+    const location = useLocation();
 
     const getProfile = async () => {
         const token = localStorage.getItem('token');
@@ -24,18 +26,22 @@ const HeaderProfile = () => {
                 if (profileData.status === 'success') {
                     setLink(`/users/${profileData.data.nick_name}`);
                 }
+                else{
+                    setLink('/auth/register')
+                }
             } catch (error) {
                 console.error('Error fetching profile:', error);
+                setLink('/auth/register')
             }
         }
     };
 
     useEffect(() => {
-        getProfile();
-    }, [localStorage.getItem('token')]);
+        getProfile()
+    }, [location]);
 
     return (
-        <Link to={"/users/Maks1"}>
+        <Link to={link}>
             <HeaderProfileIcon className='app-transition' />
         </Link>
     );
