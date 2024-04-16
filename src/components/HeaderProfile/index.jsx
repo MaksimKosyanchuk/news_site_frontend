@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 const HeaderProfile = () => {
     const [link, setLink] = useState('/auth/register');
     const location = useLocation();
-
+    
     const getProfile = async () => {
         const token = localStorage.getItem('token');
 
@@ -26,18 +26,14 @@ const HeaderProfile = () => {
                 if (profileData.status === 'success') {
                     setLink(`/users/${profileData.data.nick_name}`);
                 }
-                else{
-                    setLink('/auth/register')
-                }
             } catch (error) {
                 console.error('Error fetching profile:', error);
-                setLink('/auth/register')
             }
         }
     };
 
     useEffect(() => {
-        getProfile()
+        getProfile();
     }, [location]);
 
     return (

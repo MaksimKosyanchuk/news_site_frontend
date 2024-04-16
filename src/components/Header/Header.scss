@@ -46,7 +46,7 @@
         height: auto;
         transition: .2s ease-out;
         color: var(--svg-logo-color);
-
+        
         @include screen() {
           width: 24px;
         }

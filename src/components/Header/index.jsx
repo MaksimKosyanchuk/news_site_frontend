@@ -7,7 +7,7 @@ import SunIcon from "../../assets/images/sun-icon.png";
 import MoonIcon from "../../assets/images/moon-icon.png";
 import './Header.scss';
 
-function Header({ isDarkTheme, setIsDarkTheme }) {
+function Header({ isDarkTheme, setIsDarkTheme, profile_name }) {
     return (
       <header className="header blurred app-transition">
         <div className="container">
@@ -24,7 +24,7 @@ function Header({ isDarkTheme, setIsDarkTheme }) {
               <button type='button' onClick={() => setIsDarkTheme(!isDarkTheme)}>
                 <img src={isDarkTheme ? SunIcon : MoonIcon } className='app-transition'/>
               </button> 
-              <HeaderProfile></HeaderProfile>
+              <HeaderProfile ></HeaderProfile>
             </div>
           </div>
         </div>
