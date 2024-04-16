@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import InputForm from '../../components/Inputs/InputForm';
+import InputForm from '../../components/InputForm/InputForm';
 import { API_URL } from '../../config';
 
 const Login = () => {

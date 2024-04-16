@@ -13,8 +13,8 @@
             border-radius: 50%;
             
             @include screen() {
-                width: 30px;
-                height: 30px;
+                width: 40px;
+                height: 40px;
             }
             
             img {
@@ -31,12 +31,16 @@
             
             &_administrator {
                 display: none;
+                
+                @include screen() {
+                    font-size: 10px;
+                }
             }
     
             &_administrator_true{
                 display: block;
                 text-shadow: 0 0 8px #9f0000;
-                color: red
+                color: red;
             }
             
             @include screen(){
