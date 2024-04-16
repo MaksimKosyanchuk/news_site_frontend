@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {ReactComponent as HomeIcon} from "../../assets/images/home-icon.svg";
+import HeaderProfile from '../HeaderProfile';
 
 import SunIcon from "../../assets/images/sun-icon.png";
 import MoonIcon from "../../assets/images/moon-icon.png";
 import './Header.scss';
 
 function Header({ isDarkTheme, setIsDarkTheme }) {
-
     return (
       <header className="header blurred app-transition">
         <div className="container">
@@ -24,6 +24,7 @@ function Header({ isDarkTheme, setIsDarkTheme }) {
               <button type='button' onClick={() => setIsDarkTheme(!isDarkTheme)}>
                 <img src={isDarkTheme ? SunIcon : MoonIcon } className='app-transition'/>
               </button> 
+              <HeaderProfile></HeaderProfile>
             </div>
           </div>
         </div>

@@ -57,10 +57,8 @@
         }
       }
 
-      &:active {
-        img, svg {
-          transform: scale(.8);
-        }
+      img:active ,svg:active {
+        transform: scale(.8);
       }
 
       &.header_left_item {
@@ -73,6 +71,10 @@
 
       &.header_right_item {
         right: -6px;
+
+        button {
+            margin-right: 20px;
+        }
 
         @include screen() {
           right: -6px;

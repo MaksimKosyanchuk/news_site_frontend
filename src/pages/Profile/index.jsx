@@ -55,7 +55,7 @@ const Profile = ( ) => {
     
     useEffect(() => {
         getProfile()
-    }, []);
+    }, [id]);
     
     
     if(!user) {
