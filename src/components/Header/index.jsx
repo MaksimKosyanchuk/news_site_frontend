@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import {ReactComponent as HomeIcon} from "../../assets/images/home-icon.svg";
 import HeaderProfile from '../HeaderProfile';
@@ -6,8 +6,11 @@ import HeaderProfile from '../HeaderProfile';
 import SunIcon from "../../assets/images/sun-icon.png";
 import MoonIcon from "../../assets/images/moon-icon.png";
 import './Header.scss';
+import { AppContext } from '../../App';
 
-function Header({ isDarkTheme, setIsDarkTheme, profile_name }) {
+function Header( ) {
+  const {setIsDarkTheme, isDarkTheme} = useContext(AppContext)
+
     return (
       <header className="header blurred app-transition">
         <div className="container">
@@ -24,7 +27,7 @@ function Header({ isDarkTheme, setIsDarkTheme, profile_name }) {
               <button type='button' onClick={() => setIsDarkTheme(!isDarkTheme)}>
                 <img src={isDarkTheme ? SunIcon : MoonIcon } className='app-transition'/>
               </button> 
-              <HeaderProfile ></HeaderProfile>
+              <HeaderProfile></HeaderProfile>
             </div>
           </div>
         </div>

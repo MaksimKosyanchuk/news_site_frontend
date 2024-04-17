@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, createContext } from 'react';
 import Header from './components/Header/index.jsx';
 import StartScreen from './components/StartScreen/index.jsx';
 import HomePage from './pages/HomePage/index.jsx';
@@ -18,9 +18,12 @@ import {
   Navigate
 } from "react-router-dom";
 
+const AppContext = createContext()
+
 function App() {
   let lsTheme = localStorage.getItem('theme');
-
+  const [ profile, setProfile ] = useState(null)
+  const [ profileLoading, setProfileLoading ] = useState(false)
   let [ isDarkTheme, setIsDarkTheme ] = useState(lsTheme ? JSON.parse(lsTheme) : true);
 
   const CssVariables = {
@@ -40,42 +43,42 @@ function App() {
     '--input-background-color': isDarkTheme ? 'rgb(51, 51, 51)' : 'white'
   }
 
+
   useEffect(() => {
     localStorage.setItem('theme', JSON.stringify(isDarkTheme))
   }, [isDarkTheme])
 
   return (
-    <Router>
-      <div className={`App ${isDarkTheme ? 'App_dark' : ''}`} style={CssVariables}>
+    <AppContext.Provider value={{profile, setProfile, isDarkTheme, setIsDarkTheme, profileLoading, setProfileLoading }}>
+      <Router>
+        <div className={`App ${isDarkTheme ? 'App_dark' : ''}`} style={CssVariables}>
 
-        <Header isDarkTheme={isDarkTheme} setIsDarkTheme={setIsDarkTheme}/>
+          <StartScreen>
 
-        <StartScreen>
+            <Routes>
+              
+              <Route
+                path="*"
+                element={<Navigate to="/404" replace />} />
+              
+              <Route
+                path="/"
+                element={<Navigate to="/posts" replace />} />
 
-          <Routes>
+              <Route path="/auth/login" Component={Login}/>
+              <Route path="/auth/register" Component={Register}/>
+              <Route path="/404" Component={PageNotFound}/>
+              <Route path="/posts/" Component={HomePage}/>
+              <Route path="/users/:id" Component={Profile}/>
+              <Route path="/posts/:id" Component={Article}/>
+            </Routes>
             
-            <Route
-              path="*"
-              element={<Navigate to="/404" replace />} />
-            
-            <Route
-              path="/"
-              element={<Navigate to="/posts" replace />} />
-
-            <Route path="/auth/login" Component={Login}/>
-            <Route path="/auth/register" Component={Register}/>
-            <Route path="/404" Component={PageNotFound}/>
-            <Route path="/posts/" Component={HomePage}/>
-            <Route path="/users/:id" Component={Profile}/>
-            <Route path="/posts/:id" Component={Article}/>
-          </Routes>
-          
-        </StartScreen>
-        
-        <Footer />
-      </div>
-    </Router>
+          </StartScreen>
+          <Footer></Footer>
+        </div>
+      </Router>
+    </AppContext.Provider>
   )
 }
 
-export default App;
+export { App, AppContext };

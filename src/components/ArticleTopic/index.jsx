@@ -15,7 +15,7 @@ async function copy_article_url(id) {
 }
 
 function format_date(date) {
-    const isoDatetimeStr = "2024-03-07T15:47:19.130Z"
+    const isoDatetimeStr = date
     const isoDatetime = new Date(isoDatetimeStr)
 
     const formattedDatetimeStr = isoDatetime.toLocaleString("ru-RU", {
