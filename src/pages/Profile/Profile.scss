@@ -72,16 +72,12 @@
         margin: 50px 0 0;
         padding: 10px 0;
 
-        div {
-            cursor: pointer;
-            user-select: none;
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none
-        }
-
         p {
             color: var(--small-text-color);
+        }
+
+        *{
+            cursor: pointer;
         }
 
         &_active{

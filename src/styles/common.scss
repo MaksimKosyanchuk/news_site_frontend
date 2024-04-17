@@ -81,4 +81,9 @@ img, svg {
 .not_allowed {
     cursor: not-allowed;
     user-select: none;
+    
+    *{
+        cursor: not-allowed;
+        user-select: none;
+    }
 }
