@@ -75,8 +75,8 @@ const Profile = ( ) => {
                         <p className="profile_info_data_registration_date">Дата регистрации: {format_date(user.created_date)}.</p>
                     </div>
                     {
-                        profile ? 
-                        <button className="profile_info_quit_button" onClick={quitButtonClick}>
+                        (profile && profile._id == user._id) ?
+                        <button className="profile_info_quit_button app-transition" onClick={quitButtonClick}>
                         <p>Выйти</p>
                         </button>:
                         <></>

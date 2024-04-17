@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Posts.scss";
 import Loading from "../../components/Loading";
@@ -6,11 +6,12 @@ import { ArticleTopic } from "../../components/ArticleTopic";
 import { API_URL } from "../../config";
 import ProfileLayout from "../ProfileLayout";
 import NoPosts from "../NoPosts";
+import { AppContext } from "../../App";
 
 const Posts =  ( { query } ) => {
     const [posts, setPosts] = useState([ ])
     const [isLoading, setIsLoading] = useState(false)
-    const [ profile, setProfile ] = useState(null) 
+    const { profile } = useContext(AppContext)
 
     useEffect(() => {
         getPosts()

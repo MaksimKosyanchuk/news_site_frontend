@@ -10,7 +10,7 @@
             margin-right: 20px;
             margin-left: auto;
             margin-bottom: auto;
-            border: 1px solid red;
+            border: 1px solid var(--line-color);
             padding: 12px 30px;
             border-radius: 8px;
             cursor: pointer;
@@ -19,6 +19,10 @@
             p{
                 color: red;
             }
+        }
+
+        &_quit_button:hover {
+            border: 1px solid red;
         }
 
         &_avatar {
