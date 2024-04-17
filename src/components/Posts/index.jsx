@@ -63,7 +63,6 @@ const Posts =  ( { query } ) => {
                                     <img src={post.featured_image} alt="" />
                                 </Link>
                                 : 
-                                // <NoPosts/>
                                 <></>
                             }
                             </div>

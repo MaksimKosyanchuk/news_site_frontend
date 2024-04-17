@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './InputForm.scss'
 
-const InputForm = ({ buttonText, onSubmit }) => {
+const InputForm = ({ buttonText, onSubmit, redirect }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [login_result, setLoginResult] = useState({ })
@@ -19,7 +19,7 @@ const InputForm = ({ buttonText, onSubmit }) => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          placeholder="User name"
+          placeholder="Имя пользователя"
       />
       <input
           className={ "password app-transition"  + (login_result.status === "error" ? " incorrect_login" : "" )}
@@ -27,10 +27,11 @@ const InputForm = ({ buttonText, onSubmit }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-          placeholder="Password"
+          placeholder="Пароль"
       />
       <div className={ "result_message" + (login_result.status === "error" ? " error_message" : "" )}>{ login_result ?  login_result.message : "" }</div>
       <button className="app-transition" type="submit">{buttonText}</button>
+      {redirect}
     </form>
   )
 }

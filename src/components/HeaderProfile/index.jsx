@@ -6,13 +6,16 @@ import { AppContext } from '../../App';
 import ProfileLayout from '../ProfileLayout';
 
 const HeaderProfile = () => {
-    const [link, setLink] = useState('/auth/register');
+    const [link, setLink] = useState('/auth/login');
     
     const {profile} = useContext(AppContext)
 
     useEffect(() => {
         if(profile){
             setLink(`/users/${profile.nick_name}`)
+        }
+        else{
+            setLink('/auth/login')
         }
     }, [profile])
 
