@@ -24,6 +24,7 @@ const Register = () => {
                 return result
             }
         } catch (error) {
+            console.log(error)
             return {
                 status: "error",
                 message: "server not found"
