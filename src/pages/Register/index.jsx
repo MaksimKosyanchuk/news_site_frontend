@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import InputForm from '../../components/InputForm/InputForm';
 import { API_URL } from '../../config';
-import MainLayout from '../../components/ProfileLayout';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
@@ -41,9 +40,7 @@ const Register = () => {
     )
 
     return (
-        <MainLayout>
-            <InputForm buttonText="Зарегестрироваться" onSubmit={handleRegister} redirect={redirect}/>
-        </MainLayout>
+        <InputForm buttonText="Зарегестрироваться" onSubmit={handleRegister} redirect={redirect}/>
     )
 }
 

@@ -5,7 +5,6 @@ import "./Article.scss";
 import { ArticleTopic } from "../../components/ArticleTopic";
 import { API_URL } from "../../config";
 import { AppContext } from "../../App";
-import ProfileLayout from "../../components/ProfileLayout";
 
 
 const Article = () => {
@@ -44,31 +43,28 @@ const Article = () => {
     }
 
     return (
-        <ProfileLayout>{
-            !isLoading ?
-            <div>
-                {
-                    article ?
-                    <div className="article">
-                            <h1 className="article-title">{article.title}</h1>
-                            <ArticleTopic article={article} profile={profile}/>
-                            {article.featured_image ? 
-                                <div className="article-featured-image">
-                                <img src={article.featured_image}/> 
-                                </div>
-                            : 
-                            <></>
-                        }
-                            <div className="article-content" dangerouslySetInnerHTML={{__html: article.content_text}}>
+        (!isLoading) ?
+        <div>
+            {
+                article ?
+                <div className="article">
+                        <h1 className="article-title">{article.title}</h1>
+                        <ArticleTopic article={article} profile={profile}/>
+                        {article.featured_image ? 
+                            <div className="article-featured-image">
+                            <img src={article.featured_image}/> 
                             </div>
-                        </div>:
-                    <></>     
-                }
-                </div>
-            :
-            <Loading />
-        }
-        </ProfileLayout>
+                        : 
+                        <></>
+                    }
+                        <div className="article-content" dangerouslySetInnerHTML={{__html: article.content_text}}>
+                        </div>
+                    </div>:
+                <></>     
+            }
+            </div>
+        :
+        <Loading /> 
     )
 }
 

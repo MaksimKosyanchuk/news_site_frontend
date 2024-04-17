@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InputForm from '../../components/InputForm/InputForm';
 import { API_URL } from '../../config';
-import MainLayout from '../../components/ProfileLayout';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
@@ -27,6 +26,7 @@ const Login = () => {
             }
         } 
         catch(e){
+            console.log(e)
             return {
                 status: "error",
                 message: "server not found"
@@ -43,9 +43,7 @@ const Login = () => {
     )
 
     return (
-        <MainLayout>
-            <InputForm buttonText="Войти" onSubmit={handleLogin} redirect={redirect} />
-        </MainLayout>
+        <InputForm buttonText="Войти" onSubmit={handleLogin} redirect={redirect} />
     )
 }
 

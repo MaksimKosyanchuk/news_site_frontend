@@ -5,7 +5,8 @@ import { ReactComponent as BookMarkFilled} from "../../assets/svg/bookmark-fille
 import { ReactComponent as ShareIcon} from "../../assets/svg/share.svg";
 import { API_URL } from "../../config";
 import "./ArticleTopic.scss";
-import ProfileLayout from "../ProfileLayout";
+import { AppContext } from "../../App";
+import Loading from "../Loading";
 
 async function copy_article_url(id) {
     try {
@@ -31,14 +32,17 @@ function format_date(date) {
     return formattedDatetimeStr.replace(",", "")
 }
 
-const ArticleTopic = ({ article, profile }) => {
+const ArticleTopic = ({ article }) => {
+    const { profile, setProfile } = useContext(AppContext)
     const [isSaved, setIsSaved] = useState(profile && profile.saved_posts && article && article._id && profile.saved_posts.includes(article._id))
-    
+    const [ isSavingProcess, setSavingProcess ] = useState(false)
+
     useEffect(() => {
         setIsSaved(profile && profile.saved_posts && article && article._id && profile.saved_posts.includes(article._id))
-    }, [])
+    }, [profile])
 
     const save_post = async () => {
+        setSavingProcess(true)
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -49,10 +53,15 @@ const ArticleTopic = ({ article, profile }) => {
             let result = await fetch(`${API_URL}/api/profile/save-post`, requestOptions)
             result = await result.json();
             if (result.status === "success") {
-                setIsSaved(!isSaved);
+                let saved_posts = isSaved ? profile.saved_posts.filter(element => element !== article._id ) : [...profile.saved_posts, article._id]
+                setProfile({...profile, saved_posts: saved_posts })
+                setIsSaved(!isSaved)
             }
         } catch (error) {
             console.log(error)
+        }
+        finally{
+            setSavingProcess(false)
         }
     };
 
@@ -63,8 +72,11 @@ const ArticleTopic = ({ article, profile }) => {
             <button type="button" className="article-topic-button" onClick={() => copy_article_url(article._id)}>
                 <ShareIcon />
             </button>
-            <button type="button" className="article-topic-button" onClick={save_post}>
-                {isSaved ? <BookMarkFilled /> : <BookMarkBorder />}
+            <button type="button" className="article-topic-button" onClick={save_post} disabled={isSavingProcess}>
+                {
+                    // isSavingProcess ? <Loading/>:
+                    (isSaved ? <BookMarkFilled /> : <BookMarkBorder />)
+                }
             </button>
         </div>
     )

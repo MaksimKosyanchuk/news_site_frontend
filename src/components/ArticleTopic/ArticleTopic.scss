@@ -16,9 +16,10 @@
         height: 32px;
         display: flex;
         justify-content: center;
+        position: relative;
         align-items: center;
-        cursor: pointer;
         color: var(--svg-logo-color);
+        cursor: pointer;
 
         @include screen(){
             width: 18px;
