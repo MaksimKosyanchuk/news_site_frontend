@@ -24,6 +24,11 @@ const Profile = ( ) => {
         setActiveTab(item)
     };
 
+    const quitButtonClick = () => {
+        localStorage.removeItem('token')
+        navigate('/posts')
+    }
+
     const getUser = async () => {
         try {
             let findNeededUser = await fetch(`${API_URL}/api/users/${id}`)
@@ -67,6 +72,13 @@ const Profile = ( ) => {
                         <p className={ "profile_info_data_administrator" + ( user && user.is_admin ? " profile_info_data_administrator_true": "") } >Administrator</p>
                         <p className="profile_info_data_registration_date">Дата регистрации: {format_date(user.created_date)}.</p>
                     </div>
+                    {
+                        profile ? 
+                        <button className="profile_info_quit_button" onClick={quitButtonClick}>
+                        <p>Выйти</p>
+                        </button>:
+                        <></>
+                    }
                 </div>
                 <div className="profile_tab_list"> 
                     {tabs.map((item, index) => (

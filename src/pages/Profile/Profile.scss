@@ -6,6 +6,21 @@
         align-items: center;
         box-sizing: content-box;
         
+        &_quit_button {
+            margin-right: 20px;
+            margin-left: auto;
+            margin-bottom: auto;
+            border: 1px solid red;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            user-select: none;
+
+            p{
+                color: red;
+            }
+        }
+
         &_avatar {
             width: 150px;
             height: 150px;
