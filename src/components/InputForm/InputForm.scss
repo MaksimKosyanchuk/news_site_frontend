@@ -13,6 +13,16 @@ input:focus {
         padding-top: 100px;
     }
 
+    .redirect_object {
+        margin: 10px;
+        text-align: center;
+        font-size: 14px;
+
+        a {
+            text-decoration: underline;
+        }
+    }
+
     .user_name {
         margin-bottom: 20px;
     }
@@ -38,7 +48,7 @@ input:focus {
         border-radius: 5px;
         padding: 12px 14px;
         width: 300px;
-        margin: 200px auto;
+        margin: 200px auto 0;
         color: var(--text-color);
         cursor: pointer;
         font-size: 14px;
@@ -48,6 +58,10 @@ input:focus {
             margin-top: auto;
             padding: 18px 14px;
         }
+    }
+
+    button:hover{
+        border: 1px solid var(--text-color)
     }
 
     .result_message {

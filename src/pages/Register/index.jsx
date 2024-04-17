@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import InputForm from '../../components/InputForm/InputForm';
 import { API_URL } from '../../config';
-import MainLayout from '../../components/MainLayout';
+import MainLayout from '../../components/ProfileLayout';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
     const navigate = useNavigate()
@@ -30,9 +31,17 @@ const Register = () => {
         }
     }
 
+    const redirect = (
+        <p className={"redirect_object"} >Уже есть акаунт?
+            <Link to={"/auth/login"}> 
+                Войти.
+            </Link>
+        </p>
+    )
+
     return (
         <MainLayout>
-            <InputForm buttonText="Register" onSubmit={handleRegister} />
+            <InputForm buttonText="Зарегестрироваться" onSubmit={handleRegister} redirect={redirect}/>
         </MainLayout>
     )
 }

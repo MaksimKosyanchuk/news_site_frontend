@@ -4,7 +4,8 @@ import "./Posts.scss";
 import Loading from "../../components/Loading";
 import { ArticleTopic } from "../../components/ArticleTopic";
 import { API_URL } from "../../config";
-import MainLayout from "../MainLayout";
+import ProfileLayout from "../ProfileLayout";
+import NoPosts from "../NoPosts";
 import { AppContext } from "../../App";
 
 const Posts =  ( { query } ) => {
@@ -14,6 +15,7 @@ const Posts =  ( { query } ) => {
 
     useEffect(() => {
         getPosts()
+        console.log("posts")
     }, [query])
 
     
@@ -42,35 +44,35 @@ const Posts =  ( { query } ) => {
     }
 
     if(!posts) {
-        return <></>
+        return <NoPosts/>
     }
 
     return (
-        <div className="posts posts_columns">
-        {
-            (!isLoading) ?
-            posts.map(post => {
-                return (
-                    <div key={post._id}  className="posts_item app-transition">
-                            <ArticleTopic article={post} profile={profile}/>
-                            
-                            <Link to={`/posts/${post._id}`}>
-                                <h2 className="posts_item_title">{post.title}</h2>
-                            </Link>
-                            {post.featured_image ? 
-                                
-                                <Link to={`/posts/${post._id}`} className="posts_item_img">
-                                <img src={post.featured_image} alt="" />
-                            </Link>
-                            : 
-                            <></>
-                        }
-                        </div>
-                    )
-                })
-                : <Loading/>
-            }
-        </div>
+        <ProfileLayout>
+            <div className="posts posts_columns">
+            {
+                (!isLoading) ?
+                posts.map(post => {
+                    return (
+                        <div key={post._id}  className="posts_item app-transition">
+                                <ArticleTopic article={post} profile={profile}/>
+                                <Link to={`/posts/${post._id}`}>
+                                    <h2 className="posts_item_title">{post.title}</h2>
+                                </Link>
+                                {post.featured_image ? 
+                                    <Link to={`/posts/${post._id}`} className="posts_item_img">
+                                    <img src={post.featured_image} alt="" />
+                                </Link>
+                                : 
+                                <></>
+                            }
+                            </div>
+                        )
+                    })
+                    : <Loading/>
+                }
+            </div>
+        </ProfileLayout>
     )
 }
 

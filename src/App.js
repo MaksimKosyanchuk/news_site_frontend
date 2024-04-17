@@ -38,9 +38,10 @@ function App() {
     '--article-date-color': isDarkTheme ? 'white' : "black",
     '--banner-haze': isDarkTheme ? 0 : 1,
     '--svg-logo-color': isDarkTheme ? 'white' : '#2f2f2f',
-    '--line-color': isDarkTheme ? '#4f4f4f' : "#6b6b6b",
+    '--line-color': isDarkTheme ? '#4f4f4f' : "#afafaf",
     '--small-text-color': isDarkTheme ? '#bbbbbb' : 'black',
-    '--input-background-color': isDarkTheme ? 'rgb(51, 51, 51)' : 'white'
+    '--input-background-color': isDarkTheme ? 'rgb(51, 51, 51)' : 'white',
+    '--background-text-color': isDarkTheme ? 'rgb(55, 55, 55)' : 'rgb(197, 197, 197)'
   }
 
 
@@ -54,7 +55,7 @@ function App() {
         <div className={`App ${isDarkTheme ? 'App_dark' : ''}`} style={CssVariables}>
 
           <StartScreen>
-
+            <Header/>
             <Routes>
               
               <Route

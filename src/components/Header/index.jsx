@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as HomeIcon } from "../../assets/svg/home-icon.svg";
 import HeaderProfile from '../HeaderProfile';
-
 import SunIcon from "../../assets/images/sun-icon.png";
 import MoonIcon from "../../assets/images/moon-icon.png";
 import { AppContext } from '../../App';

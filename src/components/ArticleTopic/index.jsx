@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Author from "../Author";
 import { ReactComponent as BookMarkBorder} from "../../assets/svg/bookmark-outline.svg";
 import { ReactComponent as BookMarkFilled} from "../../assets/svg/bookmark-filled.svg";
 import { ReactComponent as ShareIcon} from "../../assets/svg/share.svg";
 import { API_URL } from "../../config";
 import "./ArticleTopic.scss";
+import ProfileLayout from "../ProfileLayout";
 
 async function copy_article_url(id) {
     try {
@@ -34,6 +35,7 @@ const ArticleTopic = ({ article, profile }) => {
     const [isSaved, setIsSaved] = useState(profile && profile.saved_posts && article && article._id && profile.saved_posts.includes(article._id))
     
     useEffect(() => {
+        setIsSaved(profile && profile.saved_posts && article && article._id && profile.saved_posts.includes(article._id))
     }, [])
 
     const save_post = async () => {
@@ -56,15 +58,15 @@ const ArticleTopic = ({ article, profile }) => {
 
     return (
         <div className="article-topic">
-        <Author {...article.author} />
-        <p className="article-topic-date">{format_date(article.created_date)}</p>
-        <button type="button" className="article-topic-button" onClick={() => copy_article_url(article._id)}>
-            <ShareIcon />
-        </button>
-        <button type="button" className="article-topic-button" onClick={save_post}>
-            {isSaved ? <BookMarkFilled /> : <BookMarkBorder />}
-        </button>
-    </div>
+            <Author {...article.author} />
+            <p className="article-topic-date">{format_date(article.created_date)}</p>
+            <button type="button" className="article-topic-button" onClick={() => copy_article_url(article._id)}>
+                <ShareIcon />
+            </button>
+            <button type="button" className="article-topic-button" onClick={save_post}>
+                {isSaved ? <BookMarkFilled /> : <BookMarkBorder />}
+            </button>
+        </div>
     )
 }
 

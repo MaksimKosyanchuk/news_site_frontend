@@ -2,12 +2,11 @@ import React from 'react';
 import { ReactComponent as HeaderProfileIcon} from "../../assets/svg/profile.svg";
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useContext } from "react";
-import { API_URL } from "../../config";
-import { useLocation } from 'react-router-dom';
 import { AppContext } from '../../App';
+import ProfileLayout from '../ProfileLayout';
 
 const HeaderProfile = () => {
-    const [link, setLink] = useState('/auth/register');
+    const [link, setLink] = useState('/auth/login');
     
     const {profile} = useContext(AppContext)
 
@@ -15,12 +14,17 @@ const HeaderProfile = () => {
         if(profile){
             setLink(`/users/${profile.nick_name}`)
         }
+        else{
+            setLink('/auth/login')
+        }
     }, [profile])
 
     return (
-        <Link to={link}>
-            <HeaderProfileIcon className='app-transition' />
-        </Link>
+        <ProfileLayout>
+            <Link to={link}>
+                <HeaderProfileIcon className='app-transition' />
+            </Link>
+        </ProfileLayout>
     );
 };
 

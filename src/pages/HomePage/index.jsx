@@ -2,7 +2,7 @@ import "./Posts.scss";
 import Banner from "../../components/Banner";
 import Posts from "../../components/Posts/index.jsx";
 import { Link } from "react-router-dom";
-import MainLayout from "../../components/MainLayout/index.jsx";
+import MainLayout from "../../components/ProfileLayout/index.jsx";
 
 const HomePage = () => {   
     return (
