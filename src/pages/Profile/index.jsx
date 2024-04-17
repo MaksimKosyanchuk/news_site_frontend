@@ -33,7 +33,6 @@ const Profile = ( ) => {
                 fetchPosts( { _id: profile.saved_posts } )
             }
         }
-        console.log("posts")
     }, [activeTab, user])
 
     const handleTabClick = (item) => {
@@ -69,7 +68,6 @@ const Profile = ( ) => {
     const fetchPosts = async (query) => {
         setIsLoading(true)
         const response = await getPosts(query)
-        console.log("res", response)
         if(response.status === "success") {
             setPosts(response.data)
         }

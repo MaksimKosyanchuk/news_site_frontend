@@ -9,7 +9,6 @@ const StartScreen = ({ children }) => {
     const { setProfile, setProfileLoading } = useContext(AppContext) 
 
     const getProfile = async () => {
-        console.log("get profile")
         setProfileLoading(true)
         const token = localStorage.getItem('token');
         
@@ -42,7 +41,7 @@ const StartScreen = ({ children }) => {
 
     useEffect(() => {
         getProfile();
-        console.log("location")
+        window.scrollTo(0, 0)
     }, [location]);
 
 

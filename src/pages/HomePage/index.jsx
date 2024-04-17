@@ -39,7 +39,6 @@ const HomePage = () => {
             </Banner>
             <Posts posts={posts}/>
         </>
-
     )
 }
 
