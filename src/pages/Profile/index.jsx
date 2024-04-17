@@ -1,15 +1,13 @@
 import "./Profile.scss"
-import Posts from "../../components/Posts/index.jsx"
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { format_date } from "../../components/ArticleTopic";
-import Loading from "../../components/Loading";
 import { API_URL } from "../../config";
 import { AppContext } from "../../App.js";
-import DefaultProfileAvatar from "../../assets/images/default-profile-avatar.png"
-import NoPosts from '../../components/NoPosts'
 import { getPosts } from "../../api/posts.api.js";
-
+import Posts from "../../components/Posts/index.jsx"
+import Loading from "../../components/Loading";
+import DefaultProfileAvatar from "../../assets/images/default-profile-avatar.png"
 
 const Profile = ( ) => {
     const {id} = useParams();
@@ -119,15 +117,7 @@ const Profile = ( ) => {
                 ))}
             </div>
             <div className="profile_posts">
-                {
-                    isLoading ? 
-                        <Loading/> 
-                    :
-                    (posts && posts.length > 0) ? 
-                    <Posts posts={posts}/> 
-                        :
-                        <NoPosts/>
-                }
+                <Posts posts={posts} isLoading={isLoading}/> 
             </div>
         </div>   
     )
