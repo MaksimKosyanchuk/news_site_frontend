@@ -32,9 +32,9 @@ function format_date(date) {
 
 const ArticleTopic = ({ article, profile }) => {
     const [isSaved, setIsSaved] = useState(profile && profile.saved_posts && article && article._id && profile.saved_posts.includes(article._id))
-    
     useEffect(() => {
-    }, [])
+        setIsSaved(profile && profile.saved_posts && article && article._id && profile.saved_posts.includes(article._id))
+    }, [profile])
 
     const save_post = async () => {
         const requestOptions = {

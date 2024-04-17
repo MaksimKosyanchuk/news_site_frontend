@@ -4,6 +4,7 @@ import "./Posts.scss";
 import Loading from "../../components/Loading";
 import { ArticleTopic } from "../../components/ArticleTopic";
 import { API_URL } from "../../config";
+import { getProfile } from "../../pages/Profile";
 
 const Posts =  ( { query } ) => {
     const [posts, setPosts] = useState([ ])
@@ -12,32 +13,13 @@ const Posts =  ( { query } ) => {
 
     useEffect(() => {
         getPosts()
-        getProfile()
+        const new_profile = getProfile()
+        new_profile.then((result) => {
+            console.log("res", result)
+            setProfile(result)
+        })
     }, [query])
 
-    const getProfile = async () => {
-        setIsLoading(true)
-
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token: localStorage.getItem('token') })
-        };
-
-        try {
-            const response = await fetch(`${API_URL}/api/profile/`, requestOptions)
-            const data = await response.json();
-
-            if (data.status === "success") {
-                setProfile(data.data)
-            }
-        } catch (error) {
-            console.error('Error fetching profile:', error)
-        } finally {
-            setIsLoading(false)
-        }
-        
-    }
     const getPosts = async () => {
         setIsLoading(true)
         let queryString = ""

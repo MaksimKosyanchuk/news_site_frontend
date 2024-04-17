@@ -3,7 +3,7 @@ import Header from './components/Header/index.jsx';
 import StartScreen from './components/StartScreen/index.jsx';
 import HomePage from './pages/HomePage/index.jsx';
 import Article from './pages/Article';
-import Profile from "./pages/Profile";
+import { Profile } from "./pages/Profile";
 import PageNotFound from './pages/PageNotFound/index.jsx';
 import Footer from "./components/Footer/index.jsx";
 import Login from './pages/Login/index.jsx';

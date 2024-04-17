@@ -6,7 +6,6 @@ import { format_date } from "../../components/ArticleTopic";
 import Loading from "../../components/Loading";
 import { API_URL } from "../../config";
 
-
 const Profile = ( ) => {
     const {id} = useParams();
     const navigate = useNavigate()
@@ -20,7 +19,7 @@ const Profile = ( ) => {
         setActiveTab(item)
     };
 
-    const getProfile = async () => {
+    const getUser = async () => {
         try {
             const requestOptions = {
                 method: 'POST',
@@ -36,12 +35,13 @@ const Profile = ( ) => {
             }
             
             else {
-                await setUser(findNeededUser.data)
-                let findNeededProfile = await fetch(`${API_URL}/api/profile`, requestOptions)
-                findNeededProfile = await findNeededProfile.json()
-                if(findNeededProfile.status === "success" && findNeededProfile.data._id === findNeededUser.data._id) {
-                    await setProfile(findNeededProfile.data)
-                }
+                setUser(findNeededUser.data)
+                const new_profile = getProfile()
+                new_profile.then((result) => {
+                    if(result && result._id === findNeededUser.data._id) {
+                        setProfile(result)
+                    }
+                })
             }
             
         } catch(e) {
@@ -54,9 +54,8 @@ const Profile = ( ) => {
     const [profile, setProfile] = useState(null)
     
     useEffect(() => {
-        getProfile()
+        getUser()
     }, [id]);
-    
     
     if(!user) {
         return (
@@ -105,4 +104,25 @@ const Profile = ( ) => {
     )
 }
 
-export default Profile;
+
+const getProfile = async () => {
+    try{
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: localStorage.getItem('token') })
+        }
+        let findNeededProfile = await fetch(`${API_URL}/api/profile`, requestOptions)
+        findNeededProfile = await findNeededProfile.json()
+        if(findNeededProfile.status === "success") {
+            return findNeededProfile.data
+        }
+        return null
+        
+    }
+    catch(e) {
+        console.log(e)
+    }
+}
+
+export { Profile, getProfile };
