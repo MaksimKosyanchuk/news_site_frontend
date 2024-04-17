@@ -1,16 +1,15 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import {ReactComponent as HomeIcon} from "../../assets/images/home-icon.svg";
+import { ReactComponent as HomeIcon } from "../../assets/svg/home-icon.svg";
 import HeaderProfile from '../HeaderProfile';
 
 import SunIcon from "../../assets/images/sun-icon.png";
 import MoonIcon from "../../assets/images/moon-icon.png";
-import './Header.scss';
 import { AppContext } from '../../App';
+import './Header.scss';
 
-function Header( ) {
+function Header() {
   const {setIsDarkTheme, isDarkTheme} = useContext(AppContext)
-
     return (
       <header className="header blurred app-transition">
         <div className="container">
