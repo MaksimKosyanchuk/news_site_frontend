@@ -1,19 +1,20 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Posts.scss";
 import Loading from "../../components/Loading";
 import { ArticleTopic } from "../../components/ArticleTopic";
 import { API_URL } from "../../config";
-import MainLayout from "../MainLayout";
-import { AppContext } from "../../App";
+import ProfileLayout from "../ProfileLayout";
+import NoPosts from "../NoPosts";
 
 const Posts =  ( { query } ) => {
     const [posts, setPosts] = useState([ ])
     const [isLoading, setIsLoading] = useState(false)
-    const { profile } = useContext(AppContext)
+    const [ profile, setProfile ] = useState(null) 
 
     useEffect(() => {
         getPosts()
+        console.log("posts")
     }, [query])
 
     
@@ -42,35 +43,36 @@ const Posts =  ( { query } ) => {
     }
 
     if(!posts) {
-        return <></>
+        return <NoPosts/>
     }
 
     return (
-        <div className="posts posts_columns">
-        {
-            (!isLoading) ?
-            posts.map(post => {
-                return (
-                    <div key={post._id}  className="posts_item app-transition">
-                            <ArticleTopic article={post} profile={profile}/>
-                            
-                            <Link to={`/posts/${post._id}`}>
-                                <h2 className="posts_item_title">{post.title}</h2>
-                            </Link>
-                            {post.featured_image ? 
-                                
-                                <Link to={`/posts/${post._id}`} className="posts_item_img">
-                                <img src={post.featured_image} alt="" />
-                            </Link>
-                            : 
-                            <></>
-                        }
-                        </div>
-                    )
-                })
-                : <Loading/>
-            }
-        </div>
+        <ProfileLayout>
+            <div className="posts posts_columns">
+            {
+                (!isLoading) ?
+                posts.map(post => {
+                    return (
+                        <div key={post._id}  className="posts_item app-transition">
+                                <ArticleTopic article={post} profile={profile}/>
+                                <Link to={`/posts/${post._id}`}>
+                                    <h2 className="posts_item_title">{post.title}</h2>
+                                </Link>
+                                {post.featured_image ? 
+                                    <Link to={`/posts/${post._id}`} className="posts_item_img">
+                                    <img src={post.featured_image} alt="" />
+                                </Link>
+                                : 
+                                // <NoPosts/>
+                                <></>
+                            }
+                            </div>
+                        )
+                    })
+                    : <Loading/>
+                }
+            </div>
+        </ProfileLayout>
     )
 }
 

@@ -2,9 +2,8 @@ import React from 'react';
 import { ReactComponent as HeaderProfileIcon} from "../../assets/svg/profile.svg";
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useContext } from "react";
-import { API_URL } from "../../config";
-import { useLocation } from 'react-router-dom';
 import { AppContext } from '../../App';
+import ProfileLayout from '../ProfileLayout';
 
 const HeaderProfile = () => {
     const [link, setLink] = useState('/auth/register');
@@ -18,9 +17,11 @@ const HeaderProfile = () => {
     }, [profile])
 
     return (
-        <Link to={link}>
-            <HeaderProfileIcon className='app-transition' />
-        </Link>
+        <ProfileLayout>
+            <Link to={link}>
+                <HeaderProfileIcon className='app-transition' />
+            </Link>
+        </ProfileLayout>
     );
 };
 

@@ -5,9 +5,11 @@ import { useState, useEffect, useContext } from "react";
 import { format_date } from "../../components/ArticleTopic";
 import Loading from "../../components/Loading";
 import { API_URL } from "../../config";
-import MainLayout from "../../components/MainLayout/index.jsx";
+import MainLayout from "../../components/ProfileLayout/index.jsx";
 import { AppContext } from "../../App.js";
 import DefaultProfileAvatar from "../../assets/images/default-profile-avatar.png"
+import ProfileLayout from "../../components/ProfileLayout/index.jsx";
+import NoPosts from '../../components/NoPosts'
 
 const Profile = ( ) => {
     const {id} = useParams();
@@ -18,7 +20,7 @@ const Profile = ( ) => {
 
 
     const handleTabClick = (item) => {
-        if (item === "Сохранённые" && profile === null) {
+        if (item === "Сохранённые" && (!profile || profile._id !== user._id)) {
             return
         }
         setActiveTab(item)
@@ -61,7 +63,7 @@ const Profile = ( ) => {
     }
 
     return (
-        <MainLayout>
+        <ProfileLayout>
             <div className="profile"> 
                 <div className="profile_info">
                     <div className="profile_info_avatar">
@@ -85,7 +87,7 @@ const Profile = ( ) => {
                         <div
                             key={index}
                             onClick={() => handleTabClick(item)}
-                            className={`${activeTab === item ? "profile_tab_list_active" : ""} ${item === "Сохранённые" && profile === null ? "not_allowed" : ""}`}
+                            className={`${activeTab === item ? "profile_tab_list_active" : ""} ${item === "Сохранённые" && (!profile || profile._id !== user._id) ? "not_allowed" : ""}`}
                         >
                             <p>{item}</p>
                         </div>
@@ -96,17 +98,17 @@ const Profile = ( ) => {
                         activeTab === "Посты" ? 
                         (
                             user && user._id ? <Posts query = {{ author: user._id }} /> :
-                            <></>
+                            <NoPosts/>
                         )   
                         :
                         (
                             profile && profile.saved_posts.length > 0 ? <Posts query = {{ _id: profile.saved_posts }} /> :
-                            <></>
+                            <NoPosts/>
                         )
                     }
                 </div>
             </div>   
-        </MainLayout>
+        </ProfileLayout>
     )
 }
 

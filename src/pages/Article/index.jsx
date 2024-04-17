@@ -5,7 +5,7 @@ import "./Article.scss";
 import { ArticleTopic } from "../../components/ArticleTopic";
 import { API_URL } from "../../config";
 import { AppContext } from "../../App";
-import MainLayout from "../../components/MainLayout";
+import ProfileLayout from "../../components/ProfileLayout";
 
 
 const Article = () => {
@@ -44,8 +44,8 @@ const Article = () => {
     }
 
     return (
-        !isLoading ?
-        <MainLayout>
+        <ProfileLayout>{
+            !isLoading ?
             <div>
                 {
                     article ?
@@ -57,16 +57,18 @@ const Article = () => {
                                 <img src={article.featured_image}/> 
                                 </div>
                             : 
-                                <></>
-                            }
+                            <></>
+                        }
                             <div className="article-content" dangerouslySetInnerHTML={{__html: article.content_text}}>
                             </div>
                         </div>:
                     <></>     
                 }
-            </div>
-        </MainLayout>:
-        <Loading />
+                </div>
+            :
+            <Loading />
+        }
+        </ProfileLayout>
     )
 }
 

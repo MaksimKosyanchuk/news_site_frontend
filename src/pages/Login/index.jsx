@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InputForm from '../../components/InputForm/InputForm';
 import { API_URL } from '../../config';
-import MainLayout from '../../components/MainLayout';
+import MainLayout from '../../components/ProfileLayout';
 
 const Login = () => {
     const navigate = useNavigate()
