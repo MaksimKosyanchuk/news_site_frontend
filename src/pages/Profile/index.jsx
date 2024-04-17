@@ -7,6 +7,7 @@ import Loading from "../../components/Loading";
 import { API_URL } from "../../config";
 import MainLayout from "../../components/MainLayout/index.jsx";
 import { AppContext } from "../../App.js";
+import DefaultProfileAvatar from "../../assets/images/default-profile-avatar.png"
 
 const Profile = ( ) => {
     const {id} = useParams();
@@ -59,7 +60,7 @@ const Profile = ( ) => {
             <div className="profile"> 
                 <div className="profile_info">
                     <div className="profile_info_avatar">
-                        <img src={user?.avatar ?? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"} alt="img"/>
+                        <img src={user?.avatar ?? DefaultProfileAvatar} alt="img"/>
                     </div>
                     <div className="profile_info_data">
                         <p className={ "profile_info_data_name" + ( user && user.is_admin ? " profile_info_data_administrator_true" : "") } >{ user.nick_name }</p>
