@@ -3,17 +3,14 @@ import Banner from "../../components/Banner";
 import Posts from "../../components/Posts/index.jsx";
 import { Link } from "react-router-dom";
 import { getPosts } from "../../api/posts.api.js";
-import { useContext, useEffect, useState } from "react";
-import Loading from "../../components/Loading/index.jsx";
-import { AppContext } from "../../App.js";
+import { useEffect, useState } from "react";
 
 const HomePage = () => {   
     const [ posts, setPosts ] = useState([])
     const [ isLoading, setIsLoading ] = useState([])
-    const {profile} = useContext(AppContext)
 
     const fetchPosts = async () => {
-        setIsLoading(false)
+        setIsLoading(true)
         const response = await getPosts()
         if(response.status === "success"){
             setPosts(response.data)
@@ -21,13 +18,13 @@ const HomePage = () => {
         else{
             setPosts([])
         }
-        setIsLoading(true)
+        setIsLoading(false)
     }
 
     useEffect(() => {
         fetchPosts()
     }, [])
-    
+
     return (
         <>
             <Banner 
@@ -37,7 +34,7 @@ const HomePage = () => {
                 <p>Please, share this work with your friends</p>
                 <Link to={`/users/Maks`}>Maks</Link>
             </Banner>
-            <Posts posts={posts}/>
+            <Posts posts={posts} isLoading={isLoading}/>
         </>
     )
 }
