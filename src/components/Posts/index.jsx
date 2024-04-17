@@ -46,33 +46,31 @@ const Posts =  ( { query } ) => {
     }
 
     return (
-        <MainLayout>
-            <div className="posts posts_columns">
-            {
-                (!isLoading) ?
-                posts.map(post => {
-                    return (
-                        <div key={post._id}  className="posts_item app-transition">
-                                <ArticleTopic article={post} profile={profile}/>
+        <div className="posts posts_columns">
+        {
+            (!isLoading) ?
+            posts.map(post => {
+                return (
+                    <div key={post._id}  className="posts_item app-transition">
+                            <ArticleTopic article={post} profile={profile}/>
+                            
+                            <Link to={`/posts/${post._id}`}>
+                                <h2 className="posts_item_title">{post.title}</h2>
+                            </Link>
+                            {post.featured_image ? 
                                 
-                                <Link to={`/posts/${post._id}`}>
-                                    <h2 className="posts_item_title">{post.title}</h2>
-                                </Link>
-                                {post.featured_image ? 
-                                    
-                                    <Link to={`/posts/${post._id}`} className="posts_item_img">
-                                    <img src={post.featured_image} alt="" />
-                                </Link>
-                                : 
-                                <></>
-                            }
-                            </div>
-                        )
-                    })
-                    : <Loading/>
-                }
-            </div>
-        </MainLayout>
+                                <Link to={`/posts/${post._id}`} className="posts_item_img">
+                                <img src={post.featured_image} alt="" />
+                            </Link>
+                            : 
+                            <></>
+                        }
+                        </div>
+                    )
+                })
+                : <Loading/>
+            }
+        </div>
     )
 }
 

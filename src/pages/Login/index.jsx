@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InputForm from '../../components/InputForm/InputForm';
 import { API_URL } from '../../config';
+import MainLayout from '../../components/MainLayout';
 
 const Login = () => {
     const navigate = useNavigate()
@@ -32,7 +33,11 @@ const Login = () => {
         }
     }
 
-    return <InputForm buttonText="Login" onSubmit={handleLogin} />
+    return (
+        <MainLayout>
+            <InputForm buttonText="Login" onSubmit={handleLogin} />
+        </MainLayout>
+    )
 }
 
 export default Login

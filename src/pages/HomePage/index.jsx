@@ -2,10 +2,11 @@ import "./Posts.scss";
 import Banner from "../../components/Banner";
 import Posts from "../../components/Posts/index.jsx";
 import { Link } from "react-router-dom";
+import MainLayout from "../../components/MainLayout/index.jsx";
 
 const HomePage = () => {   
     return (
-        <>
+        <MainLayout>
             <Banner 
                 image={'https://img.tsn.ua/cached/552/tsn-dc382829a98d0f40b34d312a72bcb9b7/thumbs/1116x628/dc/7d/3769751a1240ebcc80e4c7322c177ddc.jpeg'}>
 
@@ -14,7 +15,7 @@ const HomePage = () => {
                 <Link to={`/users/Maks`}>Maks</Link>
             </Banner>
             <Posts />
-        </>
+        </MainLayout>
     )
 }
 

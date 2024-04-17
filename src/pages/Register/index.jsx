@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import InputForm from '../../components/InputForm/InputForm';
 import { API_URL } from '../../config';
+import MainLayout from '../../components/MainLayout';
 
 const Register = () => {
     const navigate = useNavigate()
@@ -29,7 +30,11 @@ const Register = () => {
         }
     }
 
-    return <InputForm buttonText="Register" onSubmit={handleRegister} />
+    return (
+        <MainLayout>
+            <InputForm buttonText="Register" onSubmit={handleRegister} />
+        </MainLayout>
+    )
 }
 
 export default Register
