@@ -102,7 +102,7 @@ const Profile = ( ) => {
                 {
                     (profile && profile._id == user._id) ?
                     <button className="profile_info_quit_button app-transition" onClick={quitButtonClick}>
-                    <p>Выйти</p>
+                        Выйти
                     </button>:
                     <></>
                 }
