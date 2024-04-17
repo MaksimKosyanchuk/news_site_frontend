@@ -8,6 +8,14 @@
     position: relative;
     display: flex;
     
+    &::before {
+        border-radius: 9px;
+    }
+
+    &::after {
+        border-radius: 5px;
+    }
+
     &::before, &::after {
         @include use-transition();
         content: "";
@@ -18,7 +26,7 @@
         height: 100%;
         display: block;
         z-index: 1;
-        background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0) 50%);
+        background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0) 70%);
 
         @include screen() {
             height: 200%;
@@ -27,7 +35,7 @@
     
     &::after {
         opacity: var(--banner-haze);
-        background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(0,0,0,0) 50%);
+        background: linear-gradient(to top, var(--main-background), rgba(0,0,0,0) 70%);
 
     }
 
