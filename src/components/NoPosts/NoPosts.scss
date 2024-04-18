@@ -1,3 +1,5 @@
+@import "../../styles/helpers.scss";
+
 .no_posts{
     font-size: 64px;
     margin: 100px auto;
@@ -6,4 +8,9 @@
     text-align: center;
     color: var(--background-text-color);
     user-select: none;
+
+    @include screen() {
+        font-size: 48px;
+        margin: 50px auto;
+    }
 }
