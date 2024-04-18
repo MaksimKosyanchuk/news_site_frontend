@@ -25,7 +25,7 @@ function Footer(){
                     </div>
                     <div className="footer-column footer-site-title">
                         <p>
-                        Current news
+                        Daily Buzz
                         </p>
                     </div>
                     <div className="footer-column footer-copyright">
