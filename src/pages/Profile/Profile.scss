@@ -7,16 +7,21 @@
         box-sizing: content-box;
         
         &_quit_button {
-            margin-right: 20px;
+            color: red;
+            margin-right: 0;
             margin-left: auto;
             margin-bottom: auto;
             border: 1px solid red;
             padding: 12px 30px;
             border-radius: 8px;
-            cursor: pointer;
             user-select: none;
+            cursor: pointer;
 
-            color: red;
+            @include screen {
+                padding: 8px 11px;
+                font-size: 12px;
+            }
+
         }
 
         &_quit_button:hover {
@@ -91,8 +96,16 @@
         margin: 50px 0 0;
         padding: 10px 0;
 
+        @include screen() {
+            margin-top: 20px;
+        }
+
         p {
             color: var(--small-text-color);
+
+            @include screen() {
+                font-size: 14px;
+            }
         }
 
         *{

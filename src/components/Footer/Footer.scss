@@ -6,7 +6,6 @@ footer {
     width: 100%; 
     background-color: var(--footer-background);
     position: relative;
-    
 
     .footer-content {
         display: flex;
@@ -17,32 +16,48 @@ footer {
         @include screen() {
           flex-direction: column;
           justify-content: space-between;
-          gap: 12px;
+          gap: 25px;
         }
 
         p{
           font-size: 14px;
         }
-      }
-
-    .footer-copyright {
-      max-width: 144px;
-    }
-
-    .footer-socials {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-
-      &-item {
-        width: 24px;
-        height: 24px;
         
-        svg{
-          width: 24px;
-          height: 24px;  
+        .footer-site-title {
+          @include screen() {
+            display: none;
+          }
         }
-      }
+        
+        .footer-copyright {
+          max-width: 144px;
+        }
+        
+        .footer-socials {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          
+          &-item {
+            width: 24px;
+            height: 24px;
+            
+            @include screen() {
+              width: 18px;
+              height: 18px;
+            }
+            
+            svg{
+              width: 24px;
+              height: 24px;  
+              
+              @include screen() {
+                width: 18px;
+                height: 18px;
+              }
+            }
+          }
+        }
     }
 }
 

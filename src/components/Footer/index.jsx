@@ -23,7 +23,7 @@ function Footer(){
                             <TWitterIcon/>
                         </a>
                     </div>
-                    <div className="footer-column">
+                    <div className="footer-column footer-site-title">
                         <p>
                         Current news
                         </p>
