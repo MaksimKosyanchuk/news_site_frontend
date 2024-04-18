@@ -20,17 +20,13 @@ footer {
         }
 
         p{
-          font-size: 14px;
+          font-size: 18px;
         }
         
         .footer-site-title {
           @include screen() {
             display: none;
           }
-        }
-        
-        .footer-copyright {
-          max-width: 144px;
         }
         
         .footer-socials {
