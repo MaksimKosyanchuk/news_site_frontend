@@ -1,3 +1,5 @@
+@import "../../styles/helpers.scss";
+
 footer {
     z-index: 2;
     bottom: 0;
@@ -5,11 +7,42 @@ footer {
     background-color: var(--footer-background);
     position: relative;
     
+
     .footer-content {
         display: flex;
-        justify-content: center; 
+        justify-content: space-between; 
         align-items: center;
-        height: 60px; 
+        padding: 36px 0;
+
+        @include screen() {
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 12px;
+        }
+
+        p{
+          font-size: 14px;
+        }
       }
+
+    .footer-copyright {
+      max-width: 144px;
+    }
+
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      &-item {
+        width: 24px;
+        height: 24px;
+        
+        svg{
+          width: 24px;
+          height: 24px;  
+        }
+      }
+    }
 }
 
