@@ -19,7 +19,7 @@ function Header() {
               </Link>
             </div>
             <div  className="header_title">
-              <h1>Current news</h1>
+              <h1>Daily buzz</h1>
             </div>
             <div className="header_item header_right_item">
               <button type='button' onClick={() => setIsDarkTheme(!isDarkTheme)}>
