@@ -27,7 +27,7 @@ const InputForm = ({ buttonText, onSubmit, redirect }) => {
         placeholder="Пароль"
       />
       <div className={ "result_message" + (login_result.status === "error" ? " error_message" : "" )}>{ login_result ?  login_result.message : "" }</div>
-      <button className="app-transition" type="submit">{buttonText}</button>
+      <button className="submit_button app-transition" type="submit">{buttonText}</button>
       {redirect}
     </form>
   )

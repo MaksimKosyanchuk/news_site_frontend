@@ -42,7 +42,8 @@ function App() {
     '--line-color': isDarkTheme ? '#4f4f4f' : "#afafaf",
     '--small-text-color': isDarkTheme ? '#bbbbbb' : 'black',
     '--input-background-color': isDarkTheme ? 'rgb(51, 51, 51)' : 'white',
-    '--background-text-color': isDarkTheme ? 'rgb(55, 55, 55)' : 'rgb(197, 197, 197)'
+    '--background-text-color': isDarkTheme ? 'rgb(55, 55, 55)' : 'rgb(197, 197, 197)',
+    '--hover-button-background-color': isDarkTheme ? 'rgb(215 215 215)' : '#373737'
   }
 
 

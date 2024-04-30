@@ -28,13 +28,9 @@ input:focus {
     }
 
     button {
-        border: 1px solid var(--line-color);
-        border-radius: 5px;
         padding: 12px 14px;
         width: 300px;
         margin: 200px auto 0;
-        color: var(--text-color);
-        cursor: pointer;
         font-size: 14px;
 
         @include screen() {
@@ -42,10 +38,6 @@ input:focus {
             margin-top: auto;
             padding: 18px 14px;
         }
-    }
-
-    button:hover{
-        border: 1px solid var(--text-color)
     }
 
     .result_message {

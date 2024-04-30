@@ -34,12 +34,8 @@
     }
 
     .create_post_submit{
-        border: 1px solid var(--line-color);
-        border-radius: 5px;
         padding: 12px 14px;
         width: 200px;
-        color: var(--text-color);
-        cursor: pointer;
         font-size: 14px;
 
         @include screen() {
@@ -54,7 +50,4 @@
         }
     }
 
-    .create_post_submit:hover{
-        border: 1px solid var(--text-color)
-    }
 }

@@ -71,10 +71,8 @@ const CreatePost = () => {
                 onChange={(e) => setMainText(e.target.value)}
                 is_multiline={true}
             />
-            <button className='create_post_submit app-transition' type="submit">
-                <div className='create_post_submit_content'>
-                    <p>Создать</p>
-                </div>
+            <button className='submit_button create_post_submit app-transition' type="submit">
+                Создать
             </button>
         </form>
     )
