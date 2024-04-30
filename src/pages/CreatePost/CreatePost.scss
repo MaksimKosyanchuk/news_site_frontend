@@ -1,0 +1,53 @@
+@import "../../styles/helpers.scss";
+
+.create_post{
+    display: block;
+
+    .input_field{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    &_title{
+        font-size: 36px;
+        line-height: 1.2;
+        font-weight: bold;
+
+        @include screen(){
+            font-size: 24px;
+        }
+    }
+
+    &_main_text{
+        height: 300px;
+        font-size: 24px;
+        resize: none;
+
+        @include screen() {
+            font-size: 14px;
+            height: 150px;
+        }
+    }
+
+    &_main_text:focus-visible{
+        outline: none;
+    }
+
+    .create_post_submit{
+        padding: 12px 14px;
+        width: 200px;
+        font-size: 14px;
+
+        @include screen() {
+            width: 100%;
+        }
+
+        &_content {
+            p{
+                margin: auto 10px;
+                font-size: 16px;
+            }
+        }
+    }
+
+}

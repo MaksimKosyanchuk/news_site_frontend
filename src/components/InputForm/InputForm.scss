@@ -27,30 +27,10 @@ input:focus {
         margin-bottom: 20px;
     }
 
-    input {
-        width: 300px;
-        margin: 0 auto;
-        padding: 12px 14px;
-        background-color: var(--input-background-color);
-        border: 1px solid transparent;
-        border-radius: 5px;
-        color: var(--text-color);
-        font-size: 18px;
-        font-family: "Google Sans", roboto, "Noto Sans Myanmar UI", arial, sans-serif;
-    }
-
-    .incorrect_login {
-        border: 1px solid red;
-    }
-
     button {
-        border: 1px solid var(--line-color);
-        border-radius: 5px;
         padding: 12px 14px;
         width: 300px;
         margin: 200px auto 0;
-        color: var(--text-color);
-        cursor: pointer;
         font-size: 14px;
 
         @include screen() {
@@ -58,10 +38,6 @@ input:focus {
             margin-top: auto;
             padding: 18px 14px;
         }
-    }
-
-    button:hover{
-        border: 1px solid var(--text-color)
     }
 
     .result_message {

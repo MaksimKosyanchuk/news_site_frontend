@@ -6,7 +6,7 @@ import { ReactComponent as TWitterIcon } from "../../assets/svg/twitter-icon.svg
 
 function Footer(){
     return(
-        <footer className="blurred app-transition">
+        <footer className="blurred">
             <div className="container">
                 <div className="footer-content">
                     <div className="footer-column footer-socials">

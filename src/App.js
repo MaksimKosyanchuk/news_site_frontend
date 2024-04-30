@@ -8,6 +8,7 @@ import PageNotFound from './pages/PageNotFound/index.jsx';
 import Footer from "./components/Footer/index.jsx";
 import Login from './pages/Login/index.jsx';
 import Register from './pages/Register/index.jsx';
+import CreatePost from './pages/CreatePost/index.jsx';
 
 import "./styles/common.scss";
 
@@ -41,7 +42,8 @@ function App() {
     '--line-color': isDarkTheme ? '#4f4f4f' : "#afafaf",
     '--small-text-color': isDarkTheme ? '#bbbbbb' : 'black',
     '--input-background-color': isDarkTheme ? 'rgb(51, 51, 51)' : 'white',
-    '--background-text-color': isDarkTheme ? 'rgb(55, 55, 55)' : 'rgb(197, 197, 197)'
+    '--background-text-color': isDarkTheme ? 'rgb(55, 55, 55)' : 'rgb(197, 197, 197)',
+    '--hover-button-background-color': isDarkTheme ? 'rgb(215, 215, 215)' : 'rgb(55,55,55)'
   }
 
 
@@ -70,6 +72,7 @@ function App() {
               <Route path="/auth/register" Component={Register}/>
               <Route path="/404" Component={PageNotFound}/>
               <Route path="/posts/" Component={HomePage}/>
+              <Route path="/create-post" Component={CreatePost}/>
               <Route path="/users/:id" Component={Profile}/>
               <Route path="/posts/:id" Component={Article}/>
             </Routes>

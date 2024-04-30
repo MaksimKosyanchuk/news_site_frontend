@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './InputForm.scss'
+import './InputForm.scss';
+import InputField from "../InputField/index";
 
 const InputForm = ({ buttonText, onSubmit, redirect }) => {
   const [username, setUsername] = useState('')
@@ -13,24 +14,20 @@ const InputForm = ({ buttonText, onSubmit, redirect }) => {
 
   return (
     <form onSubmit={handleSubmit} className='form_input app-transition'>
-      <input 
-          className={ "user_name app-transition" + (login_result.status === "error" ? " incorrect_login" : "") }
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          placeholder="Имя пользователя"
+      <InputField 
+        className={"user_name" + (login_result.status === "error" ? " incorrect_field" : "")}
+        type="text"
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Имя пользователя"
       />
-      <input
-          className={ "password app-transition"  + (login_result.status === "error" ? " incorrect_login" : "" )}
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          placeholder="Пароль"
+      <InputField 
+        className={"password" + (login_result.status === "error" ? " incorrect_field" : "")}
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Пароль"
       />
       <div className={ "result_message" + (login_result.status === "error" ? " error_message" : "" )}>{ login_result ?  login_result.message : "" }</div>
-      <button className="app-transition" type="submit">{buttonText}</button>
+      <button className="submit_button app-transition" type="submit">{buttonText}</button>
       {redirect}
     </form>
   )
