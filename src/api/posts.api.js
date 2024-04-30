@@ -16,11 +16,16 @@ export const getPosts = async (query) => {
     const result = await fetch(`${API_URL}/api/posts?${queryString}`)
     .then(res => res.json())
     .then(res => {
+        res.data.sort((prev, next) => new Date(next.created_date) - new Date(prev.created_date))
         return res
     })
     .catch((err) => { 
         console.log(err)
-        return result
+        return ({
+            status: "error",
+            message: err,
+            data: null
+        })
     })
 
     return result
