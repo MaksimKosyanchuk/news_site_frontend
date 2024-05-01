@@ -42,7 +42,6 @@ const CreatePost = () => {
         try{
             const creating = await fetch(`${API_URL}/api/posts/create-post`, { method: "POST", body: formData})
             const result = await creating.json()
-            console.log(result)
             if(result.status === "success") {
                 navigate("/posts")
                 return result
