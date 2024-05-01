@@ -9,10 +9,11 @@ import "./CreatePost.scss"
 const CreatePost = () => {
     const navigate = useNavigate()
     const { profile, profileLoading } = useContext(AppContext)
-    const [initialized, setInitialized] = useState(false);
+    const [ initialized, setInitialized ] = useState(false);
     const [ title, setTitle ] = useState("")
     const [ mainText, setMainText ] = useState("")
     const [ createResult, setCreateResult ] = useState({})
+    const [ featuredImage, setFeaturedImage ] = useState("")
 
     useEffect(() => {
         if(initialized){
@@ -32,13 +33,14 @@ const CreatePost = () => {
     }
 
     const create_post = async (title, mainText) => {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ token: localStorage.getItem("token"), title: title, content_text: mainText }),
-        }
+        const formData = new FormData();
+        formData.append('token', localStorage.getItem("token"));
+        formData.append('title', title)
+        formData.append('content_text', mainText)
+        formData.append('featured_image', featuredImage)
+        
         try{
-            const creating = await fetch(`${API_URL}/api/posts/create-post`, requestOptions)
+            const creating = await fetch(`${API_URL}/api/posts/create-post`, { method: "POST", body: formData})
             const result = await creating.json()
             console.log(result)
             if(result.status === "success") {
@@ -58,8 +60,22 @@ const CreatePost = () => {
         }
     }
 
+    const handleImage = (event) => {
+        event.preventDefault();
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+            const base64Image = event.target.result.split(',')[1];
+            setFeaturedImage(base64Image)
+        };
+
+        reader.readAsDataURL(file); 
+    }
+
     return (
         <form className='create_post' onSubmit={handleSubmit}>
+            <input type="file" id="imageInput" accept="image/*" onChange={handleImage}/>
             <InputFiled 
                 className={"create_post_title"  + (createResult.status === "error" ? " incorrect_field" : "")}
                 placeholder={"Заголовок"}
