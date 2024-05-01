@@ -105,7 +105,7 @@ const Profile = ( ) => {
                     <></>
                 }
             </div>
-            <div className="profile_tab_list"> 
+            <div className="profile_tab_list app-transition"> 
                 {tabs.map((item, index) => (
                     <div
                         key={index}
