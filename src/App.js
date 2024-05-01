@@ -43,7 +43,8 @@ function App() {
     '--small-text-color': isDarkTheme ? '#bbbbbb' : 'black',
     '--input-background-color': isDarkTheme ? 'rgb(51, 51, 51)' : 'white',
     '--background-text-color': isDarkTheme ? 'rgb(55, 55, 55)' : 'rgb(197, 197, 197)',
-    '--hover-button-background-color': isDarkTheme ? 'rgb(215, 215, 215)' : 'rgb(55,55,55)'
+    '--hover-button-background-color': isDarkTheme ? 'rgb(215, 215, 215)' : 'rgb(55,55,55)',
+    '--button-background-color': isDarkTheme ? 'rgba(37, 37, 37, .8)' : 'rgba(215, 215, 215, .8)',
   }
 
 
