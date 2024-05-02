@@ -13,15 +13,14 @@ input:focus {
     margin-right: auto;
 
     @include screen() {
-        height: 40vh;
         padding-top: 100px;
     }
 
     .redirect_object {
-        margin: 10px;
         text-align: center;
         font-size: 14px;
-
+        margin-top: 20px;
+        
         a {
             text-decoration: underline;
         }
@@ -35,12 +34,10 @@ input:focus {
         padding: 12px 14px;
         width: 100%;
         margin: 200px auto 0;
-        font-size: 14px;
+        font-size: 18px;
 
         @include screen() {
-            margin-bottom: 20px;
-            margin-top: auto;
-            padding: 18px 14px;
+            margin-top: 20px;
         }
     }
 
