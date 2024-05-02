@@ -8,6 +8,10 @@
         height: 400px; 
         margin-bottom: 20px;
         border-radius: 8px;
+
+        @include screen() {
+            height: 200px;
+        }
     }
 
     .input_field{
