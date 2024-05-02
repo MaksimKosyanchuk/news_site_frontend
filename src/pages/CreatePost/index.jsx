@@ -3,8 +3,9 @@ import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../App';
 import { API_URL } from '../../config';
 import InputFiled from "../../components/InputField";
+import "../../components/DropFile/index"
 import "./CreatePost.scss"
-
+import DropFile from '../../components/DropFile/index';
 
 const CreatePost = () => {
     const navigate = useNavigate()
@@ -38,7 +39,7 @@ const CreatePost = () => {
         formData.append('title', title)
         formData.append('content_text', mainText)
         formData.append('featured_image', featuredImage)
-        
+
         try{
             const creating = await fetch(`${API_URL}/api/posts/create-post`, { method: "POST", body: formData})
             const result = await creating.json()
@@ -59,27 +60,19 @@ const CreatePost = () => {
         }
     }
 
-    const handleImage = (event) => {
-        event.preventDefault();
-        const file = event.target.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(event) {
-            const base64Image = event.target.result.split(',')[1];
-            setFeaturedImage(base64Image)
-        };
-
-        reader.readAsDataURL(file); 
+    const handleImage = (file) => {
+        setFeaturedImage(file)
     }
 
     return (
         <form className='create_post' onSubmit={handleSubmit}>
-            <input type="file" id="imageInput" accept="image/*" onChange={handleImage}/>
             <InputFiled 
                 className={"create_post_title"  + (createResult.status === "error" ? " incorrect_field" : "")}
                 placeholder={"Заголовок"}
+                is_multiline={true}
                 onChange={(e) => setTitle(e.target.value)}
             />
+            <DropFile handleUpload={handleImage}/>
             <InputFiled 
                 className={"create_post_main_text" + (createResult.status === "error" ? " incorrect_field" : "")}
                 placeholder={"Текст"}

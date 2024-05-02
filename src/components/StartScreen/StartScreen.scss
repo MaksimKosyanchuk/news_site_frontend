@@ -1,6 +1,5 @@
 .start-screen {
     flex: 1;
-    overflow-y: auto;
     background-color: var(--main-background);
     min-height: 100dvh;
 }
@@ -10,6 +9,8 @@
     padding-bottom: 60px;
     z-index: 1;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 
     @media screen and (max-width: 768px) {
         padding-top: 100px;

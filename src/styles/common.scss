@@ -48,7 +48,7 @@ button {
     color: var(--text-color);
     border: 1px solid var(--hover-button-background-color);
     background-color: var(--button-background-color);
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -72,7 +72,6 @@ button {
 }
 
 .App {
-    overflow-y: auto;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

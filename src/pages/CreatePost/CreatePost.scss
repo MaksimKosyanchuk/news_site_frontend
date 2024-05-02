@@ -1,16 +1,23 @@
 @import "../../styles/helpers.scss";
 
 .create_post{
-    display: block;
+    display: flex;
+    flex-direction: column;
+
+    .drop_file{
+        height: 400px; 
+        margin-bottom: 20px;
+        border-radius: 8px;
+    }
 
     .input_field{
         width: 100%;
         margin-bottom: 20px;
+        resize: none;
     }
 
-    &_title{
-        font-size: 36px;
-        line-height: 1.2;
+    .create_post_title{
+        font-size: 48px;
         font-weight: bold;
 
         @include screen(){
@@ -21,7 +28,6 @@
     &_main_text{
         height: 300px;
         font-size: 24px;
-        resize: none;
 
         @include screen() {
             font-size: 14px;
@@ -29,7 +35,7 @@
         }
     }
 
-    &_main_text:focus-visible{
+    textarea:focus-visible{
         outline: none;
     }
 

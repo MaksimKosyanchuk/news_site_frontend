@@ -1,15 +1,18 @@
-.input_field{
-    width: 300px;
-    margin: 0 auto;
-    padding: 12px 14px;
-    background-color: var(--input-background-color);
-    border: 1px solid transparent;
-    border-radius: 5px;
-    color: var(--text-color);
-    font-size: 18px;
-    font-family: "Google Sans", roboto, "Noto Sans Myanmar UI", arial, sans-serif;
-}
+.input_field_label{
+    width: 100%;
 
+    .input_field{
+        width: 100%;
+        margin: 0 auto;
+        padding: 12px 14px;
+        background-color: var(--input-background-color);
+        border: 1px solid transparent;
+        border-radius: 8px;
+        color: var(--text-color);
+        font-size: 18px;
+        font-family: "Google Sans", roboto, "Noto Sans Myanmar UI", arial, sans-serif;
+    }
+}
 .incorrect_field {
     border: 1px solid red;
 }
