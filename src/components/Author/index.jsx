@@ -7,7 +7,7 @@ const Author = ( author_data ) => {
     return (
         <Link className="author" to={`/users/${author_data.nick_name}`}>
             <div className="author_avatar">
-                <img src = {author_data.avatar ? author_data.avatar : DefaultProfileAvatar}/>
+                <img src = {author_data?.avatar ?? DefaultProfileAvatar}/>
             </div>
             <div className="author_info">
                 <p className="author_name">

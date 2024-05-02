@@ -7,6 +7,10 @@ input:focus {
 .form_input{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 330px;
+    margin-left: auto;
+    margin-right: auto;
 
     @include screen() {
         height: 40vh;
@@ -29,7 +33,7 @@ input:focus {
 
     button {
         padding: 12px 14px;
-        width: 300px;
+        width: 100%;
         margin: 200px auto 0;
         font-size: 14px;
 

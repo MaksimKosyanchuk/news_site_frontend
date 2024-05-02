@@ -1,0 +1,27 @@
+.drop_file{
+    border: 3px dashed var(--line-color);
+    border-width: medium;
+    box-sizing: border-box;
+    overflow: hidden;
+    cursor: pointer;
+    outline: none;
+
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .image_input{
+        display: none;
+    }
+}
+
+.drop_file:focus-visible{
+    outline: none;
+}
+
+.drop_file_dragged, .drop_file:hover{
+    border: 3px dashed var(--active-drop-file-border);
+    background: rgba(128, 128, 128, 0.2);
+}
