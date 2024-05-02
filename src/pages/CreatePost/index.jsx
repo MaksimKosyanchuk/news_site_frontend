@@ -14,7 +14,7 @@ const CreatePost = () => {
     const [ title, setTitle ] = useState("")
     const [ mainText, setMainText ] = useState("")
     const [ createResult, setCreateResult ] = useState({})
-    const [ featuredImage, setFeaturedImage ] = useState("")
+    const [ featuredImage, setFeaturedImage ] = useState(null)
 
     useEffect(() => {
         if(initialized){
@@ -30,7 +30,8 @@ const CreatePost = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setCreateResult(await create_post(title, mainText))
+        const result = await create_post(title, mainText)
+        setCreateResult(result)
     }
 
     const create_post = async (title, mainText) => {
@@ -60,8 +61,8 @@ const CreatePost = () => {
         }
     }
 
-    const handleImage = (file) => {
-        setFeaturedImage(file)
+    const handleImage = async (file) => {
+        await setFeaturedImage(file)
     }
 
     return (
