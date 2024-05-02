@@ -14,25 +14,21 @@ const DropFile = ({ handleUpload }) => {
         }
     }, [file]);
 	
-	
 	const setFileHandler = (e) => {
-		let result = null;
-        if (e.currentTarget && e.currentTarget.files?.length) {
-            e.preventDefault();
-            const file = e.target.files[0];
-            const reader = new FileReader();
-          
-            reader.onload = function(event) {
-                const base64Image = event.target.result.split(',')[1];
-                result = base64Image
-            };
-        
-            reader.readAsDataURL(file); 
-			setFile(file);
+		try{
+			e.preventDefault();
+			const newFile = e.target.files[0];
+			const reader = new FileReader();
+			reader.onload = function(e) {
+				handleUpload(e?.target?.result?.split(',')[1])
+			};
+			setFile(newFile);	
+			reader.readAsDataURL(newFile); 	
 		}
-        handleUpload(result)
+		catch(e){
+			console.log(e)
+		}
     }
-
     
 	useEffect(() => {
 	    if (!fileRef.current) return;
