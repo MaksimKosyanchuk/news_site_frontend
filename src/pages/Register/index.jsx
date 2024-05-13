@@ -7,11 +7,12 @@ import "./Register.scss"
 const Register = () => {
     const navigate = useNavigate()
 
-    const handleRegister = async (username, password, avatar) => {
+    const handleRegister = async (username, password, avatar, description) => {
         const formData = new FormData()
         formData.append("nick_name", username)
         formData.append("password", password)
         formData.append("avatar", avatar)
+        formData.append("description", description)
 
         try {
             const register = await fetch(`${API_URL}/api/auth/register`, { method: "POST", body: formData })
@@ -40,7 +41,7 @@ const Register = () => {
     )
 
     return (
-        <InputForm buttonText="Зарегестрироваться" onSubmit={handleRegister} redirect={redirect} upload_img={true}/>
+        <InputForm buttonText="Зарегестрироваться" onSubmit={handleRegister} redirect={redirect} upload_img={true} description_field={true}/>
     )
 }
 

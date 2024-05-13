@@ -79,6 +79,7 @@ const CreatePost = () => {
                 placeholder={"Текст"}
                 onChange={(e) => setMainText(e.target.value)}
                 is_multiline={true}
+                length={400}
             />
             <button className='submit_button create_post_submit app-transition' type="submit">
                 Создать
