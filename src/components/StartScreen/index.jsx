@@ -34,7 +34,6 @@ const StartScreen = ({ children }) => {
             }
         }
         else{
-            console.log("null profile")
             setProfile(null)
             setProfileLoading(false)
         }

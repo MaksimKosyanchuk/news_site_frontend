@@ -1,7 +1,7 @@
 import React from 'react';
 import "./InputField.scss";
 
-const Input = ({ className, onChange, type, placeholder, is_multiline = false }) => {
+const Input = ({ className, onChange, type, placeholder, required=false, is_multiline = false, length = 40 }) => {
   const InputComponent = is_multiline ? 'textarea' : 'input';
   return (
     <label className='input_field_label'>
@@ -9,9 +9,9 @@ const Input = ({ className, onChange, type, placeholder, is_multiline = false })
         className={`input_field app-transition ${className?? ""}`}
         type={type}
         onChange={onChange}
-        required
+        required={required}
         placeholder={placeholder}
-        rows="2" wrap="hard" maxlength="60"
+        rows="2" wrap="hard" maxLength={length}
         />
       </label>
   );

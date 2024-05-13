@@ -17,7 +17,6 @@
     .input_field{
         width: 100%;
         margin-bottom: 20px;
-        resize: none;
     }
 
     .create_post_title{
@@ -37,10 +36,6 @@
             font-size: 14px;
             height: 150px;
         }
-    }
-
-    textarea:focus-visible{
-        outline: none;
     }
 
     .create_post_submit{

@@ -85,6 +85,10 @@ img, svg {
     -o-user-select: none;
 }
 
+textarea:focus-visible{
+    outline: none;
+}
+
 .App:not(.App_dark) .header_go_home img {
     filter: invert(1);
     -webkit-filter: invert(1);
