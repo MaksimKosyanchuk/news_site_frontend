@@ -33,7 +33,7 @@ function App() {
     '--header-background': isDarkTheme ? 'rgba(0,0,0, .8)' : 'rgba(255,255,255, .8)',
     '--text-color': isDarkTheme ? 'white' : 'black',
     '--link-text-color': isDarkTheme? '#c583ff' : '#80f',
-    '--footer-background': isDarkTheme ? 'rgba(0,0,0, .8)' : 'rgba(255, 255, 255, .8)',
+    '--footer-background': isDarkTheme ? '#333333' : 'white',
     '--post-card-background': isDarkTheme ? '#3b3b3b' : 'white',
     '--post-card-description-color': isDarkTheme ? '#bbbbbb' : "#6b6b6b",
     '--article-date-color': isDarkTheme ? 'white' : "black",

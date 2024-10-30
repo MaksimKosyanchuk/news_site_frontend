@@ -12,8 +12,8 @@
     }
 
     &-button {
-        width: 32px;
-        height: 32px;
+        width: 24px;
+        height: 24px;
         display: flex;
         justify-content: center;
         position: relative;
@@ -27,6 +27,8 @@
         }
 
         svg {
+            height: 100%;
+            width: auto;
             flex-basis: 100%;
             @include use-transition();
             

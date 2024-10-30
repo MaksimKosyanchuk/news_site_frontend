@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as HeaderProfileIcon} from "../../assets/svg/profile.svg";
+import { ReactComponent as HeaderProfileIcon} from "../../assets/svg/profile-icon.svg";
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from '../../App';
