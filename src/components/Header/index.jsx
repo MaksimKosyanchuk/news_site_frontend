@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as HomeIcon } from "../../assets/svg/home-icon.svg";
 import HeaderProfile from '../HeaderProfile';
-import SunIcon from "../../assets/images/sun-icon.png";
-import MoonIcon from "../../assets/images/moon-icon.png";
+import { ReactComponent as SunIcon } from "../../assets/svg/sun-icon.svg";
+import { ReactComponent as MoonIcon } from "../../assets/svg/moon-icon.svg";
 import { AppContext } from '../../App';
 import './Header.scss';
 
@@ -23,7 +23,7 @@ function Header() {
             </div>
             <div className="header_item header_right_item">
               <button type='button' onClick={() => setIsDarkTheme(!isDarkTheme)}>
-                <img src={isDarkTheme ? SunIcon : MoonIcon } className='app-transition'/>
+                {isDarkTheme ? <SunIcon className='app-transition'></SunIcon> : <MoonIcon className='app-transition'></MoonIcon>}
               </button> 
               <HeaderProfile></HeaderProfile>
             </div>

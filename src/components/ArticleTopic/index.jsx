@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import Author from "../Author";
-import { ReactComponent as BookMarkBorder} from "../../assets/svg/bookmark-outline.svg";
-import { ReactComponent as BookMarkFilled} from "../../assets/svg/bookmark-filled.svg";
-import { ReactComponent as ShareIcon} from "../../assets/svg/share.svg";
+import { ReactComponent as BookMarkBorder} from "../../assets/svg/bookmark-outline-icon.svg";
+import { ReactComponent as BookMarkFilled} from "../../assets/svg/bookmark-filled-icon.svg";
+import { ReactComponent as ShareIcon} from "../../assets/svg/share-icon.svg";
 import { API_URL } from "../../config";
 import "./ArticleTopic.scss";
 import { AppContext } from "../../App";
-import Loading from "../Loading";
 
 async function copy_article_url(id) {
     try {
