@@ -17,12 +17,12 @@ async function share(id, showToast) {
         navigator.share({
             title: 'Заголовок',
             text: 'Текст',
-            url: process.env.API_URL + `/posts/${id}`
+            url: `/posts/${id}`
         })
     }
     else{
         try {
-            await navigator.clipboard.writeText(process.env.API_URL + `/posts/${id}`)
+            await navigator.clipboard.writeText(`/posts/${id}`)
             showToast({message: "Copied!"})
         } catch (err) {
             console.error(`Failed to copy: /posts/${id}`, err)
@@ -33,7 +33,7 @@ async function share(id, showToast) {
 function format_date(date) {
     const isoDatetimeStr = date
     const isoDatetime = new Date(isoDatetimeStr)
-
+    
     const formattedDatetimeStr = isoDatetime.toLocaleString("ru-RU", {
         year: "numeric",
         month: "2-digit",
@@ -42,7 +42,7 @@ function format_date(date) {
         minute: "2-digit",
         second: "2-digit",
     })
-
+    
     return formattedDatetimeStr.replace(",", "")
 }
 
