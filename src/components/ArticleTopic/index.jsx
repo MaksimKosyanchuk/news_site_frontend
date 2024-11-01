@@ -13,6 +13,7 @@ function isMobile() {
 }
 
 async function share(id, showToast) {
+    console.log(process.env)
     if(isMobile()){
         navigator.share({
             title: 'Заголовок',
