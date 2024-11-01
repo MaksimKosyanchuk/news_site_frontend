@@ -39,6 +39,7 @@ function App() {
     '--text-color': isDarkTheme ? 'white' : 'black',
     '--link-text-color': isDarkTheme? '#c583ff' : '#80f',
     '--small-text-color': isDarkTheme ? '#bbbbbb' : 'black',
+    '--background-text-color': isDarkTheme ? 'rgb(55, 55, 55)' : 'rgb(197, 197, 197)',
     '--input-background-color': isDarkTheme ? 'rgb(51, 51, 51)' : 'white',
     '--active-drop-file-border': isDarkTheme ? '#ababab' : '#555555',
     '--button-background-color': isDarkTheme ? 'rgba(37, 37, 37, .8)' : 'rgba(215, 215, 215, .8)',
