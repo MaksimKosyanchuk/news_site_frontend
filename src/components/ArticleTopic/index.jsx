@@ -7,11 +7,26 @@ import { ReactComponent as BookMarkBorder} from "../../assets/svg/bookmark-outli
 import { ReactComponent as BookMarkFilled} from "../../assets/svg/bookmark-filled-icon.svg";
 import { ReactComponent as ShareIcon} from "../../assets/svg/share-icon.svg";
 
-async function copy_article_url(id) {
-    try {
-        await navigator.clipboard.writeText(`/posts/${id}`)
-    } catch (err) {
-        console.error(`Failed to copy: /posts/${id}`, err)
+
+function isMobile() {
+    return navigator.maxTouchPoints > 0 && 'orientation' in window;
+}
+
+async function share(id) {
+    if(!isMobile){
+        console.log("test")
+        navigator.share({
+            title: 'Заголовок',
+            text: 'Текст',
+            url: process.env.API_URL + `/posts/${id}`
+        })
+    }
+    else{
+        try {
+            await navigator.clipboard.writeText(process.env.API_URL + `/posts/${id}`)
+        } catch (err) {
+            console.error(`Failed to copy: /posts/${id}`, err)
+        }
     }
 }
 
@@ -71,7 +86,7 @@ const ArticleTopic = ({ article }) => {
             <p className="article_topic_date">{format_date(article.created_date)}</p>
             <button type="button" className="article_topic_button" onClick={() => 
             {
-                copy_article_url(article._id)
+                share(article._id)
                 showToast({message: "Copied!"})
             }}>
                 <ShareIcon />
