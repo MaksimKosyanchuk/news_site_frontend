@@ -1,9 +1,9 @@
-import Banner from "../../components/Banner";
-import Posts from "../../components/Posts/index.jsx";
-import { Link, useNavigate } from "react-router-dom";
-import { getPosts } from "../../api/posts.api.js";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../App.js";
+import { Link, useNavigate } from "react-router-dom";
+import { getPosts } from "../../api/posts.api.js";
+import Banner from "../../components/Banner";
+import Posts from "../../components/Posts/index.jsx";
 import BannerImage from "../../assets/images/banner-img.png"
 
 const HomePage = () => {   

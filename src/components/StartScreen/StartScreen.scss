@@ -1,6 +1,6 @@
 @import "../../styles/helpers.scss";
 
-.start-screen {
+.start_screen {
     flex: 1;
     background-color: var(--main-background);
     min-height: 100dvh;
@@ -10,7 +10,7 @@
     }
 }
 
-.main-div {
+.main_div {
     padding-top: 180px;
     padding-bottom: 60px;
     z-index: 1;

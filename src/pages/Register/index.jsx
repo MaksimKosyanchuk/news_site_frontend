@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import InputForm from '../../components/InputForm/InputForm';
 import { API_URL } from '../../config';
 import { Link } from 'react-router-dom';
+import InputForm from '../../components/InputForm/InputForm';
 import "./Register.scss"
 
 const Register = () => {

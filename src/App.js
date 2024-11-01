@@ -9,6 +9,7 @@ import Footer from "./components/Footer/index.jsx";
 import Login from './pages/Login/index.jsx';
 import Register from './pages/Register/index.jsx';
 import CreatePost from './pages/CreatePost/index.jsx';
+import Toast from "./components/Toast/index.jsx";
 
 import "./styles/common.scss";
 
@@ -26,6 +27,9 @@ function App() {
   const [ profile, setProfile ] = useState(null)
   const [ profileLoading, setProfileLoading ] = useState(false)
   let [ isDarkTheme, setIsDarkTheme ] = useState(lsTheme ? JSON.parse(lsTheme) : true);
+  let [ toast, showToast ] = useState(false);
+
+
 
   const CssVariables = {
     '--loader-color': isDarkTheme ? 'white' : 'black',
@@ -54,7 +58,7 @@ function App() {
   }, [isDarkTheme])
 
   return (
-    <AppContext.Provider value={{profile, setProfile, isDarkTheme, setIsDarkTheme, profileLoading, setProfileLoading }}>
+    <AppContext.Provider value={{profile, setProfile, isDarkTheme, setIsDarkTheme, profileLoading, setProfileLoading, toast, showToast }}>
       <Router>
         <div className={`App ${isDarkTheme ? 'App_dark' : ''}`} style={CssVariables}>
 
@@ -81,6 +85,7 @@ function App() {
             
           </StartScreen>
           <Footer></Footer>
+          <Toast toast={toast} showToast={showToast}/>
         </div>
       </Router>
     </AppContext.Provider>

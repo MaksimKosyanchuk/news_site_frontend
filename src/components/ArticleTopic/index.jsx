@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../App";
 import Author from "../Author";
+import { API_URL } from "../../config";
+import "./ArticleTopic.scss";
 import { ReactComponent as BookMarkBorder} from "../../assets/svg/bookmark-outline-icon.svg";
 import { ReactComponent as BookMarkFilled} from "../../assets/svg/bookmark-filled-icon.svg";
 import { ReactComponent as ShareIcon} from "../../assets/svg/share-icon.svg";
-import { API_URL } from "../../config";
-import "./ArticleTopic.scss";
-import { AppContext } from "../../App";
 
 async function copy_article_url(id) {
     try {
@@ -32,7 +32,7 @@ function format_date(date) {
 }
 
 const ArticleTopic = ({ article }) => {
-    const { profile, setProfile } = useContext(AppContext)
+    const { profile, setProfile, showToast } = useContext(AppContext)
     const [isSaved, setIsSaved] = useState(profile && profile.saved_posts && article && article._id && profile.saved_posts.includes(article._id))
     const [ isSavingProcess, setSavingProcess ] = useState(false)
 
@@ -65,13 +65,17 @@ const ArticleTopic = ({ article }) => {
     };
 
     return (
-        <div className="article-topic">
+        <div className="article_topic">
             <Author {...article.author} />
-            <p className="article-topic-date">{format_date(article.created_date)}</p>
-            <button type="button" className="article-topic-button" onClick={() => copy_article_url(article._id)}>
+            <p className="article_topic_date">{format_date(article.created_date)}</p>
+            <button type="button" className="article_topic_button" onClick={() => 
+            {
+                copy_article_url(article._id)
+                showToast({message: "Copied!"})
+            }}>
                 <ShareIcon />
             </button>
-            <button type="button" className="article-topic-button" onClick={save_post} disabled={isSavingProcess}>
+            <button type="button" className="article_topic_button" onClick={save_post} disabled={isSavingProcess}>
                 {
                     // isSavingProcess ? <Loading/>:
                     (isSaved ? <BookMarkFilled /> : <BookMarkBorder />)

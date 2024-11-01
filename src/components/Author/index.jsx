@@ -1,5 +1,5 @@
-import "./Author.scss";
 import { Link } from "react-router-dom";
+import "./Author.scss";
 import DefaultProfileAvatar from "../../assets/images/default-profile-avatar.png"
 
 const Author = ( author_data ) => {

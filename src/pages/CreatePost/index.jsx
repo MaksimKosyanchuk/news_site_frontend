@@ -1,11 +1,10 @@
 import { useNavigate } from 'react-router-dom';
+import DropFile from '../../components/DropFile/index';
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../App';
 import { API_URL } from '../../config';
 import InputFiled from "../../components/InputField";
-import "../../components/DropFile/index"
 import "./CreatePost.scss"
-import DropFile from '../../components/DropFile/index';
 
 const CreatePost = () => {
     const navigate = useNavigate()

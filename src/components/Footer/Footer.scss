@@ -7,7 +7,7 @@ footer {
     background-color: var(--footer-background);
     position: relative;
 
-    .footer-content {
+    .footer_content {
         display: flex;
         justify-content: space-between; 
         align-items: center;
@@ -23,18 +23,18 @@ footer {
           font-size: 22px;
         }
         
-        .footer-site-title {
+        .footer_site_title {
           @include screen() {
             display: none;
           }
         }
         
-        .footer-socials {
+        .footer_socials {
           display: flex;
           align-items: center;
           gap: 16px;
           
-          &-item {
+          &_item {
             width: 24px;
             height: 24px;
             

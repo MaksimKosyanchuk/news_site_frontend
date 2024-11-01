@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
-import "./Posts.scss";
-import Loading from "../../components/Loading";
-import { ArticleTopic } from "../../components/ArticleTopic";
-import NoPosts from "../NoPosts";
 import { AppContext } from "../../App";
+import { Link } from "react-router-dom";
+import { ArticleTopic } from "../../components/ArticleTopic";
+import Loading from "../../components/Loading";
+import NoPosts from "../NoPosts";
+import "./Posts.scss";
 
 const Posts =  ( { posts, isLoading } ) => {
     const { profile } = useContext(AppContext)
@@ -24,16 +24,17 @@ const Posts =  ( { posts, isLoading } ) => {
                     return (
                         <div key={post._id}  className="posts_item app-transition">
                                 <ArticleTopic article={post} profile={profile}/>
-                                <Link to={`/posts/${post._id}`}>
+                                <div>
                                     <h2 className="posts_item_title">{post.title}</h2>
-                                </Link>
+                                </div>
                                 {post.featured_image ? 
-                                    <Link to={`/posts/${post._id}`} className="posts_item_img">
-                                    <img src={post.featured_image} alt="" />
-                                </Link>
+                                    <div className="posts_item_img">
+                                        <img src={post.featured_image} alt="" />
+                                    </div>
                                 : 
-                                <></>
+                                    <></>
                             }
+                            <Link to={`/posts/${post._id}`} className="posts_item_link"></Link>
                             </div>
                         )
                     }
