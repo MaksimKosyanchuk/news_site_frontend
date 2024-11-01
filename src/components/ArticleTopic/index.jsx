@@ -17,12 +17,12 @@ async function share(id, showToast) {
         navigator.share({
             title: 'Заголовок',
             text: 'Текст',
-            url: `/posts/${id}`
+            url: `https:://${process.env.REACT_APP_VERCEL_URL}/posts/${id}`
         })
     }
     else{
         try {
-            await navigator.clipboard.writeText(`/posts/${id}`)
+            await navigator.clipboard.writeText(`https:://${process.env.REACT_APP_VERCEL_URL}/posts/${id}`)
             showToast({message: "Copied!"})
         } catch (err) {
             console.error(`Failed to copy: /posts/${id}`, err)
