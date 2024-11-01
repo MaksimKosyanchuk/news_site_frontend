@@ -9,11 +9,11 @@ import { ReactComponent as ShareIcon} from "../../assets/svg/share-icon.svg";
 
 
 function isMobile() {
-    return navigator.maxTouchPoints > 0 && 'orientation' in window;
+    return navigator.maxTouchPoints > 0;
 }
 
 async function share(id) {
-    if(!isMobile){
+    if(isMobile){
         console.log("test")
         navigator.share({
             title: 'Заголовок',
