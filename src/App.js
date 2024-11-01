@@ -32,24 +32,31 @@ function App() {
 
 
   const CssVariables = {
-    '--loader-color': isDarkTheme ? 'white' : 'black',
     '--main-background': isDarkTheme ? 'rgb(37, 37, 37)' : 'rgb(215 215 215)',
-    '--header-background': isDarkTheme ? 'rgba(0,0,0, .8)' : 'rgba(255,255,255, .8)',
-    '--text-color': isDarkTheme ? 'white' : 'black',
-    '--link-text-color': isDarkTheme? '#c583ff' : '#80f',
-    '--footer-background': isDarkTheme ? '#333333' : 'white',
-    '--post-card-background': isDarkTheme ? '#3b3b3b' : 'white',
-    '--post-card-description-color': isDarkTheme ? '#bbbbbb' : "#6b6b6b",
-    '--article-date-color': isDarkTheme ? 'white' : "black",
-    '--banner-haze': isDarkTheme ? 0 : 1,
+    '--loader-color': isDarkTheme ? 'white' : 'black',
     '--svg-logo-color': isDarkTheme ? 'white' : '#2f2f2f',
     '--line-color': isDarkTheme ? '#4f4f4f' : "#afafaf",
+    '--text-color': isDarkTheme ? 'white' : 'black',
+    '--link-text-color': isDarkTheme? '#c583ff' : '#80f',
     '--small-text-color': isDarkTheme ? '#bbbbbb' : 'black',
     '--input-background-color': isDarkTheme ? 'rgb(51, 51, 51)' : 'white',
-    '--background-text-color': isDarkTheme ? 'rgb(55, 55, 55)' : 'rgb(197, 197, 197)',
-    '--hover-button-background-color': isDarkTheme ? 'rgb(215, 215, 215)' : 'rgb(55,55,55)',
+    '--active-drop-file-border': isDarkTheme ? '#ababab' : '#555555',
     '--button-background-color': isDarkTheme ? 'rgba(37, 37, 37, .8)' : 'rgba(215, 215, 215, .8)',
-    '--active-drop-file-border': isDarkTheme ? '#ababab' : '#555555'
+    '--hover-button-background-color': isDarkTheme ? 'rgb(215, 215, 215)' : 'rgb(55,55,55)',
+    '--header-background': isDarkTheme ? 'rgba(0,0,0, .8)' : 'rgba(255,255,255, .8)',
+    '--header-button-color': isDarkTheme ? '#c6c6c6' : '#3f3f3f',
+    '--header-button-hover-color': isDarkTheme ? 'white' : 'black',
+    '--banner-haze': isDarkTheme ? 0 : 1,
+    '--post-title-color': isDarkTheme ? '#e7e7e7' : "black",
+    '--post-card-background': isDarkTheme ? '#3b3b3b' : 'white',
+    '--post-card-description-color': isDarkTheme ? '#bbbbbb' : "#6b6b6b",
+    '--more-message-on-post': isDarkTheme ? '#858585' : 'black',
+    '--article-date-color': isDarkTheme ? '#858585' : "#797979",
+    '--article-topic-button-color': isDarkTheme ? '#858585' : '#797979',
+    '--article-topic-button-hover-color': isDarkTheme ? '#dddddd' : '#434343',
+    '--footer-background': isDarkTheme ? '#333333' : 'white',
+    '--footer-content-color': isDarkTheme ? "#858585" : "#797979",
+    '--footer-content-hover-color': isDarkTheme ? '#dddddd' : '#434343',
   }
 
 

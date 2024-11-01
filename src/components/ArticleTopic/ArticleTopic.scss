@@ -20,7 +20,7 @@
         justify-content: center;
         position: relative;
         align-items: center;
-        color: var(--svg-logo-color);
+        color: var(--article-topic-button-color);
         cursor: pointer;
 
         @include screen(){
@@ -44,6 +44,10 @@
         }
     }
     
+    &_button:hover{
+        color: var(--article-topic-button-hover-color)
+    }
+
     &_date{
         color: var(--article-date-color);
         display: block;

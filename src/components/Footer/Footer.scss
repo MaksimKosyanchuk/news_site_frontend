@@ -21,6 +21,11 @@ footer {
 
         p{
           font-size: 22px;
+          color: var(--footer-content-color);
+
+          @include screen() {
+            font-size: 16px;
+          }
         }
         
         .footer_site_title {
@@ -35,24 +40,21 @@ footer {
           gap: 16px;
           
           &_item {
-            width: 24px;
-            height: 24px;
-            
-            @include screen() {
-              width: 18px;
-              height: 18px;
-            }
+            display: flex;
             
             svg{
-              color: var(--svg-logo-color);
-
-              width: 20px;
-              height: 20px;  
+              color: var(--footer-content-color);
+              width: 24px;
+              height: 24px;  
               
               @include screen() {
                 width: 18px;
                 height: 18px;
               }
+            }
+
+            svg:hover{
+              color: var(--footer-content-hover-color)
             }
           }
         }
