@@ -6,8 +6,7 @@
     min-height: 100px;
     position: relative;
 
-    &.posts_columns {
-        
+    &.posts_columns {  
         @media screen and (min-width: 768px) {
             flex-direction: row;
             flex-wrap: wrap;
@@ -48,16 +47,21 @@
                 }
             }
 
-            &_content_text::after{
+            &_content_text_more{
                 content: "еще...";
                 position: absolute;
-                width: 120px;
-                background: linear-gradient(to left, var(--post-card-background) 50%, rgba(255, 255, 255, 0) 100%);
+                font-size: 18px;
+                bottom: 16px;
+                background: var(--post-card-background);
+                box-shadow: -10px 0 8px 12px var(--post-card-background);
                 right: 16px;
                 text-align: right;
 
                 @include screen() {
+                    box-shadow: -10px 0 8px 12px var(--post-card-background);
                     right: 12px;
+                    font-size: 12px;
+                    bottom: 12px;
                 }
             }
 
