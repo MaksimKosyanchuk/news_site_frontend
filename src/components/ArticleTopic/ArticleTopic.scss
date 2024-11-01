@@ -49,7 +49,7 @@
         display: block;
 
         @include screen(){
-            font-size: 12px;
+            display: none;
         }
     }
 }

@@ -27,12 +27,25 @@
 
     &_info {
         margin-left: 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
 
-        .author_name  {
+        &_name  {
             font-size: 24px;
 
             @include screen(){
                 font-size: 14px;
+            }
+        }
+
+        &_verified{
+            width: 22px;
+            height: 22px;
+
+            @include screen() {
+                width: 14px;
+                height: 14px;
             }
         }
     }

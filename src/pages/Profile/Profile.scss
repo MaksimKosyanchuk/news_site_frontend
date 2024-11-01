@@ -79,11 +79,27 @@
                 }
             }
 
-            &_name  {
-                font-size: 34px;
-                
-                @include screen(){
-                    font-size: 20px;
+            &_nick_name{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                &_verified{
+                    width: 28px;
+                    height: 28px;
+
+                    @include screen() {
+                        width: 18px;
+                        height: 18px;
+                    }
+                }
+
+                &_name  {
+                    font-size: 34px;
+                    
+                    @include screen(){
+                        font-size: 20px;
+                    }
                 }
             }
         }
