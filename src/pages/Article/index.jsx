@@ -52,11 +52,11 @@ const Article = () => {
                         <ArticleTopic article={article} profile={profile}/>
                         {article.featured_image ? 
                             <div className="article_featured_image">
-                            <img src={article.featured_image}/> 
+                                <img src={article.featured_image}/> 
                             </div>
                         : 
-                        <></>
-                    }
+                            <></>
+                        }
                         <div className="article_content" dangerouslySetInnerHTML={{__html: article.content_text}}>
                         </div>
                     </div>:
