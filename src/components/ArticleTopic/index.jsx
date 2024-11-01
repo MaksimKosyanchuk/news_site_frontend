@@ -12,7 +12,7 @@ function isMobile() {
     return navigator.maxTouchPoints > 0;
 }
 
-async function share(id) {
+async function share(id, showToast) {
     if(isMobile()){
         navigator.share({
             title: 'Заголовок',
@@ -86,7 +86,7 @@ const ArticleTopic = ({ article }) => {
             <p className="article_topic_date">{format_date(article.created_date)}</p>
             <button type="button" className="article_topic_button" onClick={() => 
             {
-                share(article._id)
+                share(article._id, showToast)
             }}>
                 <ShareIcon />
             </button>
