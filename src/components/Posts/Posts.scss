@@ -15,20 +15,49 @@
         }
         
         .posts_item {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
             position: relative;
+            overflow: hidden;
 
-            flex-basis: 100%;
             padding: 16px;
-            display: block;
             justify-content: space-between;
             background-color: var(--post-card-background);
-            padding: 16px;
             border-radius: 8px;
             margin-top: 24px;
 
             @include screen() {
                 margin-top: 12px;
                 padding: 12px;
+                gap: 12px;
+            }
+
+            &_content_text{
+                font-size: 18px;
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                @include screen(){
+                    font-size: 12px;
+                }
+            }
+
+            &_content_text::after{
+                content: "еще...";
+                position: absolute;
+                width: 120px;
+                background: linear-gradient(to left, var(--post-card-background) 50%, rgba(255, 255, 255, 0) 100%);
+                right: 16px;
+                text-align: right;
+
+                @include screen() {
+                    right: 12px;
+                }
             }
 
             &_link{
@@ -40,7 +69,6 @@
             }
 
             &_title {
-                margin-top: 12px;
                 font-size: 24px;
                 line-height: 1.4;
                 display: -webkit-box; 
@@ -50,7 +78,6 @@
 
                 @include screen() {
                     font-size: 16px;  
-                    margin-top: 12px;              
                 }
             }
 
@@ -86,7 +113,6 @@
                 border-radius: 6px;
                 overflow: hidden;
                 display: block;
-                margin-top: 12px;
             
                 img {
                     width: 100%;

@@ -23,17 +23,18 @@ const Posts =  ( { posts, isLoading } ) => {
                 posts.map(post => {
                     return (
                         <div key={post._id}  className="posts_item app-transition">
-                                <ArticleTopic article={post} profile={profile}/>
-                                <div>
-                                    <h2 className="posts_item_title">{post.title}</h2>
+                            <ArticleTopic article={post} profile={profile}/>
+                            <div>
+                                <h2 className="posts_item_title">{post.title}</h2>
+                            </div>
+                            {post.featured_image ? 
+                                <div className="posts_item_img">
+                                    <img src={post.featured_image} alt="" />
                                 </div>
-                                {post.featured_image ? 
-                                    <div className="posts_item_img">
-                                        <img src={post.featured_image} alt="" />
-                                    </div>
-                                : 
-                                    <></>
+                            : 
+                                <></>
                             }
+                            <p className="posts_item_content_text">группа аутистов отменяет пидиди группа аутистов отменяет пидиди группа аутистов отменяет пидиди</p>
                             <Link to={`/posts/${post._id}`} className="posts_item_link"></Link>
                             </div>
                         )
