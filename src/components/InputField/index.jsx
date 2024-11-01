@@ -1,7 +1,7 @@
 import React from 'react';
 import "./InputField.scss";
 
-const Input = ({ className, onChange, type, placeholder, required=false, is_multiline = false, length = 40 }) => {
+const Input = ({ className, onChange, type, placeholder, required=false, is_multiline = false, length = 120 }) => {
   const InputComponent = is_multiline ? 'textarea' : 'input';
   return (
     <label className='input_field_label'>
