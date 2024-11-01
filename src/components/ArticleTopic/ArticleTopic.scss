@@ -1,6 +1,8 @@
 @import '../../styles/common.scss';
 
-.article-topic{        
+.article_topic{        
+    position: relative;
+    z-index: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -11,7 +13,7 @@
         margin-right: auto;
     }
 
-    &-button {
+    &_button {
         width: 24px;
         height: 24px;
         display: flex;
@@ -42,7 +44,7 @@
         }
     }
     
-    &-date{
+    &_date{
         color: var(--article-date-color);
         display: block;
 

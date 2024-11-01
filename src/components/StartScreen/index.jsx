@@ -1,8 +1,8 @@
-import "./StartScreen.scss"
 import { useContext, useEffect } from "react";
 import { AppContext } from "../../App";
 import { API_URL } from "../../config";
 import { useLocation } from "react-router-dom";
+import "./StartScreen.scss"
 
 const StartScreen = ({ children }) => {
     const location = useLocation()
@@ -47,9 +47,9 @@ const StartScreen = ({ children }) => {
 
 
     return (
-        <div className="start-screen app-transition">
+        <div className="start_screen app-transition">
             <div className="container">
-                <div className="main-div">
+                <div className="main_div">
                     {children}
                 </div>
             </div>    

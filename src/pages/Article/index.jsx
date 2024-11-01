@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
+import { AppContext } from "../../App";
+import { API_URL } from "../../config";
 import { useParams, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
-import "./Article.scss";
 import { ArticleTopic } from "../../components/ArticleTopic";
-import { API_URL } from "../../config";
-import { AppContext } from "../../App";
+import "./Article.scss";
 
 
 const Article = () => {
@@ -23,7 +23,7 @@ const Article = () => {
         try {
             setIsLoading(true)
             
-            let findNeededArticle = await fetch(`${API_URL}/api/posts/${id}`)
+            await fetch(`${API_URL}/api/posts/${id}`)
             .then(res => res.json())
             .then(res => {
                 if (res.status === "success") {
@@ -48,16 +48,16 @@ const Article = () => {
             {
                 article ?
                 <div className="article">
-                        <h1 className="article-title">{article.title}</h1>
+                        <h1 className="article_title">{article.title}</h1>
                         <ArticleTopic article={article} profile={profile}/>
                         {article.featured_image ? 
-                            <div className="article-featured-image">
+                            <div className="article_featured_image">
                             <img src={article.featured_image}/> 
                             </div>
                         : 
                         <></>
                     }
-                        <div className="article-content" dangerouslySetInnerHTML={{__html: article.content_text}}>
+                        <div className="article_content" dangerouslySetInnerHTML={{__html: article.content_text}}>
                         </div>
                     </div>:
                 <></>     
