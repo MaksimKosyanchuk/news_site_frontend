@@ -6,6 +6,7 @@ import "./ArticleTopic.scss";
 import { ReactComponent as BookMarkBorder} from "../../assets/svg/bookmark-outline-icon.svg";
 import { ReactComponent as BookMarkFilled} from "../../assets/svg/bookmark-filled-icon.svg";
 import { ReactComponent as ShareIcon} from "../../assets/svg/share-icon.svg";
+import { ReactComponent as Verified } from "../../assets/svg/verified-icon.svg";
 
 async function copy_article_url(id) {
     try {
