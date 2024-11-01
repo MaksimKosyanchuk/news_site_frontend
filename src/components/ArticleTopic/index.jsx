@@ -13,8 +13,7 @@ function isMobile() {
 }
 
 async function share(id) {
-    if(isMobile){
-        console.log("test")
+    if(isMobile()){
         navigator.share({
             title: 'Заголовок',
             text: 'Текст',
