@@ -52,7 +52,7 @@
         width: 32px;
         height: 32px;
         transition: .2s ease-out;
-        color: var(--svg-logo-color);
+        color: var(--header-button-color);
         
         @include screen() {
           width: 24px;
@@ -63,6 +63,10 @@
         *[fill] {
           fill: currentColor;
         }
+      }
+
+      svg:hover{
+        color: var(--header-button-hover-color);
       }
 
       svg:active {

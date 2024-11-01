@@ -6,7 +6,6 @@ import "./ArticleTopic.scss";
 import { ReactComponent as BookMarkBorder} from "../../assets/svg/bookmark-outline-icon.svg";
 import { ReactComponent as BookMarkFilled} from "../../assets/svg/bookmark-filled-icon.svg";
 import { ReactComponent as ShareIcon} from "../../assets/svg/share-icon.svg";
-import { ReactComponent as Verified } from "../../assets/svg/verified-icon.svg";
 
 async function copy_article_url(id) {
     try {
@@ -55,6 +54,7 @@ const ArticleTopic = ({ article }) => {
             if (result.status === "success") {
                 let saved_posts = isSaved ? profile.saved_posts.filter(element => element !== article._id ) : [...profile.saved_posts, article._id]
                 setProfile({...profile, saved_posts: saved_posts })
+                showToast(isSaved ? { message: "Unsaved!" } : { message: "Saved!" });
                 setIsSaved(!isSaved)
             }
         } catch (error) {

@@ -51,6 +51,7 @@
                 content: "еще...";
                 position: absolute;
                 font-size: 18px;
+                color: var(--more-message-on-post);
                 bottom: 16px;
                 background: var(--post-card-background);
                 box-shadow: -10px 0 8px 12px var(--post-card-background);
@@ -74,6 +75,7 @@
             }
 
             &_title {
+                color: var(--post-title-color);
                 font-size: 24px;
                 line-height: 1.4;
                 display: -webkit-box; 
