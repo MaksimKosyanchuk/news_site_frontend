@@ -23,6 +23,7 @@ async function share(id) {
     else{
         try {
             await navigator.clipboard.writeText(process.env.API_URL + `/posts/${id}`)
+            showToast({message: "Copied!"})
         } catch (err) {
             console.error(`Failed to copy: /posts/${id}`, err)
         }
@@ -86,7 +87,6 @@ const ArticleTopic = ({ article }) => {
             <button type="button" className="article_topic_button" onClick={() => 
             {
                 share(article._id)
-                showToast({message: "Copied!"})
             }}>
                 <ShareIcon />
             </button>
