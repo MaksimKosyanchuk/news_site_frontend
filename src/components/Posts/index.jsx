@@ -8,6 +8,7 @@ import "./Posts.scss";
 
 const Posts =  ( { posts, isLoading } ) => {
     const { profile } = useContext(AppContext)
+    console.log(posts)
 
     if(!posts) {
         return <NoPosts/>
@@ -34,7 +35,7 @@ const Posts =  ( { posts, isLoading } ) => {
                             : 
                                 <></>
                             }
-                            <p className="posts_item_content_text">группа аутистов отменяет пидиди группа аутистов отменяет пидиди группа аутистов отменяет пидиди</p>
+                            <p className="posts_item_content_text">{post.content_text}</p>
                             <Link to={`/posts/${post._id}`} className="posts_item_link"></Link>
                             </div>
                         )
