@@ -13,17 +13,16 @@ function isMobile() {
 }
 
 async function share(id, showToast) {
-    console.log(process.env)
     if(isMobile()){
         navigator.share({
             title: 'Заголовок',
             text: 'Текст',
-            url: `https://${process.env.VERCEL_URL}/posts/${id}`
+            url: `https://${process.env.REACT_APP_VERCEL_PROJECT_PRODUCTION_URL}/posts/${id}`
         })
     }
     else{
         try {
-            await navigator.clipboard.writeText(`https://${process.env.VERCEL_URL}/posts/${id}`)
+            await navigator.clipboard.writeText(`https://${process.env.REACT_APP_VERCEL_PROJECT_PRODUCTION_URL}/posts/${id}`)
             showToast({message: "Copied!"})
         } catch (err) {
             console.error(`Failed to copy: /posts/${id}`, err)
