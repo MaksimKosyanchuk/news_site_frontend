@@ -9,8 +9,7 @@ import { ReactComponent as ShareIcon} from "../../assets/svg/share-icon.svg";
 
 
 function isMobile() {
-    return (navigator.maxTouchPoints > 0 || 'orientation' in window) &&
-         /Android|iPhone|iPad|iPod/i.test(userAgent);
+    return navigator.maxTouchPoints > 0 && 'orientation' in window;
 }
 
 async function share(id) {
