@@ -8,12 +8,13 @@ import "./CreatePost.scss"
 
 const CreatePost = () => {
     const navigate = useNavigate()
-    const { profile, profileLoading } = useContext(AppContext)
+    const { profile, profileLoading, showToast } = useContext(AppContext)
     const [ initialized, setInitialized ] = useState(false);
     const [ title, setTitle ] = useState("")
     const [ mainText, setMainText ] = useState("")
     const [ createResult, setCreateResult ] = useState({})
     const [ featuredImage, setFeaturedImage ] = useState(null)
+    
 
     useEffect(() => {
         if(initialized){
@@ -43,11 +44,21 @@ const CreatePost = () => {
         try{
             const creating = await fetch(`${API_URL}/api/posts/create-post`, { method: "POST", body: formData})
             const result = await creating.json()
+            console.log(result)
             if(result.status === "success") {
                 navigate("/posts")
+                showToast({ message: "Опубликовано!", type: "success" })
                 return result
             }
             else{
+                switch(result.message){
+                    case "Incorrect 'title'":
+                        showToast({ message: "Неверный заголовок!", type: "error" })
+                        break;
+                    case "'content_text' length must be mroe than 0":
+                        showToast({ message: "Неверный текст поста!", type: "error" })
+                        break;
+                }
                 return result
             }
         } 
@@ -67,14 +78,14 @@ const CreatePost = () => {
     return (
         <form className='create_post' onSubmit={handleSubmit}>
             <InputFiled 
-                className={"create_post_title"  + (createResult.status === "error" ? " incorrect_field" : "")}
+                className={"create_post_title"  + (createResult.status === "error" && createResult.message === "Incorrect 'title'" ? " incorrect_field" : "")}
                 placeholder={"Заголовок"}
                 is_multiline={true}
                 onChange={(e) => setTitle(e.target.value)}
             />
             <DropFile handleUpload={handleImage}/>
             <InputFiled 
-                className={"create_post_main_text" + (createResult.status === "error" ? " incorrect_field" : "")}
+                className={"create_post_main_text" + (createResult.status === "error" && createResult.message === "'content_text' length must be mroe than 0" ? " incorrect_field" : "")}
                 placeholder={"Текст"}
                 onChange={(e) => setMainText(e.target.value)}
                 is_multiline={true}

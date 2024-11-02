@@ -1,38 +1,102 @@
 @import '../../styles/helpers.scss';
 
-.toast{
+.toast {
     position: fixed;
     z-index: 1488;
     bottom: 20px;
+    padding: 12px;
     min-width: 150px;
-    height: 40px;
+    min-height: 40px;
     left: 50%;
     transform: translate(-50%, 0);
     backdrop-filter: blur(20px);
+    text-align: center;
     border: 1px solid var(--hover-button-background-color);
     background: var(--button-background-color);
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 
-    @include screen() {
-        bottom: auto;
-        top: 65px;
+    &.toast_active {
+        opacity: 1;
+        animation: slide-in 0.3s ease forwards;
     }
-    
-    &:not(.toast_active){
+
+    &.toast_exit {
         opacity: 0;
-        pointer-events: none;
-        transform: translate(-50%, 100px);
-        
-        @include screen() {
-            transform: translate(-50%, -100px);
-        }
+        animation: slide-out 0.3s ease forwards;
     }
 
-    p{
+    p {
         font-size: 14px;
     }
 }
 
+.toast_type_warning{
+    border: 1px solid var(--warning-color);
+    background-color: var(--warning-background-color);
+}
+
+.toast_type_success{
+    border: 1px solid var(--success-color);
+    background-color: var(--success-background-color);
+}
+
+.toast_type_error{
+    border: 1px solid var(--error-color);
+    background-color: var(--error-background-color);
+}
+
+@keyframes slide-in {
+    from {
+        transform: translate(-50%, 100px);
+    }
+    to {
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes slide-out {
+    from {
+        transform: translate(-50%, 0);
+    }
+    to {
+        transform: translate(-50%, 100px);
+    }
+}
+
+@include screen() {
+    .toast {
+        bottom: auto;
+        top: 65px;
+
+        &.toast_active {
+            animation: slide-in-mobile 0.3s ease forwards;
+        }
+
+        &.toast_exit {
+            animation: slide-out-mobile 0.3s ease forwards;
+        }
+    }
+
+    @keyframes slide-in-mobile {
+        from {
+            transform: translate(-50%, -100px);
+        }
+        to {
+            transform: translate(-50%, 0);
+        }
+    }
+
+    @keyframes slide-out-mobile {
+        from {
+            transform: translate(-50%, 0);
+        }
+        to {
+            transform: translate(-50%, -100px);
+        }
+    }
+}

@@ -23,7 +23,7 @@ async function share(id, showToast) {
     else{
         try {
             await navigator.clipboard.writeText(`https://${process.env.REACT_APP_VERCEL_PROJECT_PRODUCTION_URL}/posts/${id}`)
-            showToast({message: "Copied!"})
+            showToast({message: "Скопировано!", type: "success" })
         } catch (err) {
             console.error(`Failed to copy: /posts/${id}`, err)
         }
@@ -68,9 +68,12 @@ const ArticleTopic = ({ article }) => {
             result = await result.json();
             if (result.status === "success") {
                 let saved_posts = isSaved ? profile.saved_posts.filter(element => element !== article._id ) : [...profile.saved_posts, article._id]
-                setProfile({...profile, saved_posts: saved_posts })
-                showToast(isSaved ? { message: "Unsaved!" } : { message: "Saved!" });
+                setProfile({ ...profile, saved_posts: saved_posts })
+                showToast({ message: isSaved ? "Убрано из сохранённых!" : "Сохранено!", type: "success" });
                 setIsSaved(!isSaved)
+            }
+            else{
+                showToast({ message: "Чтобы сохранить пост, войдите в аккаунт!", type: "warning" })
             }
         } catch (error) {
             console.log(error)

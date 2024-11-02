@@ -34,6 +34,12 @@ function App() {
   const CssVariables = {
     '--main-background': isDarkTheme ? 'rgb(37, 37, 37)' : 'rgb(215 215 215)',
     '--loader-color': isDarkTheme ? 'white' : 'black',
+    '--warning-color': isDarkTheme ? 'rgb(255 191 0)' : 'rgb(255, 179, 0)',
+    '--warning-background-color': isDarkTheme ? 'rgb(94, 85, 42, .8)' : 'rgba(255, 245, 163, .8)',
+    '--success-color': isDarkTheme ? 'rgb(132 255 148)' : 'rgb(0 139 12)',
+    '--success-background-color': isDarkTheme ? 'rgb(72, 90, 73, .8)' : 'rgba(199, 252, 188, .8)',
+    '--error-color': isDarkTheme ? 'rgb(246, 0, 0)' : 'rgb(255 14 14)',
+    '--error-background-color': isDarkTheme ? 'rgba(92, 62, 62, .8)' : 'rgba(250, 223, 223, .8)',
     '--svg-logo-color': isDarkTheme ? 'white' : '#2f2f2f',
     '--line-color': isDarkTheme ? '#4f4f4f' : "#afafaf",
     '--text-color': isDarkTheme ? 'white' : 'black',

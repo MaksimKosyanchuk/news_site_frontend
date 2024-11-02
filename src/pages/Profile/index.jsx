@@ -15,7 +15,7 @@ const Profile = ( ) => {
     const navigate = useNavigate()
     let tabs = ["Посты", "Сохранённые"]
     let [ activeTab, setActiveTab ] = useState(tabs[0])
-    const { profile } = useContext(AppContext)
+    const { profile, showToast } = useContext(AppContext)
     const [ isLoading, setIsLoading ] = useState(false)
     const [posts, setPosts] = useState([ ])
     const [user, setUser] = useState(null)
@@ -43,6 +43,7 @@ const Profile = ( ) => {
 
     const quitButtonClick = () => {
         localStorage.removeItem('token')
+        showToast({ message: "Вы вышли из аккаунта!", type: "success" })
         navigate('/posts')
     }
 

@@ -8,7 +8,6 @@ import "./Posts.scss";
 
 const Posts =  ( { posts, isLoading } ) => {
     const { profile } = useContext(AppContext)
-    console.log(posts)
 
     if(!posts) {
         return <NoPosts/>
