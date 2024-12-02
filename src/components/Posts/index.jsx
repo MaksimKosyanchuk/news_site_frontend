@@ -34,8 +34,8 @@ const Posts =  ( { posts, isLoading } ) => {
                             : 
                                 <></>
                             }
-                            <p className="posts_item_content_text">{post.content_text}</p>
-                            <p className="posts_item_content_text_more">еще...</p>
+                            {/* <p className="posts_item_content_text">{post.content_text}</p>
+                            <p className="posts_item_content_text_more">еще...</p> */}
                             <Link to={`/posts/${post._id}`} className="posts_item_link"></Link>
                             </div>
                         )

@@ -31,19 +31,15 @@ async function share(id, showToast) {
 }
 
 function format_date(date) {
-    const isoDatetimeStr = date
-    const isoDatetime = new Date(isoDatetimeStr)
-    
-    const formattedDatetimeStr = isoDatetime.toLocaleString("ru-RU", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-    })
-    
-    return formattedDatetimeStr.replace(",", "")
+    date = new Date(date);
+
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${hours}:${minutes}, ${day}.${month}.${year}`;
 }
 
 const ArticleTopic = ({ article }) => {
