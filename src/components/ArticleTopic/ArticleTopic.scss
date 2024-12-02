@@ -50,6 +50,7 @@
 
     &_date{
         color: var(--article-date-color);
+        font-weight: 600;
         display: block;
 
         @include screen(){
