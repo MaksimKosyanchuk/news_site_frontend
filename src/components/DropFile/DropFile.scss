@@ -23,5 +23,6 @@
 
 .drop_file_dragged, .drop_file:hover{
     border: 3px dashed var(--active-drop-file-border);
+    border-width: medium;
     background: rgba(128, 128, 128, 0.2);
 }
