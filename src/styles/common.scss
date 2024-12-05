@@ -45,16 +45,16 @@ button {
 }
 
 .submit_button {
-    color: var(--text-color);
-    border: 1px solid var(--hover-button-background-color);
-    background-color: var(--button-background-color);
+    color: var(--submit-button-primary-color);
+    border: 1px solid var(--submit-button-primary-color);
+    background-color: var(--submit-button-secondary-color);
     border-radius: 8px;
     cursor: pointer;
 }
 
 .submit_button:hover {
-    background-color: var(--hover-button-background-color);
-    color: var(--main-background)
+    background-color: var(--submit-button-primary-color);
+    color: var(--submit-button-secondary-color)
 }
 
 .blurred {

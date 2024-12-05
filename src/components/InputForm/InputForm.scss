@@ -17,11 +17,17 @@ input:focus {
     }
 
     .redirect_object {
-        text-align: center;
+        display: flex;
+        color: var(--small-text-color);
+        
         font-size: 14px;
         margin-top: 20px;
         
         a {
+            font-weight: bold;
+        }
+        
+        a:hover{
             text-decoration: underline;
         }
     }

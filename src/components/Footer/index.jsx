@@ -1,14 +1,34 @@
 import "./Footer.scss"
+import { Link } from 'react-router-dom';
+import LinkToProfile from '../LinkToProfile';
 import { ReactComponent as GhIcon } from "../../assets/svg/github-icon.svg";
 import { ReactComponent as InstagramIcon } from "../../assets/svg/instagram-icon.svg";
 import { ReactComponent as TelegramIcon } from "../../assets/svg/telegram-icon.svg";
 import { ReactComponent as TWitterIcon } from "../../assets/svg/twitter-icon.svg";
+import { ReactComponent as MainLogo } from "../../assets/svg/main-logo-icon.svg";
 
 function Footer(){
     return(
         <footer className="blurred app-transition">
             <div className="container">
-                <div className="footer_content">
+                <div className="footer_top_content app-transition">
+                    <div className="footer_links">
+                        <Link to={'/posts'}>Домой</Link>
+                    </div>
+                    <div className="footer_links">
+                        <LinkToProfile to={'/profile'}>Профиль</LinkToProfile>
+                    </div>
+                    <div className="footer_links">
+                        <a href="https://github.com/MaksimKosyanchuk/news_site_backend/blob/master/README.md#fetches" target="_blank">Api</a>
+                    </div>
+                    <div className="footer_links">
+                        <Link to={'/users/Dev'}>Dev blog</Link>
+                    </div>
+                    <div className="footer_links">
+                        <a href="https://github.com/MaksimKosyanchuk" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div className="footer_bottom_content app-transition">
                     <div className="footer_column footer_socials">
                         <a className="footer_socials_item" href="https://github.com/MaksimKosyanchuk" target="_blank">
                             <GhIcon className="app-transition"/>
@@ -23,10 +43,8 @@ function Footer(){
                             <TWitterIcon className="app-transition"/>
                         </a>
                     </div>
-                    <div className="footer_column footer_site_title">
-                        <p>
-                        Daily Buzz
-                        </p>
+                    <div className="footer_column footer_main_logo">
+                        <MainLogo/>
                     </div>
                     <div className="footer_column footer_copyright">
                         <p>

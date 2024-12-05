@@ -6,6 +6,8 @@
     align-items: center;
     
     h1 {
-        font-size: 60px;    
+        font-size: 60px;
+        color: var(--background-text-color);
+        user-select: none;
     }
 }
