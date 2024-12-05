@@ -38,7 +38,7 @@ function Header() {
             </Link>
           </div>
           <div  className="header_main_logo">
-            <MainLogo className='app-transition' />
+            <MainLogo className='app-transition'/>
           </div>
           <div className="header_side header_right_side">
             <button type='button' onClick={() => setIsDarkTheme(!isDarkTheme)} className='header_item'>

@@ -22,10 +22,18 @@
     }
     
     &_main_logo {
+      display: flex;
+
       svg{
         color: var(--header-button-color);
+        height: 40px;
+
         path{
           fill: currentColor;
+        }
+
+        @include screen {
+          height: 30px;
         }
       }
     }
@@ -73,22 +81,14 @@
       }
 
       &.header_left_side {
-        left: -4px;
-
-        @include screen() {
-          left: -6px;
-        }
+        left: 0;
       }
 
       &.header_right_side {
         display: flex;
         justify-content: center;
         gap: 20px;
-        right: -6px;
-
-        @include screen() {
-          right: -6px;
-        }
+        right: 0;
       }
     }
   }
