@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Daily Buzz",
+  "name": "Daily Buzz",
   "icons": [
     {
       "src": "favicon.ico",
