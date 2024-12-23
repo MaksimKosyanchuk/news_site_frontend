@@ -20,7 +20,7 @@ const DropFile = ({ handleUpload }) => {
 			const newFile = e.target.files[0];
 			const reader = new FileReader();
 			reader.onload = function(e) {
-				handleUpload(e?.target?.result?.split(',')[1])
+				handleUpload(newFile)
 			};
 			setFile(newFile);	
 			reader.readAsDataURL(newFile); 	
