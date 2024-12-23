@@ -95,20 +95,29 @@ const Profile = ( ) => {
                     <img src={user?.avatar ?? DefaultProfileAvatar} alt="img"/>
                 </div>
                 <div className="profile_info_data">
-                    <div className="profile_info_data_nick_name">
-                        <p className={ "profile_info_data_nick_name_name" + ( user && user.is_admin ? " profile_info_data_administrator_true" : "") } >{ user.nick_name }</p>
-                        {user && user.is_verified ? <Verified className="profile_info_data_nick_name_verified"/> : <></>}
+                    <div className="profile_info_data_main">
+                        <div className="profile_info_data_main_content">
+                            <div className="profile_info_data_main_nick_name">
+                                <p className={ "profile_info_data_main_nick_name_name" + ( user && user.is_admin ? " profile_info_data_main_administrator_true" : "") } >{ user.nick_name }</p>
+                                {user && user.is_verified ? <Verified className="profile_info_data_main_nick_name_verified"/> : <></>}
+                            </div>
+                            <p className={ "profile_info_data_main_administrator" + ( user && user.is_admin ? " profile_info_data_main_administrator_true": "") } >Administrator</p>
+                        </div>
+                        <div className="profile_info_data_registration_date">
+                            <p>Регистрация: {format_date(user.created_date)}.</p>
+                        </div>
+                        {
+                            (profile && profile._id == user._id) ?
+                            <button className="profile_info_data_main_quit_button app-transition" onClick={quitButtonClick}>
+                                Выйти
+                            </button>:
+                            <></>
+                        }
                     </div>
-                    <p className={ "profile_info_data_administrator" + ( user && user.is_admin ? " profile_info_data_administrator_true": "") } >Administrator</p>
-                    <p className="profile_info_data_registration_date">Дата регистрации: {format_date(user.created_date)}.</p>
+                    <div className="profile_info_data_description">
+                        <p>Кто не падал - тот не поднимался.Кто не срал - тот не подтирался</p>
+                    </div>
                 </div>
-                {
-                    (profile && profile._id == user._id) ?
-                    <button className="profile_info_quit_button app-transition" onClick={quitButtonClick}>
-                        Выйти
-                    </button>:
-                    <></>
-                }
             </div>
             <div className="profile_tab_list app-transition"> 
                 {tabs.map((item, index) => (

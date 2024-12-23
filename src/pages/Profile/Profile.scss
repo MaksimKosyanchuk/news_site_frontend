@@ -4,37 +4,16 @@
     &_info {
         display: flex;
         align-items: center;
-        box-sizing: content-box;
+        width: 100%;
+        overflow: hidden;
         
-        &_quit_button {
-            color: red;
-            margin-right: 0;
-            margin-left: auto;
-            margin-bottom: auto;
-            border: 1px solid red;
-            padding: 12px 30px;
-            border-radius: 8px;
-            user-select: none;
-            cursor: pointer;
-
-            @include screen {
-                padding: 8px 11px;
-                font-size: 12px;
-            }
-
-        }
-
-        &_quit_button:hover {
-            background-color: red;
-
-            color: white;
-        }
 
         &_avatar {
             width: 150px;
             height: 150px;
             overflow: hidden;
             border-radius: 50%;
+            flex-shrink: 0;
             
             @include screen() {
                 width: 45px;
@@ -50,59 +29,107 @@
         
         
         &_data {
-            margin-left: 50px;
+            display: flex;
+            flex-direction: column;
             margin-bottom: auto;
+            margin-left: 50px;
+            width: 100%;
             
-            &_administrator {
-                display: none;
-                
-                @include screen() {
-                    font-size: 10px;
-                }
-            }
-    
-            &_administrator_true{
-                display: block;
-                text-shadow: 0 0 16px #9f0000;
-                color: red;
-            }
-            
-            @include screen(){
-                margin-left: 12px;
-            }
-            
-            &_registration_date {
-                color: var(--small-text-color);
-
-                @include screen(){
-                    font-size: 10px;
-                }
-            }
-
-            &_nick_name{
+            &_main{
                 display: flex;
-                align-items: center;
-                gap: 10px;
+                margin-bottom: auto;
 
-                &_verified{
-                    width: 28px;
-                    height: 28px;
-
+                &_quit_button {
+                    color: red;
+                    margin-right: 0;
+                    margin-bottom: auto;
+                    margin-left: 20px;
+                    border: 1px solid red;
+                    padding: 12px 30px;
+                    border-radius: 8px;
+                    user-select: none;
+                    cursor: pointer;
+        
+                    @include screen {
+                        padding: 8px 11px;
+                        font-size: 12px;
+                    }
+        
+                }
+        
+                &_quit_button:hover {
+                    background-color: red;
+        
+                    color: white;
+                }
+                
+                &_administrator {
+                    display: none;
+                    
                     @include screen() {
-                        width: 18px;
-                        height: 18px;
+                        font-size: 10px;
                     }
                 }
+        
+                &_administrator_true{
+                    display: block;
+                    text-shadow: 0 0 16px #9f0000;
+                    color: red;
+                }
+                
+                @include screen(){
+                    margin-left: 12px;
+                }
 
-                &_name  {
-                    font-size: 34px;
+                &_nick_name{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    &_verified{
+                        width: 28px;
+                        height: 28px;
+
+                        @include screen() {
+                            width: 18px;
+                            height: 18px;
+                        }
+                    }
+
+                    &_name  {
+                        font-size: 34px;
+                        
+                        @include screen(){
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+
+            &_registration_date {
+                margin-left: auto;
+                margin-bottom: auto;
+                height: 41px;
+                align-content: center;
+                
+                p{
+                    color: var(--small-text-color);
                     
                     @include screen(){
-                        font-size: 20px;
+                        font-size: 10px;
                     }
                 }
             }
+
+            &_description{
+                width: 100%;
+                margin-top: 12px;
+                white-space: normal;
+                overflow-wrap: break-word;
+                word-break: break-word;
+            }
         }
+
     }
 
     &_tab_list {
