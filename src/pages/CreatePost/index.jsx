@@ -76,6 +76,9 @@ const CreatePost = () => {
     }
 
     return (
+        // <InpuForm>
+            
+        // </InpuForm>
         <form className='create_post' onSubmit={handleSubmit}>
             <InputFiled 
                 className={"create_post_title"  + (createResult.status === "error" && createResult.message === "Incorrect 'title'" ? " incorrect_field" : "")}

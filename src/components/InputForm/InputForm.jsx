@@ -1,57 +1,77 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InputField from "../InputField/index";
-import DropFile from '../DropFile';
 import './InputForm.scss';
 
+const InputForm = ({ onSubmit, Content, description_field = false }) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [description, setDescription] = useState('');
+  const [login_result, setLoginResult] = useState({});
+  const [errorFields, setErrorFields] = useState({ username: false, password: false, description: false });
+  const [resultMessage, setResultMessage] = useState('');
 
-const InputForm = ({ buttonText, onSubmit, redirect, upload_img = false, description_field = false }) => {
-  const [ username, setUsername ] = useState('')
-  const [ password, setPassword ] = useState('')
-  const [ login_result, setLoginResult ] = useState({ })
-  const [ avatar, setAvatar ] = useState(null)
-  const [ description, setDescription ] = useState("")
+  useEffect(() => {
+    if (login_result.status === "error") {
+      setErrorFields((prev) => {
+        const newErrorFields = { ...prev };
+
+        if (login_result.status_code === 1) {
+          newErrorFields.username = true;
+        } else {
+          newErrorFields.username = false;
+        }
+
+        if (login_result.status_code === 2) {
+          newErrorFields.password = true;
+        } else {
+          newErrorFields.password = false;
+        }
+
+        if (description_field && login_result.status_code === 3) {
+          newErrorFields.description = true;
+        } else {
+          newErrorFields.description = false;
+        }
+
+        return newErrorFields;
+      });
+      setResultMessage(login_result.message);
+    } else {
+      setErrorFields({});
+      setResultMessage('');
+    }
+  }, [login_result, username, password, description, description_field]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setLoginResult(await onSubmit(username, password, avatar, description))
-  }
+    e.preventDefault();
+    const result = await onSubmit(username, password, description);
+    setLoginResult(result);
+  };
 
-  const set_avatar_handle = (file) => {
-    setAvatar(file)
-  }
+  const handleFocus = (field) => {
+    if (errorFields[field]) {
+      setLoginResult({});
+      setResultMessage('');
+    }
+    setErrorFields((prev) => ({ ...prev, [field]: false }));
+  };
 
   return (
     <form onSubmit={handleSubmit} className='form_input app-transition'>
-      {upload_img ? <DropFile handleUpload={set_avatar_handle}/> : <></>}
-      <InputField 
-        className={"user_name" + (login_result.status === "error" ? " incorrect_field" : "")}
-        type="text"
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Имя пользователя"
+      <Content 
+        handleFocus={handleFocus} 
+        errorFields={errorFields} 
+        setUsername={setUsername} 
+        setPassword={setPassword} 
+        setDescription={setDescription} 
+        username={username} 
+        password={password} 
+        description={description} 
+        login_result={login_result}
+        resultMessage={resultMessage}
       />
-      {
-        description_field ? 
-        <InputField 
-          className={"form_input_description" + (login_result.status === " error" ? " incorrect_field" : "")}
-          type="text"
-          required={false}
-          placeholder="Описание профиля"
-          onChange={(e) => setDescription(e.target.value)}
-          is_multiline={true}
-          length={60}
-        /> : <></>
-      }
-      <InputField 
-        className={"password" + (login_result.status === "error" ? " incorrect_field" : "")}
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Пароль"
-      />
-      <div className={ "result_message" + (login_result.status === "error" ? " error_message" : "" )}>{ login_result ?  login_result.message : "" }</div>
-      <button className="submit_button app-transition" type="submit">{buttonText}</button>
-      {redirect}
     </form>
-  )
-}
+  );
+};
 
-export default InputForm
+export default InputForm;

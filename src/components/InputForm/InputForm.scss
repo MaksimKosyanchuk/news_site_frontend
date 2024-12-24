@@ -39,7 +39,7 @@ input:focus {
     button {
         padding: 12px 14px;
         width: 100%;
-        margin: 200px auto 0;
+        margin: auto 0;
         font-size: 18px;
 
         @include screen() {
@@ -48,13 +48,11 @@ input:focus {
     }
 
     .result_message {
-        display: none;
-    }
-
-    .error_message {
+        min-height: 200px;
+        height: 200px;
         display: flex;
-        color: red;
         margin: 10px auto;
         font-size: 12px;
+        color: red;
     }
 }

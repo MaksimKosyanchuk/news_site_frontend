@@ -5,16 +5,26 @@
         width: 100%;
         margin: 0 auto;
         padding: 12px 14px;
-        background-color: var(--input-background-color);
-        border: 1px solid transparent;
+        //background-color: var(--input-background-color);
+        //border: 1px solid transparent;
+        background-color: transparent;
+        border: 1px solid rgb(70,70,70);
         border-radius: 8px;
         color: var(--text-color);
         font-size: 18px;
         font-family: "Google Sans", roboto, "Noto Sans Myanmar UI", arial, sans-serif;
         resize: none;
     }
+
+    .custom-input::placeholder {
+        color: rgb(70,70,70);
+    }
 }
+
 .incorrect_field {
     border: 1px solid red !important;
-}
+    box-shadow: 0 0 10px rgb(255 0 0 / 50%);
+ }
+
+
         
