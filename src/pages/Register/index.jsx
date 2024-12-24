@@ -17,9 +17,6 @@ const Register = () => {
         setAvatar(file);
     };
 
-    useEffect(() => { 
-	}, [avatar]); 
-
     const handleRegister = async (username, password, description) => {
         const formData = new FormData();
         formData.append("nick_name", username);
@@ -56,7 +53,7 @@ const Register = () => {
     const input = ({ handleFocus, errorFields, setUsername, setPassword, setDescription, username, password, description, login_result, resultMessage }) => {
         return (
             <>
-                <DropFile handleUpload={setAvatar} value={avatar} /> 
+                <DropFile setValue={set_avatar_handle} value={avatar} /> 
                 <InputField
                     className={`user_name ${errorFields.username ? "incorrect_field" : ""}`}
                     type="text"
