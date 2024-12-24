@@ -60,6 +60,7 @@
         height: 32px;
         transition: .2s ease-out;
         color: var(--header-button-color);
+        object-fit: cover;
         
         @include screen() {
           width: 24px;
