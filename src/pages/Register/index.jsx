@@ -1,10 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../../config';
 import { Link } from 'react-router-dom';
-import InputForm from '../../components/InputForm/InputForm';
 import InputField from '../../components/InputField/index';
 import DropFile from '../../components/DropFile/index';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { AppContext } from '../../App';
 import "./Register.scss";
 
@@ -16,7 +15,7 @@ const Register = () => {
             nick_name: '',
             password: '',
             description: '',
-            avatar: null,
+            avatar: null
         }
     )
     const [errors, setErrors] = useState({});
@@ -52,10 +51,15 @@ const Register = () => {
         }
     };
 
+    const handleClick = () => {
+        const { ["avatar"]: removedField, ...other } = errors;
+        setErrors (other)
+    }
+
     return (
         <form className='form_input app-transition'>
             <>
-                <DropFile setValue={(file) => setFields({ ...fields, avatar: file })} value={fields.avatar} /> 
+                <DropFile setValue={(file) => setFields({ ...fields, avatar: file })} value={fields.avatar} drop_file_type={"image/*"} errors={errors?.avatar} setErrors={setErrors} handleClick={handleClick}/> 
                 <InputField
                     className={`user_name`}
                     type="text"

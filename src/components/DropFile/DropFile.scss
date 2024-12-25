@@ -26,3 +26,18 @@
     border-width: medium;
     background: rgba(128, 128, 128, 0.2);
 }
+
+.drop_file_incorrect_field {
+    border: 3px dashed red !important;
+    box-shadow: 0 0 20px rgb(255 0 0 / 50%);
+}
+
+.drop_file_incorrect_messages{
+    min-height: 80px;
+
+    p {
+        text-align: center;
+        color: red;
+        font-size: 14px;
+    }
+}

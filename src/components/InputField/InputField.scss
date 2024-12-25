@@ -9,7 +9,7 @@
 
     .input_field {
         width: 100%;
-        margin: 40px 0 0 0;
+        margin: 20px 0 0 0;
         padding: 12px 14px;
         background-color: transparent;
         border: 1px solid var(--input-outline-color);
@@ -21,17 +21,27 @@
     }
 
     &_error_message {
-        color: red;
-        font-size: 12px;
-        opacity: 0;
+        display: flex;
         visibility: hidden;
-        height: 18px;
-        margin-top: 4px;
-        transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+        height: 36px;
+        margin-top: 10px;
+        opacity: 0;
+
+        p {
+            color: red;
+            font-size: 14px;
+        }
+
+        &_logo {
+            height: 14px;
+            width: auto;
+            margin-right: 5px;
+            color: red;
+        }
     }
 
     &_error_message.show {
-        opacity: 1; 
+        opacity: 1;
         visibility: visible;
         transition: opacity 0.3s ease, visibility 0s;
     }
@@ -48,12 +58,14 @@ input:focus {
 }
 
 .form_input{
+    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 330px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 0;
 
     @include screen() {
         padding-top: 100px;
@@ -78,7 +90,8 @@ input:focus {
     button {
         padding: 12px 14px;
         width: 100%;
-        margin: 300px 0 0 0;
+        margin-top: auto;
+        //margin: 200px 0 0 0;
         font-size: 18px;
 
         @include screen() {

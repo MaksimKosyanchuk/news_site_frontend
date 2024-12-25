@@ -1,5 +1,6 @@
 import React from 'react';
 import "./InputField.scss";
+import { ReactComponent as WarningIcon } from "../../assets/svg/warning-icon.svg"
 
 const Input = ({ className, onChange, onFocus, error, type, value, placeholder, required=false, is_multiline = false, length = 120 }) => {
   
@@ -18,9 +19,12 @@ const Input = ({ className, onChange, onFocus, error, type, value, placeholder, 
         value={value}
       />
       {
-        <p className={`input_field_label_error_message ${error ? "show" : ""}`}>
-            {error}
-        </p>
+        <div className={`input_field_label_error_message ${error ? "show" : ""}`}>
+            <WarningIcon className='input_field_label_error_message_logo'/>
+            <p>
+              {error}
+            </p>
+        </div>
       }
       </label>
   );

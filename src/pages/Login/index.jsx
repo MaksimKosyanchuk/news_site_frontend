@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { AppContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../../config';
 import { Link } from 'react-router-dom';
-import InputForm from '../../components/InputForm/InputForm';
 import InputField from '../../components/InputField/index';
 
 const Login = () => {

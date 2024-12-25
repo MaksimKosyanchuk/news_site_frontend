@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import "./DropFile.scss";
 
-const DropFile = ({ setValue, value }) => {
+const DropFile = ({ setValue, value, drop_file_type, errors, handleClick }) => {
 	const [file, setFile] = useState(value ?? null);
     const [isDragged, setDraged] = useState(false);
     const fileRef = useRef(null);
+	const inputRef = useRef(null);
 
     const setFileHandler = (e) => { 
 		if (e.currentTarget && e.currentTarget.files?.length) { 
@@ -17,6 +18,15 @@ const DropFile = ({ setValue, value }) => {
 			setValue(file);
 		}
 	}, [file]); 
+
+	const get_errors = (arrays) => {
+		console.log(arrays)
+        if (!Array.isArray(arrays)) {
+            return <></>; 
+        }
+
+        return arrays.map((error, index) => <p key={index}>{error}</p>);
+    };
 
 	useEffect(() => { 
 		if (!fileRef.current) return; 
@@ -64,27 +74,39 @@ const DropFile = ({ setValue, value }) => {
 		}
 
     return (
-        <label
-            ref={fileRef}
-            className={`drop_file app-transition${isDragged ? " drop_file_dragged" : ""}`}
-        >
-            {file ? (
-                <>
-                    <img src={URL.createObjectURL(file)} alt="Preview" />
-                    <button onClick={(e) => {
-						e.preventDefault(); 
-						setFile(null);
+		<>
+			<label
+				ref={fileRef}
+				className={`drop_file app-transition${isDragged ? " drop_file_dragged" : ""} ${errors ? "drop_file_incorrect_field" : "" }`}
+				>
+				{file ? (
+					<>
+						<img src={URL.createObjectURL(file)} alt="" />
+						<button onClick={(e) => {
+							e.preventDefault(); 
+							setFile(null);
+							if (inputRef.current) {
+								inputRef.current.value = "";
+							}
+							handleClick();
 						}}>Remove</button>
-                </>
-            ) : <></>
+					</>
+				) : <></>
 			}
-            <input
-                className="image_input"
-                type="file"
-                accept="image/*"
-                onChange={setFileHandler}
-            />
-        </label>
+				<input
+					className={"image_input"}
+					type="file"
+					accept={drop_file_type}
+					onChange={setFileHandler}
+					ref={inputRef}
+					/>
+			</label>
+			<div className="drop_file_incorrect_messages">
+				{
+					get_errors(errors)
+				}
+			</div>
+		</>
     );
 };
 
