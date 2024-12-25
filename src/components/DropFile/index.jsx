@@ -20,7 +20,6 @@ const DropFile = ({ setValue, value, drop_file_type, errors, handleClick }) => {
 	}, [file]); 
 
 	const get_errors = (arrays) => {
-		console.log(arrays)
         if (!Array.isArray(arrays)) {
             return <></>; 
         }

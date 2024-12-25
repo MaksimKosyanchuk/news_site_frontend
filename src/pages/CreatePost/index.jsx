@@ -57,8 +57,10 @@ const CreatePost = () => {
 
         try{
             const creating = await fetch(`${API_URL}/api/posts/create-post`, { method: "POST", body: formData})
+            if (!creating.ok) {
+                console.log(creating)
+            }
             const result = await creating.json()
-            console.log(result)
             if(result.status === "success") {
                 navigate("/posts")
                 showToast({ message: "Опубликовано!", type: "success" })
@@ -72,7 +74,11 @@ const CreatePost = () => {
             }
         } 
         catch(e){
-            console.log(e)
+            if(e instanceof TypeError && e.message === "Failed to fetch") {
+                setErrors({
+                    "featured_image": [ "Max size of image is 5 mb"] 
+                })
+            }
             return {
                 status: "error",
                 message: "server not found"
