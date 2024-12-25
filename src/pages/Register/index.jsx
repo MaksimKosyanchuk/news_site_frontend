@@ -47,6 +47,11 @@ const Register = () => {
             }
         } catch (error) {
             console.log(error);
+            if(error instanceof TypeError && error.message === "Failed to fetch") {
+                setErrors({
+                    "avatar": [ "Max size of image is 5 mb"] 
+                })
+            }
             return { status: "error", message: "server not found" };
         }
     };
