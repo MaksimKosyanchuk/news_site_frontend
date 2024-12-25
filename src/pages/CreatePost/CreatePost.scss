@@ -14,9 +14,17 @@
         }
     }
 
+    .drop_file_incorrect_messages {
+        height: 20px;
+        min-height: 20px;
+
+        p{
+            text-align: left;
+        }
+    }
+
     .input_field{
         width: 100%;
-        margin-bottom: 20px;
     }
 
     .create_post_title{

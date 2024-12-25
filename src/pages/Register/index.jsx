@@ -1,63 +1,90 @@
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../../config';
 import { Link } from 'react-router-dom';
-import InputForm from '../../components/InputForm/InputForm';
-import { useContext } from 'react';
+import InputField from '../../components/InputField/index';
+import DropFile from '../../components/DropFile/index';
+import { useContext, useState } from 'react';
 import { AppContext } from '../../App';
-import "./Register.scss"
+import "./Register.scss";
 
 const Register = () => {
-    const navigate = useNavigate()
-    const { showToast } = useContext(AppContext)
+    const navigate = useNavigate();
 
-    const handleRegister = async (username, password, avatar, description) => {
-        const formData = new FormData()
-        formData.append("nick_name", username)
-        formData.append("password", password)
-        formData.append("avatar", avatar)
-        formData.append("description", description)
-
-        try {
-            const register = await fetch(`${API_URL}/api/auth/register`, { method: "POST", body: formData })
-            const result = await register.json()
-            if(result.status === "success") {
-               navigate("/auth/login")
-               showToast({ message: "Зарегестрировано!", type: "success" })
-            }
-            else{
-                switch(result.message){
-                    case "Invalid 'nick_name' or 'password'":
-                        showToast({ message: "Неверное имя пользователя или пароль!", type: "error" });
-                        break;
-                    case "Current login is exists":
-                        showToast({ message: "Данное имя пользователя уже занято!", type: "error" });
-                        break;
-                    case "'password' length must be more than 8 and less then 100!":
-                        showToast({ message: "Слишком короткий пароль!", type: "error" });
-                    break;
-                }
-                return result
-            }
-        } catch (error) {
-            console.log(error)
-            return {
-                status: "error",
-                message: "server not found"
-            }
+    const [ fields, setFields ] = useState(
+        {
+            nick_name: '',
+            password: '',
+            description: '',
+            avatar: null
         }
+    )
+    const [errors, setErrors] = useState({});
+    const { showToast } = useContext(AppContext);
+
+    const handleFocus = (fieldName) => {
+        const { [fieldName]: removedField, ...other } = errors;
+        setErrors (other)
     }
 
-    const redirect = (
-        <p className={"redirect_object"} >Уже есть акаунт?
-            <Link to={"/auth/login"}> 
-                Войти.
-            </Link>
-        </p>
-    )
+    const handleRegister = async () => {
+        const formData = new FormData();
+        for(let field in fields) {
+            formData.append(field, fields[field])
+        }
+
+        try {
+            const register = await fetch(`${API_URL}/api/auth/register`, { method: "POST", body: formData });
+            const result = await register.json();
+            if (result.status === "success") {
+                navigate("/auth/login");
+                showToast({ message: "Зарегистрировано!", type: "success" });
+            } else {
+                if(result?.errors && Object.keys(result?.errors).length > 0) {
+                    setErrors(result.errors)
+                }
+                showToast({ message: "Ошибка!", type: "error" });
+                return result;
+            }
+        } catch (error) {
+            console.log(error);
+            return { status: "error", message: "server not found" };
+        }
+    };
+
+    const handleClick = () => {
+        const { ["avatar"]: removedField, ...other } = errors;
+        setErrors (other)
+    }
 
     return (
-        <InputForm buttonText="Зарегестрироваться" onSubmit={handleRegister} redirect={redirect} upload_img={true} description_field={true}/>
-    )
-}
+        <form className='form_input app-transition'>
+            <>
+                <DropFile setValue={(file) => setFields({ ...fields, avatar: file })} value={fields.avatar} drop_file_type={"image/*"} errors={errors?.avatar} setErrors={setErrors} handleClick={handleClick}/> 
+                <InputField
+                    className={`user_name`}
+                    type="text"
+                    onChange={(e) => setFields({ ...fields, nick_name: e.target.value })}
+                    onFocus={() => handleFocus('nick_name')}
+                    placeholder="Имя пользователя"
+                    value={fields.nick_name}
+                    error={errors?.nick_name ?? null}
+                />
+                <InputField
+                    className={`password`}
+                    type="password"
+                    onChange={(e) => setFields({ ...fields, password: e.target.value })}
+                    onFocus={() => handleFocus('password')}
+                    placeholder="Пароль"
+                    value={fields.password}
+                    error={errors?.password ?? null}
+                />
+                <button className="submit_button app-transition" type="button" onClick={handleRegister}>Зарегистрироваться</button>
+                <p className={"redirect_object"}>Уже есть аккаунт?
+                    <Link to={"/auth/login"}> Войти.</Link>
+                </p>
+            </>
+        </form>
+    );
+};
 
-export default Register
+export default Register;
