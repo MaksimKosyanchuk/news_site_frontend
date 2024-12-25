@@ -10,19 +10,28 @@ import "./Register.scss";
 
 const Register = () => {
     const navigate = useNavigate();
-    const [avatar, setAvatar] = useState(null);
+
+    const [ fields, setFields ] = useState(
+        {
+            nick_name: '',
+            password: '',
+            description: '',
+            avatar: null,
+        }
+    )
+    const [errors, setErrors] = useState({});
     const { showToast } = useContext(AppContext);
 
-    const set_avatar_handle = (file) => {
-        setAvatar(file);
-    };
+    const handleFocus = (fieldName) => {
+        const { [fieldName]: removedField, ...other } = errors;
+        setErrors (other)
+    }
 
-    const handleRegister = async (username, password, description) => {
+    const handleRegister = async () => {
         const formData = new FormData();
-        formData.append("nick_name", username);
-        formData.append("password", password);
-        formData.append("avatar", avatar);
-        formData.append("description", description);
+        for(let field in fields) {
+            formData.append(field, fields[field])
+        }
 
         try {
             const register = await fetch(`${API_URL}/api/auth/register`, { method: "POST", body: formData });
@@ -31,17 +40,10 @@ const Register = () => {
                 navigate("/auth/login");
                 showToast({ message: "Зарегистрировано!", type: "success" });
             } else {
-                switch(result.message) {
-                    case "Invalid 'nick_name' or 'password'":
-                        showToast({ message: "Неверное имя пользователя или пароль!", type: "error" });
-                        break;
-                    case "Current login is exists":
-                        showToast({ message: "Данное имя пользователя уже занято!", type: "error" });
-                        break;
-                    case "'password' length must be more than 8 and less than 100!":
-                        showToast({ message: "Слишком короткий пароль!", type: "error" });
-                        break;
+                if(result?.errors && Object.keys(result?.errors).length > 0) {
+                    setErrors(result.errors)
                 }
+                showToast({ message: "Ошибка!", type: "error" });
                 return result;
             }
         } catch (error) {
@@ -50,39 +52,34 @@ const Register = () => {
         }
     };
 
-    const input = ({ handleFocus, errorFields, setUsername, setPassword, setDescription, username, password, description, login_result, resultMessage }) => {
-        return (
+    return (
+        <form className='form_input app-transition'>
             <>
-                <DropFile setValue={set_avatar_handle} value={avatar} /> 
+                <DropFile setValue={(file) => setFields({ ...fields, avatar: file })} value={fields.avatar} /> 
                 <InputField
-                    className={`user_name ${errorFields.username ? "incorrect_field" : ""}`}
+                    className={`user_name`}
                     type="text"
-                    onChange={(e) => setUsername(e.target.value)}
-                    onFocus={() => handleFocus('username')}
+                    onChange={(e) => setFields({ ...fields, nick_name: e.target.value })}
+                    onFocus={() => handleFocus('nick_name')}
                     placeholder="Имя пользователя"
-                    value={username}
+                    value={fields.nick_name}
+                    error={errors?.nick_name ?? null}
                 />
                 <InputField
-                    className={`password ${errorFields.password ? "incorrect_field" : ""}`}
+                    className={`password`}
                     type="password"
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => setFields({ ...fields, password: e.target.value })}
                     onFocus={() => handleFocus('password')}
                     placeholder="Пароль"
-                    value={password}
+                    value={fields.password}
+                    error={errors?.password ?? null}
                 />
-                <div className={`result_message ${login_result.status === "error" ? "error_message" : ""}`}>
-                    {resultMessage}
-                </div>
-                <button className="submit_button app-transition" type="submit">Зарегистрироваться</button>
+                <button className="submit_button app-transition" type="button" onClick={handleRegister}>Зарегистрироваться</button>
                 <p className={"redirect_object"}>Уже есть аккаунт?
                     <Link to={"/auth/login"}> Войти.</Link>
                 </p>
             </>
-        );
-    };
-
-    return (
-        <InputForm buttonText="Зарегистрироваться" onSubmit={handleRegister} Content={input} upload_img={true} description_field={true} />
+        </form>
     );
 };
 

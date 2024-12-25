@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AppContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../../config';
@@ -7,90 +7,78 @@ import InputForm from '../../components/InputForm/InputForm';
 import InputField from '../../components/InputField/index';
 
 const Login = () => {
-  const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [description, setDescription] = useState('');
-  const { showToast } = useContext(AppContext);
-  const [login_result, setLoginResult] = useState({});
-  const [errorFields, setErrorFields] = useState({ username: false, password: false, description: false });
-  const [resultMessage, setResultMessage] = useState('');
-
-  const handleLogin = async (username, password) => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nick_name: username, password: password }),
-    };
-    try {
-      const login = await fetch(`${API_URL}/api/auth/login`, requestOptions);
-      const result = await login.json();
-      if (result.status === 'success') {
-        localStorage.setItem('token', result.data.token);
-        navigate('/posts');
-        showToast({ message: 'Вы вошли в аккаунт!', type: 'success' });
-        return result;
-      } else {
-        console.log(result.message);
-        switch (result.message) {
-          case "User doesn’t exists":
-            showToast({ message: "Пользователь не найден!", type: "error" });
-            break;
-          case "Incorrect 'password'":
-            showToast({ message: "Неверный логин или пароль!", type: "error" });
-            break;
-          case "'password' length must be more than 8 and less than 100!":
-            showToast({ message: "Слишком короткий пароль!", type: "error" });
-            break;
-          case "Invalid 'nick_name' or 'password'":
-            showToast({ message: "Неверный логин или пароль!", type: "error" });
-            break;
+    const navigate = useNavigate(); 
+    const [ fields, setFields ] = useState(
+        {
+            nick_name: '',
+            password: '',
         }
-        return result;
-      }
-    } catch (e) {
-      console.log(e);
-      return {
-        status: "error",
-        message: "server not found",
-      };
+    )
+    const [errors, setErrors] = useState({}); 
+   
+    const { showToast } = useContext(AppContext); 
+   
+    const handleFocus = (fieldName) => {
+        const { [fieldName]: removedField, ...other } = errors;
+        setErrors (other)
     }
-  };
 
-  const input = ({ handleFocus, errorFields, setUsername, setPassword, setDescription, username, password, description, login_result, resultMessage }) => {
-    return (
-      <>
+    const handleLogin = async () => { 
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nick_name: fields.nick_name, password: fields.password }),
+        }
+        try {
+            const login = await fetch(`${API_URL}/api/auth/login`, requestOptions)
+            const result = await login.json() 
+            if (result.status === 'success') { 
+                localStorage.setItem('token', result.data.token); 
+                navigate('/posts');
+                showToast({ message: 'Вы вошли в аккаунт!', type: 'success' }); 
+                return result; 
+            } 
+            else { 
+                if (result?.errors && Object.keys(result.errors).length > 0 ) { 
+                    showToast({ message: 'Ошибка!', type: 'error' }); 
+                    setErrors(result.errors); 
+                } 
+        
+                return result; 
+            } 
+        }
+        catch (e) { 
+            console.log(e)
+        } 
+    };
+ 
+  return (
+    <form className='form_input app-transition'>
         <InputField
-          className={`user_name ${errorFields.username ? "incorrect_field" : ""}`}
-          type="text"
-          onChange={(e) => setUsername(e.target.value)}
-          onFocus={() => handleFocus('username')}
-          placeholder="Имя пользователя"
-          value={username}
+            className={`user_name`}
+            type="text"
+            onChange={(e) => setFields({ ...fields, nick_name: e.target.value })}
+            onFocus={() => handleFocus('nick_name')}
+            placeholder="Имя пользователя"
+            value={fields.nick_name}
+            error={errors?.nick_name ?? null}
         />
         <InputField
-          className={`password ${errorFields.password ? "incorrect_field" : ""}`}
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          onFocus={() => handleFocus('password')}
-          placeholder="Пароль"
-          value={password}
+            className={`password`}
+            type="password"
+            onChange={(e) => setFields({ ...fields, password: e.target.value })}
+            onFocus={() => handleFocus('password')}
+            placeholder="Пароль"
+            value={fields.password}
+            error={errors?.password ?? null}
         />
-        <div className={`result_message ${login_result.status === "error" ? "error_message" : ""}`}>
-          {resultMessage}
-        </div>
-        <button className="submit_button app-transition" type="submit">"Войти"</button>
+        <button className="submit_button app-transition" onClick={handleLogin} type="button">"Войти"</button>
         <p className={"redirect_object"}>Нет акаунта?
             <Link to={"/auth/register"}>
                 Зарегестрироваться.
             </Link>
         </p>
-      </>
-    );
-  };
-
-  return (
-    <InputForm onSubmit={handleLogin} Content={input} />
+    </form>
   );
 };
 

@@ -47,6 +47,7 @@ function App() {
     '--small-text-color': isDarkTheme ? '#bbbbbb' : '#212121',
     '--background-text-color': isDarkTheme ? 'rgb(55, 55, 55)' : 'rgb(197, 197, 197)',
     '--input-background-color': isDarkTheme ? 'rgb(51, 51, 51)' : '#c9c9c9',
+    '--input-outline-color': isDarkTheme ? 'rgb(70,70,70)' : '#8d8d8d',
     '--active-drop-file-border': isDarkTheme ? '#ababab' : '#555555',
     '--submit-button-secondary-color': isDarkTheme ? 'rgba(37, 37, 37, .8)' : 'rgba(215, 215, 215, .8)',
     '--submit-button-primary-color': isDarkTheme ? 'rgb(215, 215, 215)' : 'rgb(55,55,55)',
