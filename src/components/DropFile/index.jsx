@@ -1,18 +1,47 @@
 import { useEffect, useState, useRef } from "react";
 import "./DropFile.scss";
+import { ReactComponent as DeleteIcon } from "../../assets/svg/delete-icon.svg"
 
-const DropFile = ({ setValue, value, drop_file_type, errors, handleClick }) => {
+const DropFile = ({ setValue, value, drop_file_type, errors, add_new_errors, clear_errors, handleClick }) => {
 	const [file, setFile] = useState(value ?? null);
     const [isDragged, setDraged] = useState(false);
     const fileRef = useRef(null);
 	const inputRef = useRef(null);
 
-    const setFileHandler = (e) => { 
-		if (e.currentTarget && e.currentTarget.files?.length) { 
+    const setFileHandler = (e) => {
+		const validation = image_validation(e);
+		
+		if (validation.is_valid) { 
 			setFile(e.currentTarget.files[0]); 
-		} 
+			clear_errors()
+		}
+		else{
+			add_new_errors(validation.errors)
+		}
 	}
-
+	
+	const image_validation = (e) => {
+		const fileType = e.currentTarget.files[0]?.type;
+		const fileSize = e.currentTarget.files[0]?.size;
+	
+		const errors = [];
+	
+		const isTypeValid = (drop_file_type && drop_file_type.trim() !== "" && new RegExp(drop_file_type).test(fileType)) || !drop_file_type || drop_file_type.trim() === "";
+		if (!isTypeValid) {
+			errors.push("Incorrect type of file!");
+		}
+	
+		const isSizeValid = fileSize <= 4 * 1024 * 1024;
+		if (!isSizeValid) {
+			errors.push("Max size of image must be 4 mb!");
+		}
+	
+		return {
+			is_valid: isTypeValid && isSizeValid,
+			errors: errors
+		};
+	};
+	
 	useEffect(() => { 
 		if(setValue) {
 			setValue(file);
@@ -58,7 +87,7 @@ const DropFile = ({ setValue, value, drop_file_type, errors, handleClick }) => {
 		} 
 
 		const handleDrag = (e) => { 
-			e.preventDefault(); 
+			e.preventDefault();
 			e.stopPropagation(); 
 		} 
 
@@ -74,32 +103,38 @@ const DropFile = ({ setValue, value, drop_file_type, errors, handleClick }) => {
 
     return (
 		<>
-			<label
+			<div
 				ref={fileRef}
 				className={`drop_file app-transition${isDragged ? " drop_file_dragged" : ""} ${errors ? "drop_file_incorrect_field" : "" }`}
-				>
+			>
 				{file ? (
 					<>
 						<img src={URL.createObjectURL(file)} alt="" />
-						<button onClick={(e) => {
-							e.preventDefault(); 
-							setFile(null);
-							if (inputRef.current) {
-								inputRef.current.value = "";
-							}
-							handleClick();
-						}}>Remove</button>
+						<div className="remove_image app-transition blurred">
+							<p>{file.name}</p>
+							<button className="remove_image_button" onClick={(e) => {	
+								handleClick();
+								e.preventDefault();
+								if (inputRef.current) {
+									inputRef.current.value = "";
+								} 
+								setFile(null);
+								
+								}}>
+								<DeleteIcon/>
+							</button>
+						</div>
 					</>
-				) : <></>
-			}
-				<input
-					className={"image_input"}
-					type="file"
-					accept={drop_file_type}
-					onChange={setFileHandler}
-					ref={inputRef}
+					) : 
+					<input
+						className={"image_input"}
+						type={"file"}
+						accept={drop_file_type}
+						onChange={setFileHandler}
+						ref={inputRef}
 					/>
-			</label>
+				}
+			</div>
 			<div className="drop_file_incorrect_messages">
 				{
 					get_errors(errors)
