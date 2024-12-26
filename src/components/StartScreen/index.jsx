@@ -1,12 +1,14 @@
 import { useContext, useEffect } from "react";
 import { AppContext } from "../../App";
 import { API_URL } from "../../config";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./StartScreen.scss"
 
 const StartScreen = ({ children }) => {
     const location = useLocation()
     const { setProfile, setProfileLoading } = useContext(AppContext) 
+    const { profile } = useContext(AppContext)
+    const navigate = useNavigate()
 
     const getProfile = async () => {
         setProfileLoading(true)
@@ -41,10 +43,13 @@ const StartScreen = ({ children }) => {
 
     useEffect(() => {
         getProfile();
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
     }, [location]);
 
 
+    const handleClick = () => {
+        navigate("/create-post")
+    }
 
     return (
         <div className="start_screen app-transition">
@@ -52,7 +57,14 @@ const StartScreen = ({ children }) => {
                 <div className="main_div">
                     {children}
                 </div>
-            </div>    
+            </div>
+            {
+                (profile && profile.is_admin && location?.pathname !== "/create-post") ? 
+                <div className={"create_post_button"}>
+                    <button className={"submit_button blurred app-transition"} onClick={handleClick}>Создать новость</button> 
+                </div>
+                : <></>
+            }
         </div>
     );
 }
