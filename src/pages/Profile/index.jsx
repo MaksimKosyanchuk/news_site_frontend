@@ -96,15 +96,17 @@ const Profile = ( ) => {
                 </div>
                 <div className="profile_info_data">
                     <div className="profile_info_data_main">
-                        <div className="profile_info_data_main_content">
-                            <div className="profile_info_data_main_nick_name">
-                                <p className={ "profile_info_data_main_nick_name_name" + ( user && user.is_admin ? " profile_info_data_main_administrator_true" : "") } >{ user.nick_name }</p>
-                                {user && user.is_verified ? <Verified className="profile_info_data_main_nick_name_verified"/> : <></>}
+                        <div className="profile_info_data_main_full">
+                            <div className="profile_info_data_main_full_content">
+                                <div className="profile_info_data_main_full_nick_name">
+                                    <p className={ "profile_info_data_main_full_nick_name_name" + ( user && user.is_admin ? " profile_info_data_main_full_administrator_true" : "") } >{ user.nick_name }</p>
+                                    {user && user.is_verified ? <Verified className="profile_info_data_main_nick_name_verified"/> : <></>}
+                                </div>
+                                <p className={ "profile_info_data_main_full_administrator" + ( user && user.is_admin ? " profile_info_data_main_full_administrator_true": "") } >Administrator</p>
                             </div>
-                            <p className={ "profile_info_data_main_administrator" + ( user && user.is_admin ? " profile_info_data_main_administrator_true": "") } >Administrator</p>
-                        </div>
-                        <div className="profile_info_data_registration_date">
-                            <p>Регистрация: {format_date(user.created_date)}.</p>
+                            <div className="profile_info_data_registration_date">
+                                <p>Регистрация: {format_date(user.created_date)}.</p>
+                            </div>
                         </div>
                         {
                             (profile && profile._id == user._id) ?
