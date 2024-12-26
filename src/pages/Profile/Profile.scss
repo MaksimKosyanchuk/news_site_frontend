@@ -42,22 +42,17 @@
 
             &_main{
                 display: flex;
-                margin-bottom: auto;
-                
-                @include screen() {
-                    flex-direction: column;
-                }
 
                 &_quit_button {
                     color: red;
                     margin-right: 0;
                     margin-bottom: auto;
-                    margin-left: 20px;
                     border: 1px solid red;
                     padding: 12px 30px;
                     border-radius: 8px;
                     user-select: none;
                     cursor: pointer;
+                    margin-left: 20px;
         
                     @include screen {
                         padding: 8px 11px;
@@ -71,41 +66,51 @@
         
                     color: white;
                 }
-                
-                &_administrator {
-                    display: none;
+
+                &_full{
+                    display: flex;
+                    margin-bottom: auto;
+                    width: 100%;
                     
                     @include screen() {
-                        font-size: 10px;
+                        flex-direction: column;
                     }
-                }
-        
-                &_administrator_true{
-                    display: block;
-                    text-shadow: 0 0 16px #9f0000;
-                    color: red;
-                }
-
-                &_nick_name{
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-
-                    &_verified{
-                        width: 28px;
-                        height: 28px;
-
+                    
+                    &_administrator {
+                        display: none;
+                        
                         @include screen() {
-                            width: 18px;
-                            height: 18px;
+                            font-size: 10px;
                         }
                     }
+            
+                    &_administrator_true{
+                        display: block;
+                        text-shadow: 0 0 16px #9f0000;
+                        color: red;
+                    }
 
-                    &_name  {
-                        font-size: 34px;
-                        
-                        @include screen(){
-                            font-size: 20px;
+                    &_nick_name{
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        &_verified{
+                            width: 28px;
+                            height: 28px;
+
+                            @include screen() {
+                                width: 18px;
+                                height: 18px;
+                            }
+                        }
+
+                        &_name  {
+                            font-size: 34px;
+                            
+                            @include screen(){
+                                font-size: 20px;
+                            }
                         }
                     }
                 }
