@@ -4,6 +4,34 @@
         width: 150px;
         height: 150px;
         margin-bottom: 10px;
+
+        .remove_image {
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            bottom: 5px;
+            background-color: var(--submit-button-secondary-color);
+            border: 1px solid var(--line-color);
+            
+            p {
+                display: none;
+            }
+
+            .remove_image_button {
+                cursor: pointer;
+                padding: 2px;
+    
+                svg{
+                    color: red;
+                    height: 12px;
+                }
+            }
+        }
+    }
+
+    .image_input {
+        border-radius: 50%;
     }
 
     .form_input_description{

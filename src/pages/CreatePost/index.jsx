@@ -11,7 +11,7 @@ const CreatePost = () => {
     const { profile, profileLoading, showToast } = useContext(AppContext)
     const [ initialized, setInitialized ] = useState(false);
     const [ createResult, setCreateResult ] = useState({})
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({ });
 
     const [ fields, setFields ] = useState(
         {
@@ -20,6 +20,29 @@ const CreatePost = () => {
             featured_image: null
         }
     )
+
+    const add_errors_to_image = (new_errors) => {
+        const updated_errors = { ...errors };
+
+        if (!updated_errors.featured_image) { 
+            updated_errors.featured_image = [];
+        }
+
+        for(const new_error of new_errors) {
+            updated_errors.featured_image.push(new_error)
+        }
+        setErrors(updated_errors);
+    }
+
+    const clear_errors_from_image = () => {
+        const updated_errors = { ...errors };
+
+        if(updated_errors.featured_image) {
+            delete updated_errors.featured_image
+        }
+
+        setErrors(updated_errors)
+    }
 
     useEffect(() => {
         if(initialized){
@@ -74,11 +97,6 @@ const CreatePost = () => {
             }
         } 
         catch(e){
-            if(e instanceof TypeError && e.message === "Failed to fetch") {
-                setErrors({
-                    "featured_image": [ "Max size of image is 5 mb"] 
-                })
-            }
             return {
                 status: "error",
                 message: "server not found"
@@ -96,7 +114,7 @@ const CreatePost = () => {
                 onFocus={() => handleFocus('title')}
                 error={errors?.title}
             />
-            <DropFile setValue={(file) => setFields({ ...fields, featured_image: file })} drop_file_type={"images/*"} errors={errors?.featured_image} setErrors={setErrors} handleClick={handleClick}/>
+            <DropFile setValue={(file) => setFields({ ...fields, featured_image: file })} drop_file_type={"image/*"} errors={errors.featured_image} add_new_errors={add_errors_to_image} clear_errors={clear_errors_from_image} handleClick={handleClick}/>
             <InputFiled 
                 className={"create_post_main_text" + (createResult.status === "error" && createResult.message === "'content_text' length must be mroe than 0" ? " incorrect_field" : "")}
                 placeholder={"Текст"}

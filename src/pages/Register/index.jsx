@@ -21,6 +21,29 @@ const Register = () => {
     const [errors, setErrors] = useState({});
     const { showToast } = useContext(AppContext);
 
+    const add_errors_to_image = (new_errors) => {
+        const updated_errors = { ...errors };
+
+        if (!updated_errors.featured_image) { 
+            updated_errors.featured_image = [];
+        }
+
+        for(const new_error of new_errors) {
+            updated_errors.featured_image.push(new_error)
+        }
+        setErrors(updated_errors);
+    }
+
+    const clear_errors_from_image = () => {
+        const updated_errors = { ...errors };
+
+        if(updated_errors.featured_image) {
+            delete updated_errors.featured_image
+        }
+
+        setErrors(updated_errors)
+    }
+
     const handleFocus = (fieldName) => {
         const { [fieldName]: removedField, ...other } = errors;
         setErrors (other)
@@ -64,7 +87,7 @@ const Register = () => {
     return (
         <form className='form_input app-transition'>
             <>
-                <DropFile setValue={(file) => setFields({ ...fields, avatar: file })} value={fields.avatar} drop_file_type={"image/*"} errors={errors?.avatar} setErrors={setErrors} handleClick={handleClick}/> 
+                <DropFile setValue={(file) => setFields({ ...fields, avatar: file })} value={fields.avatar} drop_file_type={"image/*"} errors={errors.featured_image} add_new_errors={add_errors_to_image} clear_errors={clear_errors_from_image} handleClick={handleClick}/> 
                 <InputField
                     className={`user_name`}
                     type="text"

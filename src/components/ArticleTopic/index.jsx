@@ -7,7 +7,6 @@ import { ReactComponent as BookMarkBorder} from "../../assets/svg/bookmark-outli
 import { ReactComponent as BookMarkFilled} from "../../assets/svg/bookmark-filled-icon.svg";
 import { ReactComponent as ShareIcon} from "../../assets/svg/share-icon.svg";
 
-
 function isMobile() {
     return navigator.maxTouchPoints > 0;
 }
