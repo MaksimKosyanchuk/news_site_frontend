@@ -125,7 +125,7 @@ const DropFile = ({ setValue, value, drop_file_type, errors, add_new_errors, cle
 							</button>
 						</div>
 					</>
-					) : 
+					) :
 					<input
 						className={"image_input"}
 						type={"file"}
