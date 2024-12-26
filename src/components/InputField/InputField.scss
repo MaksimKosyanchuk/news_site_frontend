@@ -91,12 +91,6 @@ input:focus {
         padding: 12px 14px;
         width: 100%;
         margin-top: auto;
-        //margin: 200px 0 0 0;
         font-size: 18px;
-
-        @include screen() {
-            margin-top: 20px;
-        }
     }
 }
-        
