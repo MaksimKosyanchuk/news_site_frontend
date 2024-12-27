@@ -71,7 +71,7 @@ const Login = () => {
             value={fields.password}
             error={errors?.password ?? null}
         />
-        <button className="submit_button app-transition" onClick={handleLogin} type="button">"Войти"</button>
+        <button className="submit_button app-transition" onClick={handleLogin} type="button">Войти</button>
         <p className={"redirect_object"}>Нет акаунта?
             <Link to={"/auth/register"}>
                 Зарегестрироваться.

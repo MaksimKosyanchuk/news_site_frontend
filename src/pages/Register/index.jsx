@@ -108,7 +108,7 @@ const Register = () => {
                 />
                 <button className="submit_button app-transition" type="button" onClick={handleRegister}>Зарегистрироваться</button>
                 <p className={"redirect_object"}>Уже есть аккаунт?
-                    <Link to={"/auth/login"}> Войти.</Link>
+                    <Link to={"/auth/login"}>Войти.</Link>
                 </p>
             </>
         </form>

@@ -9,7 +9,6 @@
 
     .input_field {
         width: 100%;
-        margin: 20px 0 0 0;
         padding: 12px 14px;
         background-color: transparent;
         border: 1px solid var(--input-outline-color);
@@ -24,7 +23,7 @@
         display: flex;
         visibility: hidden;
         height: 36px;
-        margin-top: 10px;
+        margin: 10px 0;
         opacity: 0;
 
         p {
@@ -68,7 +67,8 @@ input:focus {
     margin-bottom: 0;
 
     @include screen() {
-        padding-top: 100px;
+        padding-top: 0;
+        height: auto;
     }
 
     .redirect_object {
