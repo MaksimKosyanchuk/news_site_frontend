@@ -52,7 +52,7 @@ function App() {
     '--submit-button-secondary-color': isDarkTheme ? 'rgba(37, 37, 37, .8)' : 'rgba(215, 215, 215, .8)',
     '--submit-button-primary-color': isDarkTheme ? 'rgb(215, 215, 215)' : 'rgb(55,55,55)',
     '--header-background': isDarkTheme ? 'rgba(0,0,0, .8)' : 'rgba(255,255,255, .8)',
-    '--header-button-color': isDarkTheme ? '#c6c6c6' : '#3f3f3f',
+    '--header-button-color': isDarkTheme ? '#c6c6c6' : '#797979',
     '--header-button-hover-color': isDarkTheme ? 'white' : 'black',
     '--banner-haze': isDarkTheme ? 0 : 1,
     '--post-title-color': isDarkTheme ? '#e7e7e7' : "black",

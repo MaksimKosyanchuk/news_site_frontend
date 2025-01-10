@@ -44,7 +44,7 @@ function Header() {
             <button type='button' onClick={() => setIsDarkTheme(!isDarkTheme)} className='header_item'>
               {isDarkTheme ? <SunIcon className='app-transition'></SunIcon> : <MoonIcon className='app-transition'></MoonIcon>}
             </button> 
-            <LinkToProfile className='header_item' children={
+            <LinkToProfile class_name='header_item' children={
               avatar ? (
                 <div className='header_profile_avatar'>
                     <img src={avatar} alt="Profile Avatar" className='app-transition' />

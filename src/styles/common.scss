@@ -5,6 +5,7 @@
     box-sizing: border-box;
 }
 
+
 :root {
     --container-padding: 60px;
     
@@ -76,6 +77,8 @@ button {
     display: flex;
     flex-direction: column;
     color: var(--text-color);
+    background-color: var(--main-background);
+    transition: .3s;
 }
 
 img, svg {
