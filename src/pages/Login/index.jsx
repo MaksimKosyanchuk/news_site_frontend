@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../../config';
 import { Link } from 'react-router-dom';
 import InputField from '../../components/InputField/index';
+import "./Login.scss";
 
 const Login = () => {
     const navigate = useNavigate(); 

@@ -90,7 +90,6 @@ const ArticleTopic = ({ article }) => {
             </button>
             <button type="button" className="article_topic_button" onClick={save_post} disabled={isSavingProcess}>
                 {
-                    // isSavingProcess ? <Loading/>:
                     (isSaved ? <BookMarkFilled /> : <BookMarkBorder />)
                 }
             </button>

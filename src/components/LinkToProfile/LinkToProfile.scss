@@ -1,18 +1,6 @@
 @import '../../styles/helpers.scss';
 
 
-.header_profile_avatar {
-    border-radius: 50%;
-    overflow: hidden;
-    height: 32px;
-    width: 32px;
-
-    @include screen() {
-        height: 24px;
-        width: 24px;
-    }
-}
-
-.header_profile_link {
+.profile_link {
     display: flex;
 }

@@ -1,9 +1,16 @@
+@import '../../styles/common.scss';
+
 .form_input{
     .drop_file{
         border-radius: 50%;
         width: 150px;
         height: 150px;
         margin-bottom: 10px;
+
+        @include screen() {
+            width: 120px;
+            height: 120px;
+        }
 
         .remove_image {
             position: absolute;
@@ -20,11 +27,18 @@
 
             .remove_image_button {
                 cursor: pointer;
-                padding: 2px;
+                padding: 6px 8px;
     
                 svg{
                     color: red;
                     height: 12px;
+                    width: 12px;
+                    
+                    @include screen() {
+                        color: red;
+                        height: 16px;
+                        width: 16px;
+                    }
                 }
             }
         }

@@ -3,7 +3,6 @@
 .start_screen {
     display: flex;
     flex-direction: column;
-    background-color: var(--main-background);
     min-height: 100dvh;
 
     @include screen(){
@@ -20,7 +19,6 @@
         padding-bottom: 20px;
         width: 200px;
         font-size: 16px;
-
         
         button {
             width: 200px;

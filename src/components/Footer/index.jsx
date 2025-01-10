@@ -11,21 +11,21 @@ function Footer(){
     return(
         <footer className="blurred app-transition">
             <div className="container">
-                <div className="footer_top_content app-transition">
+                <div className="footer_top_content">
                     <div className="footer_links">
-                        <Link to={'/posts'}>Домой</Link>
+                        <Link to={'/posts'}><p>Домой</p></Link>
                     </div>
                     <div className="footer_links">
-                        <LinkToProfile to={'/profile'}>Профиль</LinkToProfile>
+                        <LinkToProfile to={'/profile'}><p>Профиль</p></LinkToProfile>
                     </div>
                     <div className="footer_links">
-                        <a href="https://github.com/MaksimKosyanchuk/news_site_backend/blob/master/README.md#fetches" target="_blank">Api</a>
+                        <a href="https://github.com/MaksimKosyanchuk/news_site_backend/blob/master/README.md#fetches" target="_blank"><p>Api</p></a>
                     </div>
                     <div className="footer_links">
-                        <Link to={'/users/Dev'}>Dev blog</Link>
+                        <Link to={'/users/Dev'}><p>Dev blog</p></Link>
                     </div>
                     <div className="footer_links">
-                        <a href="https://github.com/MaksimKosyanchuk" target="_blank">GitHub</a>
+                        <a href="https://github.com/MaksimKosyanchuk" target="_blank"><p>GitHub</p></a>
                     </div>
                 </div>
                 <div className="footer_bottom_content app-transition">

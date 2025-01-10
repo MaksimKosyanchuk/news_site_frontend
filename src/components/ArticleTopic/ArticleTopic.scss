@@ -1,21 +1,21 @@
 @import '../../styles/common.scss';
 
-.article_topic{        
+.article_topic {        
     position: relative;
     z-index: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     width: 100%;
-    gap: 0px 12px;
+    gap: 0px 10px;
 
     .author {
         margin-right: auto;
     }
 
     &_button {
-        width: 24px;
-        height: 24px;
+        width: 18px;
+        height: 18px;
         display: flex;
         justify-content: center;
         position: relative;
@@ -23,9 +23,9 @@
         color: var(--article-topic-button-color);
         cursor: pointer;
 
-        @include screen(){
-            width: 18px;
-            height: 18px;
+        @include screen() {
+            width: 16px;
+            height: 16px;
         }
 
         svg {
@@ -44,13 +44,13 @@
         }
     }
     
-    &_button:hover{
+    &_button:hover {
         color: var(--article-topic-button-hover-color)
     }
 
-    &_date{
+    &_date {
         color: var(--article-date-color);
-        font-weight: 600;
+        font-weight: 500;
         display: block;
 
         @include screen(){

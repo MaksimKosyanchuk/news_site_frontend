@@ -100,7 +100,7 @@ const Profile = ( ) => {
                             <div className="profile_info_data_main_full_content">
                                 <div className="profile_info_data_main_full_nick_name">
                                     <p className={ "profile_info_data_main_full_nick_name_name" + ( user && user.is_admin ? " profile_info_data_main_full_administrator_true" : "") } >{ user.nick_name }</p>
-                                    {user && user.is_verified ? <Verified className="profile_info_data_main_nick_name_verified"/> : <></>}
+                                    {user && user.is_verified ? <Verified className="profile_info_data_main_full_nick_name_verified"/> : <></>}
                                 </div>
                                 <p className={ "profile_info_data_main_full_administrator" + ( user && user.is_admin ? " profile_info_data_main_full_administrator_true": "") } >Administrator</p>
                             </div>

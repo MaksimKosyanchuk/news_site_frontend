@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './LinkToProfile.scss'
 import { ReactComponent as DefaultAvatar } from "../../assets/svg/profile-icon.svg";
 
-const LinkToProfile = ({children}) => {
+const LinkToProfile = ({children, class_name}) => {
     const [link, setLink] = useState('/auth/login');
 
     const { profile } = useContext(AppContext);
@@ -18,7 +18,7 @@ const LinkToProfile = ({children}) => {
     }, [profile]);
 
     return (
-        <Link to={link} className='header_profile_link'>
+        <Link to={link} className={`profile_link ${class_name ?? ""}`}>
             {children}
         </Link>
     );
