@@ -21,7 +21,7 @@
 
 
     &_info {
-        margin-left: 8px;
+        margin-left: 6px;
         display: flex;
         align-items: center;
         gap: 4px;
@@ -41,6 +41,7 @@
         &_verified{
             width: 18px;
             height: 18px;
+            color: var(--verified-icon-color);
 
             @include screen() {
                 width: 14px;
