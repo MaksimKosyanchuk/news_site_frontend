@@ -3,10 +3,10 @@ import "./Author.scss";
 import DefaultProfileAvatar from "../../assets/images/default-profile-avatar.png"
 import { ReactComponent as Verified } from "../../assets/svg/verified-icon.svg";
 
-const Author = ( author_data ) => {
+const Author = ( { author_data, class_name } ) => {
     if(!author_data) return<></>
     return (
-        <Link className="author" to={`/users/${author_data.nick_name}`}>
+        <Link className={`author ${class_name ?? ''}`} to={`/users/${author_data.nick_name}`}>
             <div className="author_avatar">
                 <img src = {author_data?.avatar ?? DefaultProfileAvatar}/>
             </div>

@@ -80,7 +80,7 @@ const ArticleTopic = ({ article }) => {
 
     return (
         <div className="article_topic">
-            <Author {...article.author} />
+            <Author author_data={article.author} />
             <p className="article_topic_date">{format_date(article.created_date)}</p>
             <button type="button" className="article_topic_button" onClick={() => 
             {

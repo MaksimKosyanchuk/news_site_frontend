@@ -34,6 +34,7 @@ function App() {
   const CssVariables = {
     '--main-background': isDarkTheme ? 'rgb(37, 37, 37)' : 'rgb(215 215 215)',
     '--loader-color': isDarkTheme ? 'white' : 'black',
+    '--verified-icon-color': '#0095f6',
     '--warning-color': isDarkTheme ? 'rgb(255 191 0)' : 'rgb(255, 179, 0)',
     '--warning-background-color': isDarkTheme ? 'rgb(94, 85, 42, .8)' : 'rgba(255, 245, 163, .8)',
     '--success-color': isDarkTheme ? 'rgb(132 255 148)' : 'rgb(0 139 12)',
@@ -52,7 +53,7 @@ function App() {
     '--submit-button-secondary-color': isDarkTheme ? 'rgba(37, 37, 37, .8)' : 'rgba(215, 215, 215, .8)',
     '--submit-button-primary-color': isDarkTheme ? 'rgb(215, 215, 215)' : 'rgb(55,55,55)',
     '--header-background': isDarkTheme ? 'rgba(0,0,0, .8)' : 'rgba(255,255,255, .8)',
-    '--header-button-color': isDarkTheme ? '#c6c6c6' : '#797979',
+    '--header-button-color': isDarkTheme ? '#c6c6c6' : '#6b6b6b',
     '--header-button-hover-color': isDarkTheme ? 'white' : 'black',
     '--banner-haze': isDarkTheme ? 0 : 1,
     '--post-title-color': isDarkTheme ? '#e7e7e7' : "black",

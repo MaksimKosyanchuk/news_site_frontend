@@ -9,7 +9,7 @@ import { ReactComponent as SunIcon } from "../../assets/svg/sun-icon.svg";
 import { ReactComponent as MoonIcon } from "../../assets/svg/moon-icon.svg";
 import { ReactComponent as MainLogo } from "../../assets/svg/main-logo-icon.svg";
 import { ReactComponent as DefaultProfileIcon } from "../../assets/svg/profile-icon.svg";
-
+import Author from "../Author"
 
 function Header() {
   const {setIsDarkTheme, isDarkTheme} = useContext(AppContext)
@@ -33,8 +33,8 @@ function Header() {
       <div className="container">
         <div className="header_content">
           <div className="header_side header_left_side">
-            <Link to={'/posts'} className='header_item'>
-              <HomeIcon className='app-transition'/>
+            <Link to={'/posts'} className='header_item header-button'>
+              <HomeIcon className='header_icon app-transition'/>
             </Link>
           </div>
           <div  className="header_main_logo">
@@ -44,15 +44,16 @@ function Header() {
             <button type='button' onClick={() => setIsDarkTheme(!isDarkTheme)} className='header_item'>
               {isDarkTheme ? <SunIcon className='app-transition'></SunIcon> : <MoonIcon className='app-transition'></MoonIcon>}
             </button> 
-            <LinkToProfile class_name='header_item' children={
-              avatar ? (
-                <div className='header_profile_avatar'>
-                    <img src={avatar} alt="Profile Avatar" className='app-transition' />
-                </div>
-              ) : (
+            <div className='header_profile'>
+              {
+                profile ? 
+                  <Author author_data={ profile } class_name={"header_profile_author"}/> 
+                :
+                <Link to={"auth/login"} className='header_item'>
                   <DefaultProfileIcon className='app-transition' />
-              )}
-            />
+                </Link>
+              }
+            </div>
           </div>
         </div>
       </div>
