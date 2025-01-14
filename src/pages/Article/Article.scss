@@ -2,7 +2,7 @@
 
 .article {
     &_title{
-        font-size: 48px;
+        font-size: 36px;
         line-height: 1.2;
         color: var(--post-text-color);
 
@@ -23,7 +23,7 @@
 
     &_featured_image{
         width: 100%;
-        margin-top: 36px;
+        margin-top: 18px;
 
         @include screen() {
             width: auto;
@@ -38,6 +38,7 @@
             object-fit: cover;
             object-position: scale-down;
             user-select: none;
+            border-radius: 8px;
             
             @include  screen() {
                 object-fit: contain;
