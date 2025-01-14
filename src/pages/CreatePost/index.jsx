@@ -108,19 +108,21 @@ const CreatePost = () => {
         <form className='create_post' onSubmit={handleSubmit}>
             <InputFiled 
                 className={"create_post_title"  + (createResult.status === "error" && createResult.message === "Incorrect 'title'" ? " incorrect_field" : "")}
-                placeholder={"Заголовок"}
+                placeholder={"Введите заголовок"}
                 is_multiline={true}
+                multiline_rows={2}
                 onChange={(e) => setFields({ ...fields, title: e.target.value })}
                 onFocus={() => handleFocus('title')}
                 error={errors?.title}
             />
             <DropFile setValue={(file) => setFields({ ...fields, featured_image: file })} drop_file_type={"image/*"} errors={errors.featured_image} add_new_errors={add_errors_to_image} clear_errors={clear_errors_from_image} handleClick={handleClick}/>
-            <InputFiled 
+            <InputFiled
                 className={"create_post_main_text" + (createResult.status === "error" && createResult.message === "'content_text' length must be mroe than 0" ? " incorrect_field" : "")}
-                placeholder={"Текст"}
+                placeholder={"Введите текст"}
                 onChange={(e) => setFields({ ...fields, content_text: e.target.value })}
                 onFocus={() => handleFocus('content_text')}
                 is_multiline={true}
+                multiline_rows={2}
                 length={400}
                 error={errors?.content_text}
             />

@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import "./DropFile.scss";
 import { ReactComponent as DeleteIcon } from "../../assets/svg/delete-icon.svg"
+import { ReactComponent as WarningIcon } from "../../assets/svg/warning-icon.svg"
 
 const DropFile = ({ setValue, value, drop_file_type, errors, add_new_errors, clear_errors, handleClick }) => {
 	const [file, setFile] = useState(value ?? null);
@@ -52,8 +53,12 @@ const DropFile = ({ setValue, value, drop_file_type, errors, add_new_errors, cle
         if (!Array.isArray(arrays)) {
             return <></>; 
         }
-
-        return arrays.map((error, index) => <p key={index}>{error}</p>);
+        return arrays.map((error, index) => 
+			<div className="drop_file_error_message">
+				<WarningIcon className='drop_file_error_message_logo'/>
+				<p key={index}>{error}</p>
+			</div>
+		);
     };
 
 	useEffect(() => { 
@@ -135,10 +140,8 @@ const DropFile = ({ setValue, value, drop_file_type, errors, add_new_errors, cle
 					/>
 				}
 			</div>
-			<div className="drop_file_incorrect_messages">
-				{
-					get_errors(errors)
-				}
+			<div className={`drop_file_error_messages ${get_errors(errors) ? "show" : ""}`}>
+				{get_errors(errors)}
 			</div>
 		</>
     );

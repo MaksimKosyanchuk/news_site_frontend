@@ -6,7 +6,6 @@
 
     .drop_file{
         min-height: 400px; 
-        margin-bottom: 20px;
         border-radius: 8px;
 
         @include screen() {
@@ -36,21 +35,45 @@
     }
 
     .drop_file_incorrect_messages {
-        min-height: 20px;
+        margin-top: 10px;
 
         p{
             text-align: left;
         }
     }
 
-    .input_field{
+    .input_field {
         width: 100%;
         height: 100%;
     }
+    
+    .input_field::placeholder {
+        color: var(--input-placeholder-color);
+        transition: .3s;    
+    }    
+
+    .input_field_label {
+        margin-bottom: 20px;
+
+        span {
+            margin: 0;
+        }
+    }
 
     .create_post_title{
-        font-size: 48px;
+        font-size: 36px;
         font-weight: bold;
+
+        @include screen(){
+            font-size: 24px;
+        }
+    }
+
+    .create_post_title::placeholder{
+        font-size: 36px;
+        font-weight: bold;
+        color: var(--input-placeholder-color);
+        transition: .3s;
 
         @include screen(){
             font-size: 24px;
@@ -71,9 +94,8 @@
         padding: 12px 14px;
         width: 200px;
         font-size: 14px;
-        color: var(--submit-button-primary-color);
-        background-color: var(--submit-button-secondary-color);
-        border: 1px solid var(--submit-button-primary-color);
+        color: var(--submit-button-secondary-color);
+        background-color: var(--submit-button-primary-color);
         border-radius: 8px;
 
         @include screen() {
@@ -86,6 +108,10 @@
                 font-size: 16px;
             }
         }
+    }
+
+    .create_post_submit:hover {
+        background-color: var(--submit-button-primary-hover-color); 
     }
 
 }
