@@ -55,7 +55,7 @@ footer {
         justify-content: space-between; 
         align-items: center;
         padding: 36px 0;
-        border-top: 1px solid var(--line-color);
+        border-top: 1px solid var(--footer-line-color);
 
         @include screen() {
           flex-direction: column;
@@ -65,7 +65,7 @@ footer {
           padding: 24px 0;
         }
 
-        p{
+        p {
           font-size: 22px;
           color: var(--footer-content-color);
 
@@ -75,9 +75,8 @@ footer {
         }
         
         .footer_main_logo {
-          color: var(--footer-content-color);
-          
           svg{
+            color: var(--footer-content-color);
             height: 30px;
 
             @include screen() {
@@ -120,7 +119,7 @@ footer {
 
         .footer_copyright{
           p{
-            font-size: 18px;
+            font-size: 16px;
           }
         }
     }

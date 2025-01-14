@@ -8,8 +8,8 @@
         overflow: visible;
 
         &_avatar {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             overflow: hidden;
             border-radius: 50%;
             flex-shrink: 0;
@@ -42,17 +42,22 @@
 
             &_main{
                 display: flex;
+                align-items: center;
+
+                @include screen() {
+                    align-items: flex-start;
+                }
 
                 &_quit_button {
-                    color: red;
-                    margin-right: 0;
-                    margin-bottom: auto;
-                    border: 1px solid red;
-                    padding: 12px 30px;
-                    border-radius: 8px;
-                    user-select: none;
                     cursor: pointer;
-                    margin-left: 20px;
+                    user-select: none;
+                    font-size: 12px;
+                    margin-left: 10px;
+                    padding: 10px 20px;
+                    margin-right: 0;
+                    color: var(--red-button-primary-color);
+                    border: 1px solid var(--red-button-primary-color);
+                    border-radius: 8px;
         
                     @include screen {
                         padding: 8px 11px;
@@ -62,13 +67,14 @@
                 }
         
                 &_quit_button:hover {
-                    background-color: red;
+                    background-color: var(--red-button-primary-color);
         
-                    color: white;
+                    color: var(--red-button-secondary-color);
                 }
 
-                &_full{
+                &_full {
                     display: flex;
+                    
                     margin-bottom: auto;
                     width: 100%;
                     
@@ -78,43 +84,47 @@
                     
                     &_administrator {
                         display: none;
-                    }
-            
-                    &_administrator_true{
-                        display: block;
-                        text-shadow: 0 0 16px #9f0000;
-                        color: red;
-
+                        font-size: 14px;
+                        
                         @include screen() {
                             font-size: 12px;
                         }
+                    }
+                    
+                    .profile_info_data_main_full_administrator_true {
+                        display: block;
+                        text-shadow: 0 0 16px var(--red-f1);
+                        color: var(--administrator-color);
                     }
 
                     &_nick_name{
                         display: flex;
                         align-items: center;
                         gap: 10px;
-
+                        
                         @include screen() {
                             gap: 6px;
                         }
-
+                        
+                        
                         &_verified{
-                            width: 28px;
-                            height: 28px;
-
+                            width: 24px;
+                            height: 24px;
+                            
                             @include screen() {
                                 width: 18px;
                                 height: 18px;
                             }
                         }
-
+                        
                         &_name  {
-                            font-size: 34px;
+                            font-size: 28px;
+                            color: var(--text-color);
                             
                             @include screen(){
                                 font-size: 20px;
                             }
+
                         }
                     }
                 }
@@ -122,8 +132,6 @@
 
             &_registration_date {
                 margin-left: auto;
-                margin-bottom: auto;
-                height: 41px;
                 align-content: center;
 
                 @include screen() {
@@ -149,11 +157,11 @@
                 word-break: break-word;
                 
                 p {
-                    font-size: 16px;
+                    font-size: 14px;
                     color: var(--small-text-color);
 
                     @include screen() {
-                        font-size: 12px;
+                        font-size: 10px;
                     }
                 }
 

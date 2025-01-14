@@ -7,7 +7,7 @@
     width: 100%;
     background-color: var(--header-background);
     z-index: 10;
-    box-shadow: 0 0 30px 1px rgba(0,0,0, .3);
+    box-shadow: 0 0 10px 1px rgba(0,0,0, .3);
 
     &_content {
       display: flex;
@@ -97,7 +97,15 @@
 
         &_name {
           font-size: 16px;
-          color: var(--text-color);
+          color: var(--header-button-color);
+
+          @include screen() {
+            font-size: 14px;
+          }
+        }
+
+        &_name:hover {
+          color: var(--header-button-hover-color);
         }
 
         &_verified {

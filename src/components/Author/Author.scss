@@ -32,6 +32,7 @@
 
         &_name  {
             font-size: 18px;
+            color: var(--author-name-color);
 
             @include screen(){
                 font-size: 14px;
