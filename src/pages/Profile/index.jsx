@@ -117,7 +117,7 @@ const Profile = ( ) => {
                         }
                     </div>
                     <div className="profile_info_data_description">
-                        <p>Кто не падал - тот не поднимался.Кто не срал - тот не подтирался</p>
+                        <p>{user.description ?? ''}</p>
                     </div>
                 </div>
             </div>
