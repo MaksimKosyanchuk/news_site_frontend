@@ -4,7 +4,8 @@
     position: relative;
     align-items: center;
     justify-content: center;
-    border: 1px dashed var(--input-outline-color);
+    border: 2px dashed var(--drop-file-border-color);
+    background-color: var(--drop-file-background-color);
     border-width: 2px;
     box-sizing: border-box;
     overflow: hidden;
@@ -24,7 +25,7 @@
             cursor: pointer;
 
             svg{
-                color: red;
+                color: var(--red-f5);
                 height: 20px;
             }
         }
@@ -61,20 +62,44 @@
 }
 
 .drop_file_dragged, .drop_file:hover{
-    border: 1px dashed var(--active-drop-file-border);
+    border: 1px dashed var(--drop-file-hover-border-color);
     border-width: 2px;
-    background: rgba(128, 128, 128, 0.2);
+    background: var(--drop-file-hover-background-color);
+}
+
+.drop_file_incorrect_field:hover {
+    border: 1px dashed var(--red-f5);
+    border-width: 2px;
+    background: var(--drop-file-hover-background-color);
 }
 
 .drop_file_incorrect_field {
-    border: 1px dashed red;
+    border: 1px dashed var(--red-f5);
     border-width: 2px;
     box-shadow: 0 0 20px rgb(255 0 0 / 50%);
+
 }
 
-.drop_file_incorrect_messages{
+.drop_file_error_messages.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 20px;
+    margin-top: 10px;
     
+    .drop_file_error_message {
+        display: flex;
+    }
+    
+    .drop_file_error_message_logo {
+        height: 16px;
+        width: 160x;
+        min-height: 16px;
+        margin-right: 5px;
+        max-width: 16px;
+        color: red;
+    }
+
     p {
         text-align: center;
         color: red;

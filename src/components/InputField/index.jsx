@@ -2,7 +2,7 @@ import React from 'react';
 import "./InputField.scss";
 import { ReactComponent as WarningIcon } from "../../assets/svg/warning-icon.svg"
 
-const Input = ({ className, onChange, onFocus, error, type, value, input_label, placeholder, required=false, is_multiline = false, length = 120 }) => {
+const Input = ({ className, onChange, onFocus, error, type, value, input_label, placeholder, required=false, is_multiline = false, multiline_rows = 1, length = 120 }) => {
   
   const InputComponent = is_multiline ? 'textarea' : 'input';
 
@@ -17,7 +17,7 @@ const Input = ({ className, onChange, onFocus, error, type, value, input_label, 
           onFocus={onFocus}
           required={required}
           placeholder={placeholder}
-          rows="2" wrap="hard" maxLength={length}
+          rows={multiline_rows} wrap="hard" maxLength={length}
           value={value}
           />
         </div>

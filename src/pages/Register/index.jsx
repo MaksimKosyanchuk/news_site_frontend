@@ -94,9 +94,21 @@ const Register = () => {
                     onChange={(e) => setFields({ ...fields, nick_name: e.target.value })}
                     onFocus={() => handleFocus('nick_name')}
                     input_label="Имя пользователя"
-                    placeholder="Введите имя пользователя"
+                    placeholder="User Name"
                     value={fields.nick_name}
                     error={errors?.nick_name ?? null}
+                />
+                <InputField
+                    className={`description`}
+                    type="text"
+                    is_multiline = { true }
+                    length={30}
+                    onChange={(e) => setFields({ ...fields, description: e.target.value })}
+                    onFocus={() => handleFocus('description')}
+                    input_label="Описание"
+                    placeholder="Description of profile"
+                    value={fields.description}
+                    error={errors?.description ?? null}
                 />
                 <InputField
                     className={`password`}
@@ -104,7 +116,7 @@ const Register = () => {
                     onChange={(e) => setFields({ ...fields, password: e.target.value })}
                     onFocus={() => handleFocus('password')}
                     input_label="Пароль"
-                    placeholder="Введите пароль"
+                    placeholder="Password123"
                     value={fields.password}
                     error={errors?.password ?? null}
                 />
