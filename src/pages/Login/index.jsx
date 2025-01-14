@@ -59,7 +59,8 @@ const Login = () => {
             type="text"
             onChange={(e) => setFields({ ...fields, nick_name: e.target.value })}
             onFocus={() => handleFocus('nick_name')}
-            placeholder="Имя пользователя"
+            input_label="Имя пользователя"
+            placeholder="Введите имя пользователя"
             value={fields.nick_name}
             error={errors?.nick_name ?? null}
         />
@@ -68,7 +69,8 @@ const Login = () => {
             type="password"
             onChange={(e) => setFields({ ...fields, password: e.target.value })}
             onFocus={() => handleFocus('password')}
-            placeholder="Пароль"
+            input_label="Пароль"
+            placeholder="Введите пароль"
             value={fields.password}
             error={errors?.password ?? null}
         />

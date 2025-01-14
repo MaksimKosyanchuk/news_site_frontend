@@ -7,21 +7,38 @@
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 16px;
+    
+    .input {
+        display: flex;
+        flex-direction: column;
+        
+        span {
+            color: #636363;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-family: "Google Sans", roboto, "Noto Sans Myanmar UI", arial, sans-serif;
+        }
+    }
 
     .input_field {
+        font-size: 16px;
+        padding: 8px 0;
         width: 100%;
         padding: 12px;
         background-color: transparent;
         border: 1px solid var(--input-outline-color);
         border-radius: 8px;
-        color: var(--text-color);
-        font-size: 16px;
+        color: var(--input-text-color);
         font-family: "Google Sans", roboto, "Noto Sans Myanmar UI", arial, sans-serif;
         resize: none;
     
         @include screen() {
             font-size: 14px;
         }
+    }
+
+    .input_field::placeholder {
+        color: #636363;
     }
 
     &_error_message {
@@ -87,10 +104,14 @@ input:focus {
     }
 
     .submit_button {
-        padding: 12px 14px;
         width: 100%;
+        padding: 12px 14px;
         margin-top: auto;
         font-size: 16px;
+        color: var(--submit-button-primary-color);
+        background-color: var(--submit-button-secondary-color);
+        border: 1px solid var(--submit-button-primary-color);
+        border-radius: 8px;
     
         @include screen() {
             font-size: 14px;
@@ -98,12 +119,17 @@ input:focus {
         }
     }
 
+    .submit_button:hover {
+        background-color: var(--submit-button-primary-color);
+        color: var(--submit-button-secondary-color);
+    }
+
     .redirect_object {
         display: flex;
         color: var(--small-text-color);
         
         font-size: 12px;
-        margin-top: 20px;
+        margin-top: 4px;
         
         a {
             font-weight: bold;

@@ -21,7 +21,7 @@
             bottom: 20px;
             padding: 8px;
             width: 96%;
-            background-color: var(--submit-button-secondary-color);
+            background-color: var(--sticky-button-background-color);
             border: 1px solid var(--line-color);
             
             .remove_image_button {
@@ -71,6 +71,10 @@
         padding: 12px 14px;
         width: 200px;
         font-size: 14px;
+        color: var(--submit-button-primary-color);
+        background-color: var(--submit-button-secondary-color);
+        border: 1px solid var(--submit-button-primary-color);
+        border-radius: 8px;
 
         @include screen() {
             width: 100%;
