@@ -40,8 +40,8 @@
         }
 
         &_verified{
-            width: 18px;
-            height: 18px;
+            width: 14px;
+            height: 14px;
             color: var(--verified-icon-color);
 
             @include screen() {
