@@ -12,7 +12,7 @@ const DropFile = ({ setValue, value, drop_file_type, errors, add_new_errors, cle
     const setFileHandler = (e) => {
 		const validation = image_validation(e);
 		
-		if (validation.is_valid) { 
+		if (validation.is_valid) {
 			setFile(e.currentTarget.files[0]); 
 			clear_errors()
 		}
@@ -140,7 +140,7 @@ const DropFile = ({ setValue, value, drop_file_type, errors, add_new_errors, cle
 					/>
 				}
 			</div>
-			<div className={`drop_file_error_messages ${get_errors(errors) ? "show" : ""}`}>
+			<div className={`drop_file_error_messages ${get_errors(errors).length > 0 ? "show" : ""}`}>
 				{get_errors(errors)}
 			</div>
 		</>

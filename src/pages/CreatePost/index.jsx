@@ -110,7 +110,7 @@ const CreatePost = () => {
                 className={"create_post_title"  + (createResult.status === "error" && createResult.message === "Incorrect 'title'" ? " incorrect_field" : "")}
                 placeholder={"Введите заголовок"}
                 is_multiline={true}
-                multiline_rows={2}
+                multiline_rows={1}
                 onChange={(e) => setFields({ ...fields, title: e.target.value })}
                 onFocus={() => handleFocus('title')}
                 error={errors?.title}
@@ -122,13 +122,16 @@ const CreatePost = () => {
                 onChange={(e) => setFields({ ...fields, content_text: e.target.value })}
                 onFocus={() => handleFocus('content_text')}
                 is_multiline={true}
-                multiline_rows={2}
+                multiline_rows={navigator.maxTouchPoints > 0 ? 6 : 10}
                 length={400}
                 error={errors?.content_text}
             />
-            <button className='submit_button create_post_submit app-transition' type="submit">
-                Создать
-            </button>
+            <div className="create_post_buttons">
+                <button className='submit_button create_post_submit app-transition' type="submit">
+                    Создать пост
+                </button>
+                <button onClick={() => navigate("/posts")} className="cancel_button app-transition">Отмена</button>
+            </div>
         </form>
     )
 }

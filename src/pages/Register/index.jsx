@@ -101,7 +101,7 @@ const Register = () => {
                 <InputField
                     className={`description`}
                     type="text"
-                    is_multiline = { true }
+                    is_multiline = {true}
                     length={30}
                     onChange={(e) => setFields({ ...fields, description: e.target.value })}
                     onFocus={() => handleFocus('description')}

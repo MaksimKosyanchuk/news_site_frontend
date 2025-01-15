@@ -7,7 +7,7 @@
     overflow: hidden;
     position: relative;
     display: flex;
-    
+
     &::before {
         border-radius: 9px;
     }
@@ -55,17 +55,12 @@
         padding: 16px;
         padding-top: clamp(100px, 20.83vw, 300px);
         z-index: 2;
-        
-        a {
-            display: block;
-            text-decoration: underline;
-        }
-        
+
         h1{
             font-size: 36px;
             
             @include screen() {
-                font-size: 24px;
+                font-size: 16px;
             }
         }
         
@@ -78,7 +73,14 @@
         }
 
         a {
+            display: block;
+            text-decoration: underline;
             margin-top: 12px;
+
+            @include screen() {
+                font-size: 12px;
+                margin-top: 2px;
+            }
         }
     }
 }
