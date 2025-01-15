@@ -17,7 +17,7 @@
         margin-right: 20px;
         margin-left: auto;
         margin-top: auto;
-        padding: 20px 0;
+        padding-bottom: 20px;
         font-size: 16px;
         
         @include screen() {
@@ -54,6 +54,7 @@
 
 .main_div {
     padding-top: 180px;
+    padding-bottom: 60px;
     z-index: 1;
     display: flex;
     flex-direction: column;

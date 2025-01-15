@@ -49,6 +49,7 @@
                 }
 
                 &_quit_button {
+                    margin-bottom: auto;
                     cursor: pointer;
                     user-select: none;
                     font-size: 12px;
@@ -74,7 +75,6 @@
 
                 &_full {
                     display: flex;
-                    
                     margin-bottom: auto;
                     width: 100%;
                     
@@ -127,37 +127,38 @@
 
                         }
                     }
-                }
-            }
 
-            &_registration_date {
-                margin-left: auto;
-                align-content: center;
-
-                @include screen() {
-                    margin: 2px 0;
-                    height: auto;
-                }
-                
-                p{
-                    color: var(--small-text-color);
-                    font-size: 14px;
-
-                    @include screen(){
-                        font-size: 10px;
+                    &_registration_date {
+                        margin-left: auto;
+                        padding-top: 10px;
+        
+                        @include screen() {
+                            margin: 2px 0;
+                            height: auto;
+                            padding-top: 0px;
+                        }
+                        
+                        p{
+                            color: var(--small-text-color);
+                            font-size: 14px;
+        
+                            @include screen(){
+                                font-size: 10px;
+                            }
+                        }
                     }
                 }
             }
 
             &_description{
                 width: 100%;
-                margin-top: 12px;
+                margin-top: 8px;
                 white-space: normal;
                 overflow-wrap: break-word;
                 word-break: break-word;
                 
                 p {
-                    font-size: 14px;
+                    font-size: 16px;
                     color: var(--small-text-color);
 
                     @include screen() {
@@ -170,7 +171,6 @@
                 }
             }
         }
-
     }
 
     &_tab_list {
