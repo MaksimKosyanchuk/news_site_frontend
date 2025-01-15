@@ -4,6 +4,7 @@ import { getPosts } from "../../api/posts.api.js";
 import Banner from "../../components/Banner";
 import Posts from "../../components/Posts/index.jsx";
 import BannerImage from "../../assets/images/banner-img.png"
+import "./HomePage.scss"
 
 const HomePage = () => {   
     const [ posts, setPosts ] = useState([])

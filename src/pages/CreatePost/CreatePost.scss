@@ -5,11 +5,11 @@
     flex-direction: column;
 
     .drop_file{
-        min-height: 400px; 
+        min-height: 200px;
         border-radius: 8px;
 
         @include screen() {
-            height: 200px;
+            min-height: 80px;
         }
 
         .remove_image {
@@ -34,17 +34,19 @@
         }
     }
 
-    .drop_file_incorrect_messages {
-        margin-top: 10px;
-
-        p{
-            text-align: left;
-        }
+    .drop_file_error_messages {
+        align-items: flex-start;
     }
 
     .input_field {
         width: 100%;
         height: 100%;
+        padding: 18px;
+
+        @include screen() {
+            padding: 12px;
+        }
+        
     }
     
     .input_field::placeholder {
@@ -61,22 +63,22 @@
     }
 
     .create_post_title{
-        font-size: 36px;
+        font-size: 24px;
         font-weight: bold;
 
         @include screen(){
-            font-size: 24px;
+            font-size: 18px;
         }
     }
 
     .create_post_title::placeholder{
-        font-size: 36px;
+        font-size: 24px;
         font-weight: bold;
         color: var(--input-placeholder-color);
         transition: .3s;
 
         @include screen(){
-            font-size: 24px;
+            font-size: 18px;
         }
     }
 
@@ -90,28 +92,54 @@
         }
     }
 
-    .create_post_submit{
-        padding: 12px 14px;
-        width: 200px;
-        font-size: 14px;
-        color: var(--submit-button-secondary-color);
-        background-color: var(--submit-button-primary-color);
-        border-radius: 8px;
-
+    .create_post_buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        
         @include screen() {
-            width: 100%;
+            flex-direction: column;
+            gap: 10px;
         }
-
-        &_content {
-            p{
-                margin: auto 10px;
-                font-size: 16px;
+        
+        button {
+            padding: 14px 28px;
+            font-size: 12px;
+            border-radius: 8px;
+            height: auto;
+            border: 1px solid;
+        }
+        
+        .create_post_submit {
+            color: var(--submit-button-secondary-color);
+            background-color: var(--submit-button-primary-color);
+            border-radius: 8px;
+            
+            @include screen() {
+                width: 100%;
+            }
+            
+            &_content {
+                p{
+                    margin: auto 10px;
+                    font-size: 16px;
+                }
             }
         }
+        
+        .create_post_submit:hover {
+            background-color: var(--submit-button-primary-hover-color); 
+        }
+        
+        .cancel_button {
+            border: 1px solid var(--red-button-primary-color);
+            color: var(--red-button-primary-color);
+        }
+        
+        .cancel_button:hover {
+            color: var(--red-button-secondary-color);
+            background: var(--red-button-primary-color);
+        }
+    
     }
-
-    .create_post_submit:hover {
-        background-color: var(--submit-button-primary-hover-color); 
-    }
-
 }

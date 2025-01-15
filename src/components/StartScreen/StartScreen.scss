@@ -14,15 +14,24 @@
         z-index: 3;
         bottom: 0;
         margin-right: 20px;
-        margin-top: auto;
+        margin-top: 20px;
         margin-left: auto;
-        padding-bottom: 20px;
-        width: 200px;
+        margin-bottom: 20px;
         font-size: 16px;
         
+        @include screen() {
+            left: 10px;
+            right: 10px;
+            width: 100%;
+            bottom: 20px;
+
+            width: 100%;
+            padding-right: var(--container-padding);
+            padding-left: var(--container-padding);
+        }
+
         button {
-            width: 200px;
-            height: 50px;
+            padding: 12px 24px;
             font-size: 16px;
             color: var(--submit-button-primary-color);
             background-color: var(--sticky-button-background-color);
@@ -39,22 +48,11 @@
             background-color: var(--submit-button-primary-color);
         }
 
-        @include screen() {
-            left: 10px;
-            right: 10px;
-            width: 100%;
-
-            margin: 0;
-            width: 100%;
-            padding-right: var(--container-padding);
-            padding-left: var(--container-padding);
-        }
     }
 }
 
 .main_div {
     padding-top: 180px;
-    padding-bottom: 60px;
     z-index: 1;
     display: flex;
     flex-direction: column;
