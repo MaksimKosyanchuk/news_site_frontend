@@ -104,7 +104,7 @@ const Profile = ( ) => {
                                 </div>
                                 <p className={ "profile_info_data_main_full_administrator" + ( user && user.is_admin ? " profile_info_data_main_full_administrator_true": "") } >Administrator</p>
                             </div>
-                            <div className="profile_info_data_registration_date">
+                            <div className="profile_info_data_main_full_registration_date">
                                 <p>Регистрация: {format_date(user.created_date)}.</p>
                             </div>
                         </div>
