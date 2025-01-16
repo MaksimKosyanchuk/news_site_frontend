@@ -70,6 +70,18 @@ const Profile = () => {
             if(result.status === "success") {
                 setUser(result.data.followed)
                 setProfile(result.data.follower)
+                showToast({ message: `Вы подписались на ${result.data.followed.nick_name}!`, type: "success" })
+            }
+            else {
+                if(result?.errors?.token){
+                    showToast({ type: "warning", message: "Чтобы подписаться нужно войти в аккаунт!" })
+                }
+                if(result?.errors?.["user_id/nick_name"] === "U are already following this user!") {
+                    showToast({ type: "warning", message: "Вы уже подписаны на этого пользователя!" })   
+                }
+                if(result?.errors?.["user_id/nick_name"] === "U cacanot follow your self!") {
+                    showToast({ type: "warning", message: "Вы не можете подписаться на самого себя!" })   
+                }
             }
         }
         catch(e) {
@@ -87,8 +99,20 @@ const Profile = () => {
             const result = await follow.json();
 
             if(result.status === "success") {
+                showToast({ message: `Вы отписались от ${result.data.followed.nick_name}!`, type: "success" })
                 setUser(result.data.followed)
                 setProfile(result.data.follower)
+            }
+            else {
+                if(result?.errors?.token){
+                    showToast({ type: "warning", message: "Чтобы подписаться нужно войти в аккаунт!" })
+                }
+                if(result?.errors?.["user_id/nick_name"] === "You are not following this user!") {
+                    showToast({ type: "warning", message: "Вы еще не подписаны на этого пользователя!" })   
+                }
+                if(result?.errors?.["user_id/nick_name"] === "You cannot unfollow yourself!") {
+                    showToast({ type: "warning", message: "Вы не можете отписаться от самого себя!" })   
+                }
             }
         }
         catch(e) {
