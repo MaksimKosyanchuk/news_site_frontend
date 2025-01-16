@@ -1,183 +1,218 @@
 @import "../../styles/helpers.scss";
 
 .profile{
-    &_info {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        overflow: visible;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: visible;
 
-        &_avatar {
-            width: 120px;
-            height: 120px;
-            overflow: hidden;
-            border-radius: 50%;
-            flex-shrink: 0;
-            
-            @include screen() {
-                width: 45px;
-                height: 45px;
-                margin-bottom: auto;
-            }
-            
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-        }
-        
-        
-        &_data {
+    &_info{
+        &_top{
             display: flex;
-            margin-bottom: auto;
-            margin-left: 30px;
-            width: 100%;
-            flex-direction: column;
-            
-            @include screen() {
-                font-size: 10px;
-                margin-left: 10px;
+    
+            &_avatar {
+                width: 150px;
+                height: 150px;
+                overflow: hidden;
+                border-radius: 50%;
+                flex-shrink: 0;
+                
+                @include screen() {
+                    width: 45px;
+                    height: 45px;
+                    margin-bottom: auto;
+                }
+                
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                
+                
             }
 
-            &_main{
+            &_right_side{
                 display: flex;
+                width: 100%;
+                justify-content: space-between;
                 align-items: center;
-
+                align-self: flex-start;
+                
                 @include screen() {
-                    align-items: flex-start;
+                    flex-direction: column;
+                    max-height: 45px;
+                    margin-left: auto;
+                    width: auto;
                 }
 
-                &_quit_button {
-                    margin-bottom: auto;
-                    cursor: pointer;
-                    user-select: none;
-                    font-size: 12px;
-                    margin-left: 10px;
-                    padding: 10px 20px;
-                    margin-right: 0;
-                    color: var(--red-button-primary-color);
-                    border: 1px solid var(--red-button-primary-color);
-                    border-radius: 8px;
-        
-                    @include screen {
-                        padding: 8px 11px;
-                        font-size: 12px;
-                    }
-        
-                }
-        
-                &_quit_button:hover {
-                    background-color: var(--red-button-primary-color);
-        
-                    color: var(--red-button-secondary-color);
-                }
-
-                &_full {
+                &_elements {
                     display: flex;
-                    margin-bottom: auto;
-                    width: 100%;
-                    
+                    align-items: center;
+                    gap: 20px;
+
                     @include screen() {
-                        flex-direction: column;
+                        gap: 10px;
+                    }
+
+                    a {
+                        background-color: var(--profile-button-background-color);
+                        padding: 6px 12px;
+                        border-radius: 8px;
                     }
                     
-                    &_administrator {
-                        display: none;
+                    p {
+                        color: var(--main-text-color);
                         font-size: 14px;
-                        
+
                         @include screen() {
                             font-size: 12px;
                         }
                     }
                     
-                    .profile_info_data_main_full_administrator_true {
-                        display: block;
+                    a:hover {
+                        background-color: var(--profile-button-hover-background-color);
+                    }
+                }
+
+                &_button {
+                    margin-bottom: auto;
+                    cursor: pointer;
+                    user-select: none;
+                    font-size: 14px;
+                    padding: 10px 20px;
+                    margin-right: 0;
+                    border-radius: 8px;
+                    
+                    @include screen() {
+                        bottom: 0;
+                        margin-top: 27px;
+                        margin-left: auto;
+                        font-size: 12px;
+                    }
+
+                    &_quit{
+                        color: var(--red-button-primary-color);
+                        border: 1px solid var(--red-button-primary-color);
+                        
+                        @include screen {
+                            padding: 8px 11px;
+                            font-size: 12px;
+                        }
+                    }
+
+                    &_quit:hover {
+                        background-color: var(--red-button-primary-color);
+                        
+                        color: var(--red-button-secondary-color);
+                    }
+
+                    &_follow {
+                        border: 1px solid var(--submit-button-primary-color);
+                        color: var(--submit-button-primary-color);
+                    }
+
+                    &_follow:hover {
+                        background-color: var(--submit-button-primary-color);
+                        color: var(--submit-button-secondary-color);
+                    }
+                }
+            }
+        }
+    
+        &_bottom {
+            &_nick {
+                display: flex;
+                margin-top: 20px;
+                align-items: center;
+                gap: 10px;
+                
+                @include screen() {
+                    gap: 6px;
+                    margin-top: 10px;
+                }
+                
+                &_name  {
+                    font-size: 28px;
+                    font-weight: 600;
+                    color: var(--text-color);
+                    
+                    @include screen(){
+                        font-size: 20px;
+                    }
+
+                    &_admin {
                         text-shadow: 0 0 16px var(--red-f1);
                         color: var(--administrator-color);
                     }
+                }
+                
 
-                    &_nick_name{
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
-                        
-                        @include screen() {
-                            gap: 6px;
-                        }
-                        
-                        
-                        &_verified{
-                            width: 24px;
-                            height: 24px;
-                            
-                            @include screen() {
-                                width: 18px;
-                                height: 18px;
-                            }
-                        }
-                        
-                        &_name  {
-                            font-size: 28px;
-                            color: var(--text-color);
-                            
-                            @include screen(){
-                                font-size: 20px;
-                            }
-
-                        }
+                &_verified{
+                    width: 24px;
+                    height: 24px;
+                    
+                    @include screen() {
+                        width: 18px;
+                        height: 18px;
                     }
+                }
+                
+            }
 
-                    &_registration_date {
-                        margin-left: auto;
-                        padding-top: 10px;
-        
-                        @include screen() {
-                            margin: 2px 0;
-                            height: auto;
-                            padding-top: 0px;
-                        }
-                        
-                        p{
-                            color: var(--small-text-color);
-                            font-size: 14px;
-        
-                            @include screen(){
-                                font-size: 10px;
-                            }
-                        }
+            &_administrator {
+                p {
+                    font-size: 14px;
+                    color: var(--administrator-color);
+                    text-shadow: 0 0 16px var(--red-f1);
+
+                    @include screen() {
+                        font-size: 12px;
                     }
                 }
             }
 
-            &_description{
-                width: 100%;
-                margin-top: 8px;
-                white-space: normal;
-                overflow-wrap: break-word;
-                word-break: break-word;
-                
+            &_description {
+                margin-top: 10px;
+
                 p {
                     font-size: 16px;
-                    color: var(--small-text-color);
+                    color: var(--main-text-color);
 
                     @include screen() {
                         font-size: 10px;
                     }
                 }
+            }
 
-                @include screen() {
-                    margin-top: 0;
+            &_registration_date {
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+
+                p {
+                    margin-left: 4px;
+                    color: var(--light-text-color);
+                    font-size: 16px;
+                    
+                    @include screen(){
+                        font-size: 10px;
+                    }
+                }
+
+                svg {
+                    color: var(--light-text-color);
+                    height: 14px;
                 }
             }
         }
     }
-
+    
     &_tab_list {
         display: flex;
         justify-content: center;
         border-top: 1px solid var(--line-color);
-        margin: 50px 0 0;
+        margin-top: 20px;
         padding: 10px 0;
 
         @include screen() {
@@ -185,7 +220,7 @@
         }
 
         p {
-            color: var(--small-text-color);
+            color: var(--main-text-color);
             font-size: 14px;
 
             @include screen() {
