@@ -42,7 +42,7 @@ const Profile = () => {
 
     useEffect(() => {
         if (user && user._id) {
-            fetchPosts({ author: user._id }).then(data => setPosts(data)); // Загружаем посты автора
+            fetchPosts({ author: user._id }).then(data => setPosts(data));
         }
     }, [user]);
 
@@ -103,8 +103,18 @@ const Profile = () => {
         return response.status === "success" ? response.data : [];
     };
 
-    const handleTabClick = (item) => {
+    const handleTabClick = async (item) => {
+        if (item === "Сохранённые" && (!profile || profile._id !== user._id)) {
+            return;
+        }
         setActiveTab(item);
+
+        if (item === "Посты" && user?._id) {
+            setIsLoading(true);
+            const updatedPosts = await fetchPosts({ author: user._id });
+            setPosts(updatedPosts);
+            setIsLoading(false);
+        }
     };
 
     const quitButtonClick = () => {
@@ -159,7 +169,6 @@ const Profile = () => {
                         )}
                     </div>
                 </div>
-                {/* Нижняя часть профиля */}
                 <div className="profile_info_bottom">
                     <div className="profile_info_bottom_nick">
                         <p
@@ -172,7 +181,14 @@ const Profile = () => {
                         </p>
                         {user && user.is_verified ? <Verified className="profile_info_bottom_nick_verified" /> : null}
                     </div>
-                    {user?.is_admin && <p>Administrator</p>}
+                    <div className="profile_info_bottom_administrator">
+                        {
+                            user?.is_admin ? 
+                                <p>Administrator</p>
+                            :
+                                <></>
+                        }
+                    </div>
                     {user?.description && (
                         <div className="profile_info_bottom_description">
                             <p>{user.description}</p>
@@ -184,7 +200,6 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            {/* Вкладки */}
             <div className="profile_tab_list app-transition">
                 {tabs.map((item, index) => (
                     <div
@@ -198,7 +213,6 @@ const Profile = () => {
                     </div>
                 ))}
             </div>
-            {/* Посты */}
             <div className="profile_posts">
                 <Posts posts={activePosts} isLoading={isLoading} />
             </div>
