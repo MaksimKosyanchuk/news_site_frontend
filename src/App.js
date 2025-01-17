@@ -10,6 +10,7 @@ import Login from './pages/Login/index.jsx';
 import Register from './pages/Register/index.jsx';
 import CreatePost from './pages/CreatePost/index.jsx';
 import Toast from "./components/Toast/index.jsx";
+import ModalWindow from './components/ModalWindow/index.jsx';
 
 import "./styles/common.scss";
 
@@ -28,7 +29,7 @@ function App() {
   const [ profileLoading, setProfileLoading ] = useState(false)
   let [ isDarkTheme, setIsDarkTheme ] = useState(lsTheme ? JSON.parse(lsTheme) : true);
   let [ toast, showToast ] = useState(false);
-
+  let [ modalWindow, showModalWindow ] = useState(false)
 
 
   const CssVariables = {
@@ -96,6 +97,8 @@ function App() {
     '--header-button-hover-color': isDarkTheme ? 'var(--gray-ff)' : 'var(--gray-16)',
     '--banner-haze': isDarkTheme ? 0 : 1,
     '--post-title-color': isDarkTheme ? 'var(--gray-e7)' : 'var(--gray-25)',
+    '--modale_window-body-background-color': isDarkTheme ? 'var(--gray-1e)' : 'white',
+    '--modale_window-background-color': isDarkTheme ? 'rgb(0, 0, 0, .8)' : 'rgb(0, 0, 0, .4)',
     '--post-card-background': isDarkTheme ? 'var(--gray-25)' : 'white',
     '--post-card-description-color': isDarkTheme ? 'var(--gray-b5)' : "#6b6b6b",
     '--article-date-color': isDarkTheme ? 'var(--gray-79)' : "var(--gray-79)",
@@ -113,12 +116,17 @@ function App() {
   }, [isDarkTheme])
 
   return (
-    <AppContext.Provider value={{profile, setProfile, isDarkTheme, setIsDarkTheme, profileLoading, setProfileLoading, toast, showToast }}>
+    <AppContext.Provider value={{profile, setProfile, isDarkTheme, setIsDarkTheme, profileLoading, setProfileLoading, toast, showToast, modalWindow, showModalWindow }}>
       <Router>
         <div className={`App ${isDarkTheme ? 'App_dark' : ''}`} style={CssVariables}>
 
+          <ModalWindow
+            modalWindow={modalWindow}
+            showModalWindow={showModalWindow}
+            
+            />
+          <Header/>
           <StartScreen>
-            <Header/>
             <Routes>
               
               <Route

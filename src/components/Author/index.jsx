@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import "./Author.scss";
 import DefaultProfileAvatar from "../../assets/images/default-profile-avatar.png"
 import { ReactComponent as Verified } from "../../assets/svg/verified-icon.svg";
+import { useEffect } from "react";
 
 const Author = ( { author_data, class_name } ) => {
     if(!author_data) return<></>
+
     return (
         <Link className={`author ${class_name ?? ''}`} to={`/users/${author_data.nick_name}`}>
             <div className="author_avatar">
