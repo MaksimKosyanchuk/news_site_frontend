@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import LinkToProfile from '../LinkToProfile';
 import { AppContext } from '../../App';
 import './Header.scss';
 import DefaultAvatar from "../../assets/images/default-profile-avatar.png";

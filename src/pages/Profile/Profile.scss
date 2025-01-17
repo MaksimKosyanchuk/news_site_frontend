@@ -32,7 +32,7 @@
                 
             }
 
-            &_right_side{
+            &_right_side {
                 display: flex;
                 width: 100%;
                 justify-content: space-between;
@@ -55,7 +55,7 @@
                         gap: 10px;
                     }
 
-                    a {
+                    button {
                         background-color: var(--profile-button-background-color);
                         padding: 6px 12px;
                         border-radius: 8px;
@@ -70,7 +70,7 @@
                         }
                     }
                     
-                    a:hover {
+                    button:hover {
                         background-color: var(--profile-button-hover-background-color);
                     }
                 }
@@ -105,16 +105,6 @@
                         background-color: var(--red-button-primary-color);
                         
                         color: var(--red-button-secondary-color);
-                    }
-
-                    &_follow {
-                        border: 1px solid var(--submit-button-primary-color);
-                        color: var(--submit-button-primary-color);
-                    }
-
-                    &_follow:hover {
-                        background-color: var(--submit-button-primary-color);
-                        color: var(--submit-button-secondary-color);
                     }
                 }
             }
@@ -244,5 +234,29 @@
         flex: 1;
         display: flex;
         justify-content: center;
+    }
+}
+
+.modal_window {
+    &_body{
+        &_content {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            gap: 14px;
+            
+            &_user {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                
+                .follow_button {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    border-radius: 8px;
+                }
+            }
+            
+        }
     }
 }

@@ -4,18 +4,21 @@ import { AppContext } from "../../App.js";
 import { format_date } from "../../components/ArticleTopic";
 import { API_URL } from "../../config";
 import { getPosts } from "../../api/posts.api.js";
+import { getUsers } from "../../api/users.api.js";
 import Posts from "../../components/Posts/index.jsx"
 import Loading from "../../components/Loading";
+import Author from "../../components/Author"
 import "./Profile.scss"
 import DefaultProfileAvatar from "../../assets/images/default-profile-avatar.png"
 import { ReactComponent as Verified } from "../../assets/svg/verified-icon.svg";
 import { ReactComponent as Calendar } from "../../assets/svg/calendar-icon.svg";
+import FollowButton from "../../components/FollowButton/index.jsx";
 
 const Profile = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     let tabs = ["Посты", "Сохранённые"];
-    const { profile, setProfile, showToast } = useContext(AppContext);
+    const { profile, setProfile, showToast, showModalWindow } = useContext(AppContext);
     const [activeTab, setActiveTab] = useState(tabs[0]);
     const [isLoading, setIsLoading] = useState(false);
     const [posts, setPosts] = useState([]);
@@ -27,6 +30,7 @@ const Profile = () => {
             try {
                 let response = await fetch(`${API_URL}/api/users/${id}`);
                 let findNeededUser = await response.json();
+
                 if (findNeededUser.status === "error") {
                     navigate('/404');
                 } else {
@@ -58,68 +62,6 @@ const Profile = () => {
         }
     }, [activeTab, posts, profile?.saved_posts]);
 
-    const follow = async () => {
-        try {
-            const formData = new FormData();
-            formData.append("token", localStorage.getItem("token"));
-            formData.append('nick_name', user.nick_name);
-
-            const follow = await fetch(`${API_URL}/api/profile/follow`, { method: "POST", body: formData})
-            const result = await follow.json();
-
-            if(result.status === "success") {
-                setUser(result.data.followed)
-                setProfile(result.data.follower)
-                showToast({ message: `Вы подписались на ${result.data.followed.nick_name}!`, type: "success" })
-            }
-            else {
-                if(result?.errors?.token){
-                    showToast({ type: "warning", message: "Чтобы подписаться нужно войти в аккаунт!" })
-                }
-                if(result?.errors?.["user_id/nick_name"] === "U are already following this user!") {
-                    showToast({ type: "warning", message: "Вы уже подписаны на этого пользователя!" })   
-                }
-                if(result?.errors?.["user_id/nick_name"] === "U cacanot follow your self!") {
-                    showToast({ type: "warning", message: "Вы не можете подписаться на самого себя!" })   
-                }
-            }
-        }
-        catch(e) {
-            console.log(e)
-        }
-    }
-
-    const unfollow = async () => {
-        try {
-            const formData = new FormData();
-            formData.append("token", localStorage.getItem("token"));
-            formData.append('nick_name', user.nick_name);
-
-            const follow = await fetch(`${API_URL}/api/profile/unfollow`, { method: "POST", body: formData})
-            const result = await follow.json();
-
-            if(result.status === "success") {
-                showToast({ message: `Вы отписались от ${result.data.followed.nick_name}!`, type: "success" })
-                setUser(result.data.followed)
-                setProfile(result.data.follower)
-            }
-            else {
-                if(result?.errors?.token){
-                    showToast({ type: "warning", message: "Чтобы подписаться нужно войти в аккаунт!" })
-                }
-                if(result?.errors?.["user_id/nick_name"] === "You are not following this user!") {
-                    showToast({ type: "warning", message: "Вы еще не подписаны на этого пользователя!" })   
-                }
-                if(result?.errors?.["user_id/nick_name"] === "You cannot unfollow yourself!") {
-                    showToast({ type: "warning", message: "Вы не можете отписаться от самого себя!" })   
-                }
-            }
-        }
-        catch(e) {
-            console.log(e)
-        }
-    }
-
     const fetchPosts = async (query) => {
         setIsLoading(true);
         const response = await getPosts(query);
@@ -147,6 +89,45 @@ const Profile = () => {
         navigate('/posts');
     };
 
+    const fetchUsers = async (query) => {
+        const response = await getUsers(query);
+        return response.status === "success" ? response.data : [];
+    }
+
+    const open_follows = async () => {
+        const follows =  user?.follows?.map(item => ({ _id: item }));
+        const result = await fetchUsers(follows)
+ 
+        showModalWindow(
+            {
+                title: `Подписки`,
+                content: result.map(authorData => (
+                    <div key={authorData._id} className="modal_window_body_content_user">
+                        <Author author_data={authorData} />
+                        <FollowButton is_update_user={false} setUser={setUser} author_id={authorData._id}/>
+                    </div>
+                  ))
+            }
+        )
+    }
+
+    const open_followers = async () => {
+        const follows =  user?.followers?.map(item => ({ _id: item }));
+        const result = await fetchUsers(follows)
+
+        showModalWindow(
+            {
+                title: `Подписчики`,
+                content: result.map(authorData => (
+                    <div key={authorData?._id } className="modal_window_body_content_user">
+                        <Author author_data={authorData} />
+                        <FollowButton is_update_user={false} setUser={setUser} author_id={authorData._id}/>
+                    </div>
+                  ))
+            }
+        )
+    }
+
     if (!user) {
         return <Loading />;
     }
@@ -162,12 +143,12 @@ const Profile = () => {
                         <div></div>
                         <div className="profile_info_top_right_side_elements">
                             <p>{posts?.length ?? "0"} постов</p>
-                            <Link className="app-transition">
+                            <button onClick={ () => { open_follows() } } className="app-transition">
                                 <p>{user?.follows?.length ?? "0"} подписок</p>
-                            </Link>
-                            <Link className="app-transition">
+                            </button>
+                            <button onClick={ () => { open_followers() } } className="app-transition">
                                 <p>{user?.followers?.length ?? "0"} подписчиков</p>
-                            </Link>
+                            </button>
                         </div>
                         {profile && profile._id === user._id ? (
                             <button
@@ -176,21 +157,10 @@ const Profile = () => {
                             >
                                 Выйти
                             </button>
-                        ) : profile?.follows?.some(item => item === user._id) ? (
-                            <button
-                                onClick={unfollow}
-                                className="profile_info_top_right_side_button profile_info_top_right_side_button_follow app-transition"
-                            >
-                                Отписаться
-                            </button>
-                        ) : (
-                            <button
-                                onClick={follow}
-                                className="profile_info_top_right_side_button profile_info_top_right_side_button_follow app-transition"
-                            >
-                                Подписаться
-                            </button>
-                        )}
+                        ) 
+                        :
+                            <FollowButton user={user} setUser={setUser} author_id={user?._id} class_name={"profile_info_top_right_side_button"}/> 
+                        }
                     </div>
                 </div>
                 <div className="profile_info_bottom">

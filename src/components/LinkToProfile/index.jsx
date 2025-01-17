@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AppContext } from '../../App';
 import { Link } from 'react-router-dom';
 import './LinkToProfile.scss'
-import { ReactComponent as DefaultAvatar } from "../../assets/svg/profile-icon.svg";
 
 const LinkToProfile = ({children, class_name}) => {
     const [link, setLink] = useState('/auth/login');
