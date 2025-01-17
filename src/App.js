@@ -63,7 +63,7 @@ function App() {
     '--text-color': isDarkTheme ? 'var(--gray-e7)' : 'var(--gray-25)',
     '--main-text-color': isDarkTheme ? 'var(--gray-b5)' : 'var(--gray-25)',
     '--light-text-color': isDarkTheme ? 'var(--gray-63)' : 'var(--gray-79)',
-    '--background-text-color': isDarkTheme ? 'var(--gray-25)' : 'var(--gray-d7)',
+    '--background-text-color': isDarkTheme ? 'var(--gray-25)' : 'var(--gray-e7)',
     '--post-text-color': isDarkTheme ? 'var(--gray-e7)': 'var(--gray-25)',
     '--link-text-color': isDarkTheme? '#c583ff' : '#80f',
     '--author-name-color' : isDarkTheme ? 'var(--gray-d7)' : 'var(--gray-1e)',
