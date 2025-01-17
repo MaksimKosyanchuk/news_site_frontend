@@ -20,7 +20,7 @@ const FollowButton = ({ user, is_update_user=true, setUser, author_id, class_nam
             if(result.status === "success") {
                 setProfile(result.data.follower)
                 if(is_update_user) {
-                    setUser(result.data.followed)
+                    setUser(result.data.follower)
                 }
                 showToast({ message: `Вы подписались на ${result.data.followed.nick_name}!`, type: "success" })
             }
@@ -53,7 +53,7 @@ const FollowButton = ({ user, is_update_user=true, setUser, author_id, class_nam
             if(result.status === "success") {
                 showToast({ message: `Вы отписались от ${result.data.followed.nick_name}!`, type: "success" })
                 if(is_update_user){
-                    setUser(result.data.followed)
+                    setUser(result.data.follower)
                 }
                 setProfile(result.data.follower)
             }

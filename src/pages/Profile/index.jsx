@@ -97,14 +97,14 @@ const Profile = () => {
     const open_follows = async () => {
         const follows =  user?.follows?.map(item => ({ _id: item }));
         const result = await fetchUsers(follows)
- 
+
         showModalWindow(
             {
                 title: `Подписки`,
                 content: result.map(authorData => (
                     <div key={authorData._id} className="modal_window_body_content_user">
                         <Author author_data={authorData} />
-                        <FollowButton is_update_user={false} setUser={setUser} author_id={authorData._id}/>
+                        <FollowButton is_update_user={profile?._id === user._id} setUser={setUser} author_id={authorData._id}/>
                     </div>
                   ))
             }
@@ -114,14 +114,14 @@ const Profile = () => {
     const open_followers = async () => {
         const follows =  user?.followers?.map(item => ({ _id: item }));
         const result = await fetchUsers(follows)
-
+        
         showModalWindow(
             {
                 title: `Подписчики`,
                 content: result.map(authorData => (
                     <div key={authorData?._id } className="modal_window_body_content_user">
                         <Author author_data={authorData} />
-                        <FollowButton is_update_user={false} setUser={setUser} author_id={authorData._id}/>
+                        <FollowButton is_update_user={profile?._id === user._id} setUser={setUser} author_id={authorData._id}/>
                     </div>
                   ))
             }
