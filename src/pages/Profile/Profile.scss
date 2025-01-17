@@ -238,23 +238,25 @@
 }
 
 .modal_window {
-    &_body_content {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        gap: 14px;
-
-        &_user {
+    &_body{
+        &_content {
             display: flex;
             width: 100%;
-            justify-content: space-between;
-
-            .follow_button {
-                padding: 6px 12px;
-                font-size: 12px;
-                border-radius: 8px;
+            flex-direction: column;
+            gap: 14px;
+            
+            &_user {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                
+                .follow_button {
+                    padding: 6px 12px;
+                    font-size: 12px;
+                    border-radius: 8px;
+                }
             }
+            
         }
-
     }
 }

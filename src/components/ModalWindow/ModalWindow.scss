@@ -1,3 +1,5 @@
+@import "../../styles/helpers.scss";
+
 .modal_window {
     position: absolute;
     display: flex;
@@ -34,6 +36,12 @@
         max-width: 400px;
         border-radius: 8px;
         background-color: var(--modale_window-body-background-color);
+
+        @include screen() {
+            width: 80%;
+            height: 80%;
+            max-height: none;
+        }
 
         &_title {
             padding: 20px;
