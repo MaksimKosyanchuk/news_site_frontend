@@ -5,11 +5,11 @@
     flex-direction: column;
 
     .drop_file{
-        min-height: 200px;
+        min-height: 230px;
         border-radius: 8px;
 
         @include screen() {
-            min-height: 80px;
+            min-height: 140px;
         }
 
         .remove_image {
@@ -30,6 +30,33 @@
                     color: red;
                     height: 20px;
                 }
+            }
+        }
+
+        &_info {
+            &_upload_icon {
+                height: 50px;
+                width: 50px;
+
+                @include screen() {
+                    display: none;
+                }
+            }
+
+            &_main_text {
+                @include screen() {
+                    font-size: 12px;
+                }
+            }
+
+            &_help_text{
+                @include screen() {
+                    font-size: 12px;
+                }
+            }
+
+            &_select {
+                margin-top: 16px;
             }
         }
     }

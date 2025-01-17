@@ -42,6 +42,41 @@
                 }
             }
         }
+
+        &_info {
+            gap: 6px;
+
+            @include screen() {
+                gap: 4px;
+            }
+
+            &_upload_icon {
+                width: 40px;
+                height: 40px;
+
+                @include screen() {
+                    height: 35px;
+                    width: 35px;
+                }
+            }
+
+            &_main_text {
+                display: none;
+            }
+
+            &_help_text {
+                font-size: 12px;
+                text-align: center;
+
+                @include screen() {
+                    font-size: 10px;
+                }
+            }
+
+            &_select {
+                display: none;
+            }
+        }
     }
 
     .image_input {
@@ -49,6 +84,10 @@
     }
 
     .form_input_description{
+        margin-bottom: 20px;
+    }
+
+    .drop_file_error_messages {
         margin-bottom: 20px;
     }
 }

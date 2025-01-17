@@ -115,7 +115,7 @@ const CreatePost = () => {
                 onFocus={() => handleFocus('title')}
                 error={errors?.title}
             />
-            <DropFile setValue={(file) => setFields({ ...fields, featured_image: file })} drop_file_type={"image/*"} errors={errors.featured_image} add_new_errors={add_errors_to_image} clear_errors={clear_errors_from_image} handleClick={handleClick}/>
+            <DropFile setValue={(file) => setFields({ ...fields, featured_image: file })} drop_file_type={"image/*"} file_types={"SVG, PNG, JPEG, JPG и другие"} errors={errors.featured_image} add_new_errors={add_errors_to_image} clear_errors={clear_errors_from_image} handleClick={handleClick}/>
             <InputFiled
                 className={"create_post_main_text" + (createResult.status === "error" && createResult.message === "'content_text' length must be mroe than 0" ? " incorrect_field" : "")}
                 placeholder={"Введите текст"}
