@@ -48,13 +48,44 @@
         }
     }
 
-    .image_input{
+    .image_input {
+        position: absolute;
+        z-index: 10;
         font-size: 0;
         flex: 1;
         opacity: 0;
         width: 100%;
         height: 100%;     
         cursor: pointer;
+    }
+
+    &_info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &_upload_icon {
+            color: var(--drop-file-border-color);
+        }
+        
+        &_main_text {
+            margin-top: 10px;
+            color: var(--main-text-color);
+        }
+
+        &_help_text {
+            font-size: 14px;
+            color: var(--light-text-color);
+        }
+
+        &_select {
+            color: var(--blue-button-primary-color);
+            border: 1px solid var(--blue-button-primary-color);
+            padding: 6px 16px;
+            border-radius: 6px;
+            margin-top: 16px;
+            font-size: 12px;
+        }
     }
 }
 
