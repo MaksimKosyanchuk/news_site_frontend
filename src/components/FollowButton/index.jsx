@@ -4,7 +4,7 @@ import { useLocation } from 'react-router'
 import { API_URL } from "../../config";
 import "./FollowButton.scss";
 
-const FollowButton = ({ user, is_update_user=true, setUser, author_id, class_name }) => {
+const FollowButton = ({ user, update_user=null, setUser, author_id, class_name }) => {
     const { profile, setProfile, showToast } = useContext(AppContext);
     let location = useLocation()
 
@@ -19,8 +19,13 @@ const FollowButton = ({ user, is_update_user=true, setUser, author_id, class_nam
 
             if(result.status === "success") {
                 setProfile(result.data.follower)
-                if(is_update_user) {
-                    setUser(result.data.follower)
+                switch (update_user){
+                    case "follower":
+                        setUser(result.data.follower)
+                        break;
+                    case "followed":
+                        setUser(result.data.followed)
+                        break;
                 }
                 showToast({ message: `Вы подписались на ${result.data.followed.nick_name}!`, type: "success" })
             }
@@ -52,8 +57,13 @@ const FollowButton = ({ user, is_update_user=true, setUser, author_id, class_nam
 
             if(result.status === "success") {
                 showToast({ message: `Вы отписались от ${result.data.followed.nick_name}!`, type: "success" })
-                if(is_update_user){
-                    setUser(result.data.follower)
+                switch (update_user){
+                    case "follower":
+                        setUser(result.data.follower)
+                        break;
+                    case "followed":
+                        setUser(result.data.followed)
+                        break;
                 }
                 setProfile(result.data.follower)
             }
