@@ -1,0 +1,61 @@
+.modal_window {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+
+    &_background {
+        cursor: default;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: var(--modale_window-background-color);
+        transition: backdrop-filter;
+    }
+
+    &_body {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        height: 600px;
+        max-height: 600px;
+        width: 400px;
+        max-width: 400px;
+        border-radius: 8px;
+        background-color: var(--modale_window-body-background-color);
+
+        &_title {
+            padding: 20px;
+            flex-shrink: 0;
+            border-bottom: 1px solid var(--line-color);
+
+            p {
+                text-align: center;
+                font-size: 16px;
+            }
+        }
+
+        &_content {
+            padding: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+    }
+
+    &.visible {
+        pointer-events: all; /* Включаем взаимодействие */
+        opacity: 1; /* Делает модалку видимой */
+        visibility: visible; /* Отображает элемент */
+    }
+}
