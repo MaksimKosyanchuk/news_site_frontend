@@ -104,7 +104,7 @@ const Profile = () => {
                 content: result.map(authorData => (
                     <div key={authorData._id} className="modal_window_body_content_user">
                         <Author author_data={authorData} />
-                        <FollowButton update_user={"follower"} setUser={setUser} author_id={authorData._id}/>
+                        <FollowButton update_user={profile?._id === user?._id ? "follower" : ""} setUser={setUser} author_id={authorData._id}/>
                     </div>
                   ))
             }
@@ -121,7 +121,7 @@ const Profile = () => {
                 content: result.map(authorData => (
                     <div key={authorData?._id } className="modal_window_body_content_user">
                         <Author author_data={authorData} />
-                        <FollowButton update_user={"follower"} setUser={setUser} author_id={authorData._id}/>
+                        <FollowButton update_user={profile?._id === user?._id ? "follower" : ""} setUser={setUser} author_id={authorData._id}/>
                     </div>
                   ))
             }
