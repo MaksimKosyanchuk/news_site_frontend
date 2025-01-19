@@ -82,6 +82,7 @@ function App() {
     '--drop-file-hover-background-color': isDarkTheme ? 'var(--gray-25)' : 'var(--gray-e7)',
     '--drop-file-border-color': isDarkTheme ? 'var(--gray-4f)' : 'var(--gray-b5)',
     '--drop-file-hover-border-color': isDarkTheme ? 'var(--gray-b5)' : 'var(--gray-63)',
+    '--avatar-icon-color': 'var(--drop-file-hover-background-color)',
     '--submit-button-primary-color': isDarkTheme ? 'var(--gray-b5)' : 'var(--gray-25)',
     '--submit-button-primary-hover-color': isDarkTheme ? 'var(--gray-e7)' : 'var(--gray-4f)',
     '--submit-button-secondary-color': 'var(--main-background)',

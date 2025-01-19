@@ -11,6 +11,15 @@
 
     .author {
         margin-right: auto;
+
+        &_info {
+            overflow: hidden;
+        }
+
+        &_avatar {
+            min-height: 24px;
+            min-width: 24px;
+        }
     }
 
     &_button {
@@ -54,7 +63,7 @@
         display: block;
 
         @include screen(){
-            display: none;
+            font-size: 14px;
         }
     }
 }
