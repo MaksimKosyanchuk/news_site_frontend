@@ -38,7 +38,7 @@ function format_date(date) {
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();
 
-    return `${hours}:${minutes}, ${day}.${month}.${year}`;
+    return `${hours}:${minutes} ${day}.${month}.${year}`;
 }
 
 const ArticleTopic = ({ article }) => {
@@ -97,4 +97,4 @@ const ArticleTopic = ({ article }) => {
     )
 }
 
-export  { ArticleTopic, format_date }
+export  { ArticleTopic }

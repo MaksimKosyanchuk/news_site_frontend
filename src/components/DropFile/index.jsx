@@ -4,7 +4,7 @@ import { ReactComponent as DeleteIcon } from "../../assets/svg/delete-icon.svg"
 import { ReactComponent as WarningIcon } from "../../assets/svg/warning-icon.svg"
 import { ReactComponent as UploadFileIcon } from "../../assets/svg/upload-file-icon.svg"
 
-const DropFile = ({ setValue, value, drop_file_type, errors, file_types, add_new_errors, clear_errors, handleClick }) => {
+const DropFile = ({ setValue, value, background=null, drop_file_type, errors, file_types, add_new_errors, clear_errors, handleClick }) => {
 	const [file, setFile] = useState(value ?? null);
     const [isDragged, setDraged] = useState(false);
     const fileRef = useRef(null);
@@ -134,10 +134,14 @@ const DropFile = ({ setValue, value, drop_file_type, errors, file_types, add_new
 					) :
 					<>
 					<div className="drop_file_info">
-						<UploadFileIcon className="drop_file_info_upload_icon app-transition"/>
-						<p className="drop_file_info_main_text">Выберите файл или перетащите его сюда</p>
-						<p className="drop_file_info_help_text">{file_types}</p>
-						<div className="drop_file_info_select app-transition">Выбрать</div>
+						{background ??
+							<>
+								<UploadFileIcon className="drop_file_info_upload_icon app-transition"/>
+								<p className="drop_file_info_main_text">Выберите файл или перетащите его сюда</p>
+								<p className="drop_file_info_help_text">{file_types}</p>
+								<div className="drop_file_info_select app-transition">Выбрать</div>
+						 	</>
+						}
 					</div>
 					<input
 						className={"image_input"}
