@@ -124,8 +124,7 @@ function App() {
           <ModalWindow
             modalWindow={modalWindow}
             showModalWindow={showModalWindow}
-            
-            />
+          />
           <Header/>
           <StartScreen>
             <Routes>

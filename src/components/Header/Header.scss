@@ -86,6 +86,16 @@
         justify-content: center;
         gap: 20px;
         right: 0;
+
+        .header_notification {
+          &_new {
+            position: fixed;
+            background-color: red;
+            height: 5px;
+            width: 5px;
+            border-radius: 50%;
+          }
+        }
       }
     }
 
@@ -113,4 +123,43 @@
         }
       }
     }
+}
+
+.modal_window_body {
+  width: 700px !important;
+  max-width: 700px !important;
+
+  &_content{
+
+    &_notification {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &_new {
+        margin-right: 10px;
+        background-color: red;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+      }
+
+      &_message {
+        margin: 0 10px;
+        font-size: 14px;
+        align-content: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis
+      }
+
+      &_time {
+        font-size: 12px;
+        white-space: nowrap;
+        color: var(--light-text-color);
+        align-content: center;
+        margin-left: auto;
+      }
+    }
+  }
 }
