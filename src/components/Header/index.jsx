@@ -66,10 +66,10 @@ function Header() {
       return `${diffInYears} лет назад`;
     }
 
-    const users = await Promise.all(
-      notifications.map(item => getUsers([{ _id: item.user }]))
+    const users = await getUsers(
+      notifications.map(item => ({ _id: item.user }))
     );
-    
+
     return [...notifications].reverse().map((item, index) => (
       <div key={item._id} className="modal_window_body_content_notification">
         {
@@ -78,7 +78,7 @@ function Header() {
             :
               <></>
         }
-        <Author author_data={users[index].data[0]} />
+        <Author author_data={users?.data[index]} />
         <p className='modal_window_body_content_notification_message'>
           {(() => {
             switch (item.type) {
