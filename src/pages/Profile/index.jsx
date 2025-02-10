@@ -1,7 +1,6 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../App.js";
-import { format_date } from "../../components/ArticleTopic";
 import { API_URL } from "../../config";
 import { getPosts } from "../../api/posts.api.js";
 import { getUsers } from "../../api/users.api.js";

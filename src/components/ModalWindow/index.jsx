@@ -14,6 +14,9 @@ const ModalWindow = ({ modalWindow, showModalWindow }) => {
         document.body.classList.remove("no-scroll");
         setIsVisible(false)
         showModalWindow(false)
+        if(modalWindow.close_func) {
+            modalWindow.close_func()
+        }
     }
 
     const open_modal_window = () => {
