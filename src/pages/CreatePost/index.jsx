@@ -53,10 +53,11 @@ const CreatePost = () => {
         else{
             setInitialized(true);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[profileLoading, initialized])
 
     const handleClick = () => {
-        const { ["featured_image"]: removedField, ...other } = errors;
+        const { featured_image: removedField, ...other } = errors;
         setErrors (other)
     }
 

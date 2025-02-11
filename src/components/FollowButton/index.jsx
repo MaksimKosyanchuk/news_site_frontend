@@ -1,12 +1,10 @@
 import { AppContext } from "../../App.js";
-import { useContext, useEffect, useState } from "react";
-import { useLocation } from 'react-router'
+import { useContext } from "react";
 import { API_URL } from "../../config";
 import "./FollowButton.scss";
 
 const FollowButton = ({ user, update_user=null, setUser, author_id, class_name }) => {
     const { profile, setProfile, showToast } = useContext(AppContext);
-    let location = useLocation()
 
     const follow = async () => {
         try {
@@ -25,6 +23,9 @@ const FollowButton = ({ user, update_user=null, setUser, author_id, class_name }
                         break;
                     case "followed":
                         setUser(result.data.followed)
+                        break;
+                    default:
+                        console.error("Unexpexted update_user on folow button", update_user)
                         break;
                 }
                 showToast({ message: `Вы подписались на ${result.data.followed.nick_name}!`, type: "success" })
@@ -63,6 +64,9 @@ const FollowButton = ({ user, update_user=null, setUser, author_id, class_name }
                         break;
                     case "followed":
                         setUser(result.data.followed)
+                        break;
+                    default:
+                        console.error("Unexpexted update_user on folow button", update_user)
                         break;
                 }
                 setProfile(result.data.follower)

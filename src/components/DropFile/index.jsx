@@ -48,6 +48,7 @@ const DropFile = ({ setValue, value, background=null, drop_file_type, errors, fi
 		if(setValue) {
 			setValue(file);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [file]); 
 
 	const get_errors = (arrays) => {
@@ -64,7 +65,7 @@ const DropFile = ({ setValue, value, background=null, drop_file_type, errors, fi
 
 	useEffect(() => { 
 		if (!fileRef.current) return; 
-
+		
 		fileRef.current.addEventListener('dragenter', handleDragIn) 
 		fileRef.current.addEventListener('dragleave', handleDragOut) 
 		fileRef.current.addEventListener('dragover', handleDrag) 
@@ -75,9 +76,10 @@ const DropFile = ({ setValue, value, background=null, drop_file_type, errors, fi
 				fileRef.current.removeEventListener('dragenter', handleDragIn) 
 				fileRef.current.removeEventListener('dragleave', handleDragOut) 
 				fileRef.current.removeEventListener('dragover', handleDrag) 
+				// eslint-disable-next-line react-hooks/exhaustive-deps
 				fileRef.current.removeEventListener('drop', handleDrop) 
 			} 
-		} 
+		}
 		}, [fileRef]); 
 
 		const handleDragIn = (e) => { 

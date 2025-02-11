@@ -1,4 +1,4 @@
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../App.js";
 import { API_URL } from "../../config";
@@ -17,7 +17,7 @@ const Profile = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     let tabs = ["Посты", "Сохранённые"];
-    const { profile, setProfile, showToast, showModalWindow } = useContext(AppContext);
+    const { profile, showToast, showModalWindow } = useContext(AppContext);
     const [activeTab, setActiveTab] = useState(tabs[0]);
     const [isLoading, setIsLoading] = useState(false);
     const [posts, setPosts] = useState([]);
@@ -41,6 +41,7 @@ const Profile = () => {
             }
         };
         getUser();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     useEffect(() => {

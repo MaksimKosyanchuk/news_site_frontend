@@ -18,7 +18,7 @@ const Posts =  ( { posts, isLoading } ) => {
         {
             isLoading ?
                 <Loading/> :
-                posts.length == 0 ? 
+                posts.length === 0 ? 
                     <NoPosts/> :
                 posts.map(post => {
                     return (

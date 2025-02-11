@@ -81,7 +81,7 @@ const Register = () => {
     };
 
     const handleClick = () => {
-        const { ["avatar"]: removedField, ...other } = errors;
+        const { avatar: removedField, ...other } = errors;
         setErrors (other)
     }
 

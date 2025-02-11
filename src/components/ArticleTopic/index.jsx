@@ -48,6 +48,7 @@ const ArticleTopic = ({ article }) => {
 
     useEffect(() => {
         setIsSaved(profile && profile.saved_posts && article && article._id && profile.saved_posts.includes(article._id))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [profile])
 
     const save_post = async () => {

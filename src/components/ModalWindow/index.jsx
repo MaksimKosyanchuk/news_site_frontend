@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from 'react-router'
+import { ReactComponent as CrossIcon } from "../../assets/svg/cross-icon.svg";
 import "./ModalWindow.scss"
 
 const ModalWindow = ({ modalWindow, showModalWindow }) => {
@@ -8,6 +9,7 @@ const ModalWindow = ({ modalWindow, showModalWindow }) => {
 
     useEffect(() => {
         close_modal_window()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[location])
 
     const close_modal_window = () => {
@@ -31,6 +33,7 @@ const ModalWindow = ({ modalWindow, showModalWindow }) => {
         else {
             close_modal_window()
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [modalWindow])
     
     return (
@@ -38,7 +41,10 @@ const ModalWindow = ({ modalWindow, showModalWindow }) => {
             <button onClick={ () => { close_modal_window() }} className="modal_window_background"/>
             <div className="modal_window_body blurred">
                 <div className="modal_window_body_title">
-                    <p>{modalWindow?.title ?? ""}</p>
+                    <p className="modal_window_body_title_text">{modalWindow?.title ?? ""}</p>
+                    <button onClick={close_modal_window} className="modal_window_body_title_close_button app-transition">
+                        <CrossIcon/>
+                    </button>
                 </div>
                 <div className="modal_window_body_content">
                     {modalWindow?.content ?? <></>}

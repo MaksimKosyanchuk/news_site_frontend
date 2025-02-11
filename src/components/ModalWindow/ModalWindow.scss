@@ -22,7 +22,7 @@
         position: absolute;
         height: 100%;
         width: 100%;
-        background: var(--modale_window-background-color);
+        background: var(--modal-window-background-color);
         transition: backdrop-filter;
     }
 
@@ -35,7 +35,7 @@
         width: 400px;
         max-width: 400px;
         border-radius: 8px;
-        background-color: var(--modale_window-body-background-color);
+        background-color: var(--modal-window-body-background-color);
 
         @include screen() {
             width: 80%;
@@ -44,11 +44,27 @@
         }
 
         &_title {
+            display: flex;
             padding: 20px;
             flex-shrink: 0;
             border-bottom: 1px solid var(--line-color);
 
+            &_close_button {
+                margin-left: auto;
+                color: var(--modal-window-button-color);
+                width: 24px;
+                height: 24px;
+            }
+
+            &_close_button:hover {
+                cursor: pointer;
+                color: var(--modal-window-button-hover-color);
+            }
+
             p {
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%);
                 text-align: center;
                 font-size: 16px;
             }
