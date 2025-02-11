@@ -19,27 +19,27 @@ function Footer(){
                         <LinkToProfile to={'/profile'}><p>Профиль</p></LinkToProfile>
                     </div>
                     <div className="footer_links">
-                        <a href="https://github.com/MaksimKosyanchuk/news_site_backend/blob/master/README.md#fetches" target="_blank"><p>Api</p></a>
+                        <a href="https://github.com/MaksimKosyanchuk/news_site_backend/blob/master/README.md#fetches" target="_blank" rel="noreferrer"><p>Api</p></a>
                     </div>
                     <div className="footer_links">
                         <Link to={'/users/Dev'}><p>Dev blog</p></Link>
                     </div>
                     <div className="footer_links">
-                        <a href="https://github.com/MaksimKosyanchuk" target="_blank"><p>GitHub</p></a>
+                        <a href="https://github.com/MaksimKosyanchuk" target="_blank" rel="noreferrer"><p>GitHub</p></a>
                     </div>
                 </div>
                 <div className="footer_bottom_content app-transition">
                     <div className="footer_column footer_socials">
-                        <a className="footer_socials_item" href="https://github.com/MaksimKosyanchuk" target="_blank">
+                        <a className="footer_socials_item" href="https://github.com/MaksimKosyanchuk" target="_blank" rel="noreferrer">
                             <GhIcon className="app-transition"/>
                         </a>
-                        <a className="footer_socials_item" href="https://www.instagram.com/maks_kos/" target="_blank">
+                        <a className="footer_socials_item" href="https://www.instagram.com/maks_kos/" target="_blank" rel="noreferrer">
                             <InstagramIcon className="app-transition"/>
                         </a>
-                        <a className="footer_socials_item" href="https://t.me/maks_k0s" target="_blank">
+                        <a className="footer_socials_item" href="https://t.me/maks_k0s" target="_blank" rel="noreferrer">
                             <TelegramIcon className="app-transition"/>
                         </a>
-                        <a className="footer_socials_item" href="https://twitter.com/maks_k0s" target="_blank">
+                        <a className="footer_socials_item" href="https://twitter.com/maks_k0s" target="_blank" rel="noreferrer">
                             <TWitterIcon className="app-transition"/>
                         </a>
                     </div>

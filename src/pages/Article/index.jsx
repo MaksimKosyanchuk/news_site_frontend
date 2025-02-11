@@ -17,6 +17,7 @@ const Article = () => {
     
     useEffect(() => {
         getArticle()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])    
 
     const getArticle = async () => {
@@ -52,7 +53,7 @@ const Article = () => {
                         <ArticleTopic article={article} profile={profile}/>
                         {article.featured_image ? 
                             <div className="article_featured_image">
-                                <img src={article.featured_image}/> 
+                                <img src={article.featured_image} alt={"featured"}/> 
                             </div>
                         : 
                             <></>

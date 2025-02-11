@@ -32,6 +32,7 @@ const Toast = ({ toast, showToast }) => {
                 clearTimeout(timerRef.current);
             }
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [toast]);
 
     return (
