@@ -35,7 +35,7 @@
             color: var(--author-name-color);
 
             @include screen(){
-                font-size: 14px;
+                font-size: 16px;
             }
         }
 
@@ -49,5 +49,11 @@
                 height: 14px;
             }
         }
+    }
+}
+
+.author:hover {
+    .author_info_name {
+        color: var(--author-name-hover-color);
     }
 }

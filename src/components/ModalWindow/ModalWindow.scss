@@ -62,8 +62,8 @@
     }
 
     &.visible {
-        pointer-events: all; /* Включаем взаимодействие */
-        opacity: 1; /* Делает модалку видимой */
-        visibility: visible; /* Отображает элемент */
+        pointer-events: all;
+        opacity: 1;
+        visibility: visible;
     }
 }

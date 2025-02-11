@@ -1,9 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AppContext } from '../../App';
 import './Header.scss';
 import { getUsers, read_notifications } from '../../api/users.api';
-import DefaultAvatar from "../../assets/images/default-profile-avatar.png";
 import { ReactComponent as HomeIcon } from "../../assets/svg/home-icon.svg";
 import { ReactComponent as SunIcon } from "../../assets/svg/sun-icon.svg";
 import { ReactComponent as MoonIcon } from "../../assets/svg/moon-icon.svg";
@@ -13,20 +12,7 @@ import { ReactComponent as NotificationIcon } from "../../assets/svg/notificatio
 import Author from "../Author"
 
 function Header() {
-  const { profile, setProfile, setIsDarkTheme, isDarkTheme, showModalWindow } = useContext(AppContext)
-  const [avatar, setAvatar] = useState(null);
-
-  useEffect(() => {
-    if (profile) {
-        if (profile.avatar) {
-            setAvatar(profile.avatar);
-        } else {
-            setAvatar(DefaultAvatar);
-        }
-    } else {
-        setAvatar(null);
-    }
-  }, [profile]);
+  const { showToast, profile, setProfile, setIsDarkTheme, isDarkTheme, showModalWindow } = useContext(AppContext)
 
   const get_notification = async (notifications) => {
     const get_time = (time) => {
@@ -72,20 +58,24 @@ function Header() {
 
     return [...notifications].reverse().map((item, index) => (
       <div key={item._id} className="modal_window_body_content_notification">
-        {
-          !item.is_read ?
-              <div className="modal_window_body_content_notification_new"></div>
-            :
-              <></>
-        }
-        <Author author_data={users?.data[index]} />
+        <div className='modal_window_body_content_notification_new'>
+          {
+            !item.is_read ?
+                <div className="modal_window_body_content_notification_new_circle"></div>
+              :
+                <></>
+          }
+          <Author author_data={users?.data[index]} />
+        </div>
         <p className='modal_window_body_content_notification_message'>
           {(() => {
             switch (item.type) {
               case "follow":
-                return "Подписался(-ась) на ваши обновления"
+                  return "Подписался(-ась) на ваши обновления"
                 case "unfollow":
                   return "Отписался(-ась) от вас"
+                default:
+                  return ""
                 }
             })()}
         </p>
@@ -95,7 +85,11 @@ function Header() {
   };
   
   const open_notifications = async () => {
-    const notificationContent = await get_notification(profile.notifications);
+    if(!profile) {
+      showToast({type: "warning", message: "Войдите в аккаунт, чтоб получать уведомления!"})
+      return
+    }
+    const notificationContent = await get_notification(profile?.notifications);
   
     const update_notification = async () => {
       const result = await read_notifications()
